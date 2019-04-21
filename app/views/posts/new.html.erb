@@ -1,0 +1,23 @@
+<div class="post-new">
+	<div class="container">
+		<h2>新規投稿ページ</h2>
+		<%= form_for :post, url:'posts/create' do |f|%>
+		<div class="form">
+			<div class="form-body">
+				<div class="image">
+					<p>画像</p>
+					<%= f.file_field :post_image %>
+				</div>
+				<div class="comment">
+					<p>コメント</p>
+					<%= f.file_field :comment %>
+				</div>
+				<div class="submit-btn">
+					<%= f.submit '投稿'　%>
+				</div>
+			</div>
+		</div>
+		<% end %>
+	</div>
+</div>
+

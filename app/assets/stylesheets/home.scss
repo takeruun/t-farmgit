@@ -1,0 +1,124 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font: 100%/1.5 'Avenir Next', 'Hiragino Sans', sans-serif;
+  line-height: 1.7;
+  letter-spacing: 1px;
+}
+
+ul, li{
+	list-style-type: none;
+	
+}
+
+.container{
+	width: 1200px;
+	padding: 0 20px;
+	margin: 0 auto;	
+}
+
+.flash {
+  padding: 10px 0;
+  color: white;
+  background-color: rgba(251, 170, 88, 0.5);
+  text-align: center;
+  position: absolute;
+  top: 64px;
+  z-index: 10;
+  width: 100%;
+  border-radius: 0 0 2px 2px;
+  font-size: 14px;
+}
+
+header{
+	height: 60px;
+	width: 100%;
+	background-color: rgba(34,49,52,0.9);
+	position: fixed;
+	top:0;
+	z-index: 5;
+}
+
+.header-logo{
+	float: left;
+	color: white;
+	font-size: 20px;
+	line-height: 60px;
+	text-decoration: none;
+}
+
+.header-menus{
+	float: right;
+}
+
+.header-menus li{
+	float: left;
+}
+
+.header-menu{
+	color: white;
+	font-size: 16px;
+	padding-right:20px;
+	text-decoration: none;
+}
+
+.recommend-show{
+	padding-top: 60px;
+
+}
+
+.recommend-item{
+	text-align: center;
+	position: relative;
+}
+
+.recommend-item img{
+	width: 800px;
+	height: 350px;
+}
+
+.change-item{
+	position: absolute;
+	display: block;
+	width: 800px;
+	z-index:1;
+	top:175px;
+	left:180px;
+}
+
+.prev-btn{
+	float: right;
+	color: red;
+	background-color:#626262;
+	
+}
+.next-btn{
+	float: left;
+	color: red;
+	background-color:#626262;
+}
+
+.post-show{
+	text-align: center;
+}
+
+.post {
+	float:left;
+	width: 50%;
+}
+
+.post-logo img{
+	width: 500px;
+	height: 250px;
+}
+.post-user-logo img{
+	width: 40px;
+	height: 30px;
+}
