@@ -67,4 +67,4 @@ gem 'tzinfo-data'
 gem 'jquery-rails'
 
 #画像
-gem 'carrierwave'
+#gem 'carrierwave'
