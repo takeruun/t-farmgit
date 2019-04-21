@@ -1,2 +1,0 @@
-# t-farmgit
-t-farmファイル
