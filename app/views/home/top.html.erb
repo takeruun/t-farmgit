@@ -9,26 +9,27 @@
 			</div>
 		</div>
 	</div>
-	<div class="posts-show">
-		<div class="container">
-			<h2>投稿一覧</h2>
-			<div class="posts">
-				<% @posts.each do |post| %>
-				<div class="post">
-					<div class="post-logo">
-						<img alt="" src= <%= "/post_images/#{post.image_name}"%> >
-					</div>
-					<div class="post-user-logo">
-						<img alt="" src= <%= "/user_images/default.jpg"%>>
-					</div>
-					<div class="post-comment">
-						<%= post.comment %>
-					</div>
-					<%= post.image_name %>
+</div>
+
+<div class="posts-show">
+	<div class="container">
+		<h2>投稿一覧</h2>
+		<div class="posts">
+		<% @posts.each do |post| %>
+			<div class="post">
+				<div class="post-logo">
+					<img alt="" src= <%= "/post_images/#{post.image_name}"%> >
 				</div>
-				<% end %>
+				<div class="post-user-logo">
+					<img alt="" src= <%= "/user_images/default.jpg"%>>
+				</div>
+				<div class="post-comment">
+					<%= post.comment %>
+				</div>
 			</div>
+			<% end %>
 		</div>
 	</div>
-
 </div>
+
+
