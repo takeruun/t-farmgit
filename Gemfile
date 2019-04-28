@@ -68,3 +68,6 @@ gem 'jquery-rails'
 
 #画像
 #gem 'carrierwave'
+
+#ajax通信
+#gem 'gon'

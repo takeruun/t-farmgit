@@ -2,7 +2,9 @@
 	<div class="container">
 		<h2 class="recommend-title">旬物</h2>
 		<div class="recommend-item">
-			<img alt="" src= <%= "/post_images/#{@recpost.image_name}" %>> 
+			<div class="recpost" data-id= <%= @recpost.id %> >
+				<img alt="" src= <%= "/post_images/#{@recpost.image_name}" %>> 
+			</div>
 			<div class="change-item">
 				<div class="change-btn prev-btn"><div class="fa fa-arrow-right"></div></div>
 				<div class="change-btn next-btn"><div class="fa fa-arrow-left"></div></div>
