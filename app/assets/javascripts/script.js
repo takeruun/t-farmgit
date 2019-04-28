@@ -18,7 +18,7 @@ $(function(){
 	}
 
 	//<li>にオススメ画像登録
-	function slidePost(){
+	function createSlidePost(){
 		for(var i=0;i<post_num.length;i++){
 
 			if ($('.recpost').find('li').val() == 0){
@@ -45,13 +45,29 @@ $(function(){
 			$.each(data, function(i,data){
 				createRecPost(data,recpost_id_now,i);
 			});
-			slidePost();
+			createSlidePost();
 		})
 		.fail(function(){
 			alert('error');
 		})
 	});
 
+	$('.change-btn').click(function(){
+		var $changePost = $('.active');
+		var slideIndex = $('.slide').index($('.active'));
+		$changePost.removeClass('active');
+		if ($(this).hasClass('prev-btn')){
+			if (slideIndex == 0){
+				$('.slide').eq(post_num.length-1).addClass('active');
+			}
+			$changePost.prev().addClass('active');
+		}else{
+			if (slideIndex == post_num.length-1){
+				$('.slide').eq(0).addClass('active');
+			}
+			$changePost.next().addClass('active');
+		}
+	});
 
 
 }); 
