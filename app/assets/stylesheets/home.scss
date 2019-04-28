@@ -86,6 +86,14 @@ header{
 	height: 350px;
 }
 
+.slide{
+	display: none;
+}
+
+.active{
+	display: block;
+}
+
 .change-item{
 	position: absolute;
 	display: block;
