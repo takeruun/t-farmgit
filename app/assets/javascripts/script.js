@@ -3,9 +3,8 @@ $(function(){
 	setTimeout("$('#flash').fadeOut('slow')",1500);
 
 	var post_array = [];
-	var post_num = [];
-	var recpost_id_now = $('.recpost').data('id');
-
+	var post_num   = [];
+	
 	//<li>作成
 	function createRecPost(post,id_now,i){
 		post_array.push(post);
@@ -34,6 +33,7 @@ $(function(){
 
 	//旬物(true)の分だけデータ取得
 	$(window).load(function(){
+		var recpost_id_now = $('.recpost').data('id');
 		$.ajax({
 			url: '/',
 			type: 'GET',
@@ -54,7 +54,7 @@ $(function(){
 
 	$('.change-btn').click(function(){
 		var $changePost = $('.active');
-		var slideIndex = $('.slide').index($('.active'));
+		var slideIndex  = $('.slide').index($('.active'));
 		$changePost.removeClass('active');
 		if ($(this).hasClass('prev-btn')){
 			if (slideIndex == 0){

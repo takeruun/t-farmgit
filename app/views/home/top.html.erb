@@ -21,14 +21,18 @@
 		<div class="posts">
 		<% @posts.each do |post| %>
 			<div class="post">
-				<div class="post-logo">
-					<img alt="" src= <%= "/post_images/#{post.image_name}"%> >
-				</div>
-				<div class="post-user-logo">
-					<img alt="" src= <%= "/user_images/default.jpg"%>>
-				</div>
-				<div class="post-comment">
-					<%= post.comment %>
+				<div class="post-info-top">
+					<div class="logo-top">
+						<%= link_to image_tag("/post_images/#{post.image_name}"),"posts/#{post.id}" %>	
+					</div>
+					<div class="comment-top">
+						<%= post.comment %>
+					</div>
+					<div class="user-top">
+						<img alt="" src= <%= "/user_images/#{post.user.image_name}"%>>
+						<%= post.user.name %>
+					</div>
+					
 				</div>
 			</div>
 			<% end %>

@@ -123,6 +123,7 @@ header{
 
 .posts{	
 	text-align: center;
+
 }
 
 .post{
@@ -131,15 +132,19 @@ header{
 	width: 33%;
 	margin-bottom: 30px;
 }
+.post-info-top{
+	
+}
 
-.post-logo img{
+.logo-top img{
 	width: 250px;
 	height: 150px;
 }
 
-.post-user-logo img{
+.user-top img{
 	position:absolute;
-	left:65px;
+	left: 65px;
 	width: 40px;
 	height: 30px;
+	border-radius: 30%;
 }

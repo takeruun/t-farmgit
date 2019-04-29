@@ -21,5 +21,10 @@ class PostsController < ApplicationController
         render('/posts/new')
     end
   end
+
+  def show
+    @post = Post.find_by(id: params[:id])
+    @user = @post.user
+  end
   
 end
