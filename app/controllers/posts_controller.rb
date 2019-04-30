@@ -9,9 +9,8 @@ class PostsController < ApplicationController
       comment: params[:post][:comment],
       user_id: @current_user.id
       )
-     @post.save
-     
-    if params[:post][:post_image]
+
+    if  params[:post][:post_image] && @post.save
         @post.image_name = "#{@post.id}.jpg"
         File.binwrite("public/post_images/#{@post.image_name}",params[:post][:post_image].read)
         @post.save
