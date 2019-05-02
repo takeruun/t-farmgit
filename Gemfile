@@ -71,5 +71,5 @@ gem 'jquery-rails'
 #画像
 #gem 'carrierwave'
 
-#ajax通信
-#gem 'gon'
+#ユーザー認証
+gem 'devise'
