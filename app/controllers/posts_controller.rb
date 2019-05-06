@@ -7,7 +7,7 @@ class PostsController < ApplicationController
   def create
   	 @post = Post.new(
       comment: params[:post][:comment],
-      user_id: @current_user.id
+      user_id: current_user.id
       )
 
     if  params[:post][:post_image] && @post.save

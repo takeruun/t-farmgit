@@ -20,14 +20,15 @@
           </div>
         <div class="header-menus">
           <ul>
-            <% if @current_user %>
-              <li><%= link_to @current_user.name,'#',class:"header-menu" %></li>
+            <% if user_signed_in? %>
+              <li><%= link_to current_user.name,'#',class:"header-menu" %></li>
               <li><%= link_to 'お気に入り','#',class:"header-menu" %></li>
               <li><%= link_to '新規投稿','/posts/new',class:"header-menu" %></li>
-              <li><%= link_to 'ログアウト','/logout',class:"header-menu",method: :post %></li>
+              <li><%= link_to 'ログアウト',destroy_user_session_path,method: :delete,class:"header-menu"%></li>
             <% else %>
               <li class="header-menu">ゲスト</li>
-              <li><%= link_to 'ログイン','/login',class:"header-menu"%></li>
+              <li><%= link_to 'ログイン',new_user_session_path,class:"header-menu"%></li>
+              <li><%= link_to '新規登録',new_user_registration_path,class:"header-menu" %></li>
             <% end %>
           </ul>
         </div>

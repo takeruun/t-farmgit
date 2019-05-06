@@ -2,23 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.login-form-wrapper{
+.login-form{
 	margin-top: 120px;
 }
 
-.login-form-wrapper h2{
 
-}
-
-.login-form{
-	max-width: 600px;
-	margin: 0 auto;
-	
-}
-
-.message{
-	color:red;
-}
 
 .login-body{
 	box-shadow: 0 2px 6px #c1ced7;
@@ -27,7 +15,7 @@
 }
 
 
-.login-form input{
+.login-form .action{
 	width: 100%;
 	margin-top:20px;
 	margin-bottom: 20px;

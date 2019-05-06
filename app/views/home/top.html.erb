@@ -32,7 +32,11 @@
 						<img alt="" src= <%= "/user_images/#{post.user.image_name}"%>>
 						<%= post.user.name %>
 					</div>
-					
+					<% if user_signed_in? %>
+						<div class="link-favorite" id="link-favorite-<%= post.id %>">
+							<%= render 'favorites/favorite', post: post %>
+						</div>
+					<% end %>
 				</div>
 			</div>
 			<% end %>

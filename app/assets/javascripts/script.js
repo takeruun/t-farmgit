@@ -68,6 +68,5 @@ $(function(){
 			$changePost.next().addClass('active');
 		}
 	});
-
-
+	
 }); 
