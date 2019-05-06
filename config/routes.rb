@@ -6,14 +6,9 @@ Rails.application.routes.draw do
     	:passwords => "users/passwords"
     }
 
-	get 'posts/index' => 'posts#index'
-	get 'posts/new' => 'posts#new'
-	post 'posts/create' => 'posts#create'
-	get 'posts/:id' => 'posts#show'
-
-	post 'favorite/:post_id' => 'favorites#create', as: 'fav'
-	delete 'favorite/:post_id' => 'favorites#destroy', as: 'unfav'
-
+	resources :posts do
+		resources :favorites, only: [:create, :destroy]
+	end
 
  	get '/' => 'home#top'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

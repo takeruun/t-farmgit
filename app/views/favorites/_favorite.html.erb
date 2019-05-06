@@ -1,10 +1,9 @@
-
-	<% if post.favorited_by?(current_user) %>
-			<%= link_to unfav_path(post.id), method: :delete, remote: true do %>
-				<i class="fa fa-heart unfav-btn"></i>
-			<% end %>
-	<% else %>
-			<%= link_to fav_path(post.id), method: :post, remote: true do %>
-				<i class="fa fa-heart fav-btn"></i>
-			<% end %>
-	<% end %>
+<% if post.favorited_by?(current_user) %>
+		<%= link_to post_favorite_path(Favorite.find_by(post_id: post.id),post_id: post.id), method: :delete,id: "fav-btn", remote: true do %>
+			<i class="fa fa-heart unfav-log"></i>
+		<% end %>
+<% else %>
+		<%= link_to post_favorites_path(post_id: post.id), method: :post,id: "fav-btn", remote: true do %>
+			<i class="fa fa-heart fav-log"></i>
+		<% end %>
+<% end %>

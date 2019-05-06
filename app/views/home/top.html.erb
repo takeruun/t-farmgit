@@ -23,7 +23,7 @@
 			<div class="post">
 				<div class="post-info-top">
 					<div class="logo-top">
-						<%= link_to image_tag("/post_images/#{post.image_name}"),"posts/#{post.id}" %>	
+						<%= link_to image_tag("/post_images/#{post.image_name}"),post_path(post.id) %>	
 					</div>
 					<div class="comment-top">
 						<%= post.comment %>
@@ -33,8 +33,8 @@
 						<%= post.user.name %>
 					</div>
 					<% if user_signed_in? %>
-						<div class="link-favorite" id="link-favorite-<%= post.id %>">
-							<%= render 'favorites/favorite', post: post %>
+						<div class="link-favorite" id="favorite-<%= post.id %>">
+							<%= render partial: 'favorites/favorite', locals:{post: post} %>
 						</div>
 					<% end %>
 				</div>
