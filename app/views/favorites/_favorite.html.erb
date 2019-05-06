@@ -1,9 +1,11 @@
 <% if post.favorited_by?(current_user) %>
 		<%= link_to post_favorite_path(Favorite.find_by(post_id: post.id),post_id: post.id), method: :delete,id: "fav-btn", remote: true do %>
 			<i class="fa fa-heart unfav-log"></i>
+			<div class="favorite-count"><%= Favorite.where(post_id: post.id).count %></div>
 		<% end %>
 <% else %>
 		<%= link_to post_favorites_path(post_id: post.id), method: :post,id: "fav-btn", remote: true do %>
 			<i class="fa fa-heart fav-log"></i>
+			<div class="favorite-count"><%= Favorite.where(post_id: post.id).count %></div>
 		<% end %>
 <% end %>
