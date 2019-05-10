@@ -1,25 +1,26 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
-
 * {
   box-sizing: border-box;
 }
 
-html {
-  font: 100%/1.5 'Avenir Next', 'Hiragino Sans', sans-serif;
-  line-height: 1.7;
-  letter-spacing: 1px;
+body{
+	margin: 0;
+  	font-family: 'Avenir Next', 'Hiragino Sans', sans-serif;
+  	letter-spacing: 1px;
 }
 
 ul, li{
-	list-style-type: none;
-	
+	list-style-type: none;	
+}
+
+a{
+	text-decoration: none;
 }
 
 .container{
-	width: 1200px;
+	width: 1170px;
 	padding: 0 20px;
 	margin: 0 auto;	
 }
@@ -42,7 +43,7 @@ header{
 	width: 100%;
 	background-color: rgba(34,49,52,0.9);
 	position: fixed;
-	top:0;
+	top: 0;
 	z-index: 5;
 }
 
@@ -51,7 +52,6 @@ header{
 	color: white;
 	font-size: 20px;
 	line-height: 60px;
-	text-decoration: none;
 }
 
 .header-menus{
@@ -66,12 +66,12 @@ header{
 	color: white;
 	font-size: 16px;
 	padding-right:20px;
-	text-decoration: none;
 }
 
 .recommend-show{
+	background-color: #B3B3B3;
 	padding-top: 60px;
-
+	padding-bottom: 20px;
 }
 
 .recommend-item{
@@ -96,9 +96,9 @@ header{
 	position: absolute;
 	display: block;
 	width: 800px;
-	z-index:1;
-	top:175px;
-	left:180px;
+	z-index: 1;
+	top: 175px;
+	left: 185px;
 }
 
 .prev-btn{
@@ -115,23 +115,20 @@ header{
 
 .posts-show{
 	height: 600px;
-	margin:0 auto;
-	
+	margin: 0 auto;
 }
 
 .posts{	
 	text-align: center;
-
 }
 
 .post{
 	position: relative;
 	float: left;
-	width: 33%;
-	margin-bottom: 30px;
-}
-.post-info-top{
-	
+	width: 30%;
+	padding-bottom: 10px;
+	margin: 10px 15px 20px 20px;
+	box-shadow: 0 2px 6px #c1ced7;
 }
 
 .logo-top img{
@@ -139,19 +136,38 @@ header{
 	height: 150px;
 }
 
-.user-top img{
-	position:absolute;
+.user-top{
+	position: absolute;
 	left: 65px;
+	top: 150px;
+}
+
+.user-top img{
+	float: left;
 	width: 40px;
 	height: 30px;
-	border-radius: 30%;
+	border-radius: 50%;
 }
 
-.fa-heart{
-	decoration:none;
+.user-name-top{
+	margin-left: 10px;
+	float: left;
+	font-size: 15px;
 }
 
-.unfav-log{
-	color: red;
+.comment-top{
+	text-align: left;
+	margin-top: 30px;
+	margin-bottom: 10px;
+}
+
+.comment-top h4{
+	margin: 0 0 5px 20px;
+	padding-top: 10px;
+}
+
+.comment-top p{
+	margin-top: 0;
+	margin-left: 20px;
 }
 

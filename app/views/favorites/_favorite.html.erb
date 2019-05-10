@@ -1,11 +1,15 @@
 <% if post.favorited_by?(current_user) %>
-		<%= link_to post_favorite_path(Favorite.find_by(post_id: post.id),post_id: post.id), method: :delete,id: "fav-btn", remote: true do %>
-			<i class="fa fa-heart unfav-log"></i>
-			<div class="favorite-count"><%= Favorite.where(post_id: post.id).count %></div>
-		<% end %>
+	<div id="fav-btn" class="favorite">	
+		<%= link_to post_favorite_path(Favorite.find_by(post_id: post.id),post_id: post.id), method: :delete, remote: true do %>
+			<i class="fa fa-heart unfav-log"></i>お気に入り削除
+			<% end %>
+		<div class="favorite-count"><%= Favorite.where(post_id: post.id).count %>件</div>
+	</div>
 <% else %>
-		<%= link_to post_favorites_path(post_id: post.id), method: :post,id: "fav-btn", remote: true do %>
-			<i class="fa fa-heart fav-log"></i>
-			<div class="favorite-count"><%= Favorite.where(post_id: post.id).count %></div>
+	<div id="fav-btn" class="favorite">
+		<%= link_to post_favorites_path(post_id: post.id), method: :post, remote: true do %>
+			<i class="fa fa-heart fav-log"></i>お気に入り追加
 		<% end %>
+		<div class="favorite-count"><%= Favorite.where(post_id: post.id).count %>件</div>
+	</div>
 <% end %>
