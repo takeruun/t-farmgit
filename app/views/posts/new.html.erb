@@ -5,12 +5,13 @@
 		<div class="form">
 			<div class="form-body">
 				<div class="image-form">
-					<p>画像</p>
+					<p>写真を登録</p>
+					<div class="preview"></div>
 					<%= f.file_field :post_image, class:"input-image" %>
 				</div>
 				<div class="comment-form">
-					<p>コメント</p>
-					<%= f.text_area :comment, class:"input-comment", rows:"4",value:@post.comment %>
+					<p>商品の説明</p>
+					<%= f.text_area :comment, class:"input-comment", rows:"5",value:@post.comment %>
 				</div>
 				<div class="submit-btn-form">
 					<%= f.submit '投稿' %>
