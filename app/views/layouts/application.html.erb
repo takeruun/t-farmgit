@@ -21,7 +21,7 @@
         <div class="header-menus">
           <ul>
             <% if user_signed_in? %>
-              <li><%= link_to current_user.name,'#',class:"header-menu" %></li>
+              <li><%= link_to current_user.name,"/users/#{current_user.id}",class:"header-menu" %></li>
               <li><%= link_to 'お気に入り','#',class:"header-menu" %></li>
               <li><%= link_to '新規投稿','/posts/new',class:"header-menu" %></li>
               <li><%= link_to 'ログアウト',destroy_user_session_path,method: :delete,class:"header-menu"%></li>
@@ -39,7 +39,7 @@
           <%= flash[:notice] %>
         </div>
       <% end %>
-      
+
     <%= yield %> 
   </body>
 </html>

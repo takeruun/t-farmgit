@@ -1,0 +1,29 @@
+<div class="user-show">
+	<div class="container">
+		<div class="user">
+			<img alt=" " src= <%= "/user_images/#{@user.image_name}" %>/>
+			<h3><%= @user.name %></h3>
+
+			<ul class="user-tabs">
+				<li class="active"><%= link_to "投稿","users/#{@user.id}" %></li>
+				<li><%= link_to "お気に入り", "/users/#{@user.id}/favorites" %></li>
+			</ul>
+
+			<% @user.posts.each do |post| %>
+				<div class="posts-index">
+					<div class="post-left">
+						<img alt=" " src= <%= "/user_images/#{post.user.image_name}" %>/>
+						<div class="post-user-name">
+							<%= link_to post.user.name, "/users/#{post.user.id}" %>
+						</div>
+					</div>
+					<div class="post-right">
+						<img alt="" src= <%= "/post_images/#{post.image_name}" %>/>
+						<div class="comment"><%= post.comment %></div>
+						<div class="time"><%= post.created_at.strftime('%Y年%m月%d日 %H:%M') %></div>
+					</div>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>

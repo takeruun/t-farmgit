@@ -21,7 +21,7 @@
 		<div class="posts">
 		<% @posts.each do |post| %>
 			<div class="post">
-				<div class="logo-top">
+				<div class="image-top">
 					<%= link_to image_tag("/post_images/#{post.image_name}"),post_path(post.id) %>	
 				</div>
 				<div class="user-top">
