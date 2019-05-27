@@ -1,17 +1,17 @@
-<div class="post-show">
+<div class="post-show-wrapper">
 	<div class="container">
 		<div class="post-item">
 			<div class="post-user-info">
 				<img alt="投稿者写真" src= <%= "/user_images/#{@user.image_name}" %> >
 				<%= link_to @user.name,'/',class:"user-name"%>
+				<div class="fav-count"></div>
 			</div>
 			<div class="post-content">
 				<img alt=" " src= <%= "/post_images/#{@post.image_name}" %>>
 				<p class="post-comment"><%= @post.comment %></p>
-				<div class="post-time"><%= @post.created_at.strftime('%Y年%m月%d日 %H:%M') %></div>
-				<div class="fav-count"></div>
+				<div class="post-time"><%= @post.created_at.strftime('%Y年%m月%d日 %H:%M') %></div>	
 			</div>
 			<div class="clear"></div>
 		</div>	
 	</div>
-</div>
+</div>_

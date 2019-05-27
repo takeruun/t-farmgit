@@ -56,6 +56,7 @@ $(function(){
 		var $changePost = $('.active');
 		var slideIndex  = $('.slide').index($('.active'));
 		$changePost.removeClass('active');
+		
 		if ($(this).hasClass('prev-btn')){
 			if (slideIndex == 0){
 				$('.slide').eq(post_num.length-1).addClass('active');

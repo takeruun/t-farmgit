@@ -3,17 +3,14 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .login-form{
-	margin-top: 120px;
+	margin-top: 150px;
 }
-
-
 
 .login-body{
 	box-shadow: 0 2px 6px #c1ced7;
 	text-align: center;
 	padding: 30px;
 }
-
 
 .login-form .action{
 	width: 100%;
@@ -32,4 +29,79 @@
 	border-radius: 4px;
 }
 
+.user-show-wrapper{
+	background-color: #E7E5E8;
+	padding-top: 150px;
+}
+.user-show{
+	width: 70%;
+	margin: auto;
+}
 
+.user{
+	
+}
+
+.user img{
+	width: 90px;
+	height: 90px;
+	border-radius: 50%;
+}
+
+.user-tabs{
+	margin:0;
+	background-color: white;
+	overflow: hidden;
+	box-shadow: 0 2px 6px #c1ced7;
+}
+
+.user-tabs a{
+	display: inline-block;
+	padding: 16px 30px;
+}
+
+.user-tabs li{
+	float: left;
+}
+
+.user-tabs li.active{
+	border-bottom: 2px solid #3ecdc6;
+}
+
+.user-tabs li.active a{
+	color: #57575f;
+}
+
+.posts-index{
+	padding: 20px 30px;
+	background-color: white;
+	box-shadow: 0 2px 6px #c1ced7;
+}
+
+.post-left img{
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+}
+
+.post-user-name a{
+	font-weight: 600;
+}
+
+.post-user-name a:hover{
+	color: #3ecdc6;
+}
+
+.post-left{
+	float: left;
+	padding-left: 25px;
+}
+
+.post-right{
+	width: 100%;
+}
+
+.post-right img{
+	width: 80%;
+	height: 80%;
+}

@@ -19,6 +19,11 @@ a{
 	text-decoration: none;
 }
 
+.top-wrapper{
+	background-color: #E7E5E8;
+	padding-bottom: 130px;
+}
+
 .container{
 	width: 1170px;
 	padding: 0 20px;
@@ -69,11 +74,16 @@ header{
 }
 
 .recommend-show{
-	background-color: #B3B3B3;
+	background-image: url("/vegi.jpg");
+	background-size: cover;
 	padding-top: 60px;
-	padding-bottom: 20px;
+	padding-bottom: 40px;
 }
 
+.recommend-title{
+	color: #D3E300;
+	font-size: 40px;
+}
 .recommend-item{
 	text-align: center;
 	position: relative;
@@ -127,8 +137,9 @@ header{
 	float: left;
 	width: 30%;
 	padding-bottom: 10px;
-	margin: 10px 15px 20px 20px;
+	margin: 20px 15px 20px 20px;
 	box-shadow: 0 2px 6px #c1ced7;
+	background-color: white;
 }
 
 .image-top img{

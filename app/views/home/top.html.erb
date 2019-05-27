@@ -1,47 +1,47 @@
-<div class="recommend-show">
-	<div class="container">
-		<h2 class="recommend-title">旬物</h2>
-		<div class="recommend-item">
-			<div class="recpost" data-id= <%= @recpost.id %> >
-				<ul>
-					
-				</ul>
-			</div>
-			<div class="change-item">
-				<div class="change-btn prev-btn"><div class="fa fa-arrow-left"></div></div>
-				<div class="change-btn next-btn"><div class="fa fa-arrow-right"></div></div>
+<div class="top-wrapper">
+	<div class="recommend-show">
+		<div class="container">
+			<h2 class="recommend-title">おすすめ</h2>
+			<div class="recommend-item">
+				<div class="recpost" data-id= <%= @recpost.id %> >
+					<ul>
+						
+					</ul>
+				</div>
+				<div class="change-item">
+					<div class="change-btn prev-btn"><div class="fa fa-arrow-left"></div></div>
+					<div class="change-btn next-btn"><div class="fa fa-arrow-right"></div></div>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
 
-<div class="posts-show">
-	<div class="container">
-		<h2>投稿一覧</h2>
-		<div class="posts">
-		<% @posts.each do |post| %>
-			<div class="post">
-				<div class="image-top">
-					<%= link_to image_tag("/post_images/#{post.image_name}"),post_path(post.id) %>	
-				</div>
-				<div class="user-top">
-					<img alt="" src= <%= "/user_images/#{post.user.image_name}"%>/>
-					<span class="user-name-top"><%= post.user.name %></span>
-				</div>
-				<div class="comment-top">
-					<h4>--コメント--</h4>
-					<p><%= post.comment %></p>
-				</div>
-				<% if user_signed_in? %>
-					<div class="link-favorite" id="favorite-<%= post.id %>">
-						<%= render partial: 'favorites/favorite', locals:{post: post} %>
+	<div class="posts-show">
+		<div class="container">
+			<h2>投稿一覧</h2>
+			<div class="posts">
+			<% @posts.each do |post| %>
+				<div class="post">
+					<div class="image-top">
+						<%= link_to image_tag("/post_images/#{post.image_name}"),post_path(post.id) %>	
 					</div>
+					<div class="user-top">
+						<img alt="" src= <%= "/user_images/#{post.user.image_name}"%>/>
+						<span class="user-name-top"><%= post.user.name %></span>
+					</div>
+					<div class="comment-top">
+						<h4>--コメント--</h4>
+						<p><%= post.comment %></p>
+					</div>
+					<% if user_signed_in? %>
+						<div class="link-favorite" id="favorite-<%= post.id %>">
+							<%= render partial: 'favorites/favorite', locals:{post: post} %>
+						</div>
+					<% end %>
+					<div class="clear"></div>
+				</div>
 				<% end %>
-				<div class="clear"></div>
 			</div>
-			<% end %>
 		</div>
 	</div>
 </div>
-
-

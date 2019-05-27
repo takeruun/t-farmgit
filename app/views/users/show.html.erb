@@ -1,11 +1,13 @@
-<div class="user-show">
+<div class="user-show-wrapper">
 	<div class="container">
-		<div class="user">
-			<img alt=" " src= <%= "/user_images/#{@user.image_name}" %>/>
-			<h3><%= @user.name %></h3>
+		<div class="user-show">
+			<div class="user">
+				<img alt=" " src= <%= "/user_images/#{@user.image_name}" %>/>
+				<h3><%= @user.name %></h3>
+			</div>	
 
 			<ul class="user-tabs">
-				<li class="active"><%= link_to "投稿","users/#{@user.id}" %></li>
+				<li class="active"><%= link_to "投稿","/users/#{@user.id}" %></li>
 				<li><%= link_to "お気に入り", "/users/#{@user.id}/favorites" %></li>
 			</ul>
 
@@ -19,9 +21,9 @@
 					</div>
 					<div class="post-right">
 						<img alt="" src= <%= "/post_images/#{post.image_name}" %>/>
-						<div class="comment"><%= post.comment %></div>
+						<p class="comment"><%= post.comment %></p>
 						<div class="time"><%= post.created_at.strftime('%Y年%m月%d日 %H:%M') %></div>
-					</div>
+					</div>					
 				</div>
 			<% end %>
 		</div>
