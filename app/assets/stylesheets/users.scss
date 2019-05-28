@@ -34,8 +34,10 @@
 	padding-top: 150px;
 }
 .user-show{
-	width: 70%;
+	width: 60%;
 	margin: auto;
+	padding-bottom: 70px;
+
 }
 
 .user{
@@ -86,7 +88,7 @@
 }
 
 .post-user-name a{
-	font-weight: 600;
+	font-weight: 500;
 }
 
 .post-user-name a:hover{
@@ -96,13 +98,23 @@
 .post-left{
 	float: left;
 	padding-left: 25px;
+	padding-right: 10px;
 }
 
 .post-right{
-	width: 100%;
+	display: inline-block;
 }
 
 .post-right img{
-	width: 80%;
-	height: 80%;
+	width: 450px;
+	height: 350px;
+}
+
+.post-right .comment{
+	font-size: 24px;
+}
+
+.post-right .time{
+	color: #8899a6;
+	text-align: right;
 }
