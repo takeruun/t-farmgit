@@ -1,7 +1,6 @@
 class Post < ApplicationRecord
 	validates :user_id,{presence: true}
 
-	belongs_to :user
 	has_many :favorites, dependent: :destroy
 	has_many :users, through: :favorites
 

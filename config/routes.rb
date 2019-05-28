@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     	:passwords => "users/passwords"
     }
 	get 'users/:id' => 'users#show'
+    get 'users/:id/favorites' => 'users#favorites'
 
 	resources :posts do
 		resources :favorites, only: [:create, :destroy]

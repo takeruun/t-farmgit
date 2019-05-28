@@ -1,0 +1,32 @@
+<div class="user-show-wrapper">
+	<div class="container">
+		<div class="user-show">
+			<div class="user">
+				<img alt=" " src= <%= "/user_images/#{@user.image_name}" %>/>
+				<h3><%= @user.name %></h3>
+			</div>	
+
+			<ul class="user-tabs">
+				<li><%= link_to "投稿","/users/#{@user.id}" %></li>
+				<li class="active"><%= link_to "お気に入り", "/users/#{@user.id}/favorites" %></li>
+			</ul>
+
+			<% @favorites.each do |favorite| %>
+			<% post_user = User.find(favorite.post.user_id) %>
+				<div class="posts-index">
+					<div class="post-left">
+						<img alt=" " src= <%= "/user_images/#{post_user.image_name}" %>/>
+						<div class="post-user-name">
+							<%= link_to post_user.name, "/users/#{post_user.id}" %>
+						</div>
+					</div>
+					<div class="post-right">
+						<img alt="" src= <%= "/post_images/#{favorite.post.image_name}" %>/>
+						<p class="comment"><%= favorite.post.comment %></p>
+						<div class="time"><%= favorite.post.created_at.strftime('%Y年%m月%d日 %H:%M') %></div>
+					</div>					
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>
