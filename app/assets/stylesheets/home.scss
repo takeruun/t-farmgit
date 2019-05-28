@@ -17,11 +17,16 @@ ul, li{
 
 a{
 	text-decoration: none;
+	color: black;
+}
+
+h1,h2,h3,h4,h5,p{
+	margin: 0;
 }
 
 .top-wrapper{
 	background-color: #E7E5E8;
-	padding-bottom: 130px;
+	padding-bottom: 70px;
 }
 
 .container{
@@ -61,7 +66,7 @@ header{
 
 .header-menus{
 	float: right;
-}
+	}
 
 .header-menus li{
 	float: left;
@@ -124,12 +129,10 @@ header{
 }
 
 .posts-show{
-	height: 600px;
 	margin: 0 auto;
 }
 
-.posts{	
-	text-align: center;
+.posts{
 }
 
 .post{
@@ -140,35 +143,36 @@ header{
 	margin: 20px 15px 20px 20px;
 	box-shadow: 0 2px 6px #c1ced7;
 	background-color: white;
+
 }
 
 .image-top img{
-	width: 250px;
-	height: 150px;
+	padding: 10px 0 0 20px;
+	width: 300px;
+	height: 200px;
 }
 
 .user-top{
-	position: absolute;
-	left: 65px;
-	top: 150px;
+	position: relative;
+	height: 50px;
+	padding-left: 10px;
 }
 
 .user-top img{
-	float: left;
-	width: 40px;
-	height: 30px;
+	width: 50px;
+	height: 50px;
 	border-radius: 50%;
 }
 
-.user-name-top{
+.user-top-name{
+	position: absolute;
+	top: 20px;
 	margin-left: 10px;
-	float: left;
-	font-size: 15px;
+	font-size: 20px;
 }
 
 .comment-top{
-	text-align: left;
-	margin-top: 30px;
+	margin-top: 15px;
 	margin-bottom: 10px;
 }
 
@@ -178,7 +182,6 @@ header{
 }
 
 .comment-top p{
-	margin-top: 0;
-	margin-left: 20px;
+	margin-left: 30px;
 }
 
