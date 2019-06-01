@@ -4,14 +4,26 @@
 			<div class="post-user-info">
 				<img alt="投稿者写真" src= <%= "/user_images/#{@user.image_name}" %> >
 				<%= link_to @user.name,'/',class:"user-name"%>
-				<div class="fav-count"></div>
 			</div>
 			<div class="post-content">
+				<h2 class="post-title">商品タイトル</h2>
+				<p class="fav-count"></p>
 				<img alt=" " src= <%= "/post_images/#{@post.image_name}" %>>
 				<p class="post-comment"><%= @post.comment %></p>
-				<div class="post-time"><%= @post.created_at.strftime('%Y年%m月%d日 %H:%M') %></div>	
+				<p class="post-time"><%= @post.created_at.strftime('%Y年%m月%d日 %H:%M') %></p>
+			</div>
+			<div class="post-ind">
+				<h4>商品詳細</h4>
+				<table align="center">
+					<colgroup span="1" style="background-color:#B1B1B1"></colgroup>
+					<tr><th class="from">生産地</th><td>〜産</td></tr>
+					<tr><th class="amout">収穫量</th><td>40g</td></tr>
+					<tr><th class="status">状態</th><td>多々傷あり</td></tr>
+					<tr><th class="price">価格</th><td>円（税込）</td></tr>
+					<tr><th class="postage">送料</th><td>込み</td></tr>
+				</table>
 			</div>
 			<div class="clear"></div>
 		</div>	
 	</div>
-</div>_
+</div>

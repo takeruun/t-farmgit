@@ -60,8 +60,7 @@ input[type="submit"]:active {
   	box-shadow: 0 2px 6px #c1ced7;
   	padding: 25px;
   	width: 70%;
-  	margin-left: auto;
-  	margin-right: auto;
+  	margin: 0 auto;
   	position: relative;
 }
 
@@ -81,7 +80,6 @@ input[type="submit"]:active {
 	vertical-align: middle;
 	text-decoration: none;
 	font-size: 24px;
-	color: black;
 }
 
 .user-name:hover{
@@ -90,13 +88,14 @@ input[type="submit"]:active {
 }
 
 .post-content{
-	
+	margin-top: 15px;
+	padding-bottom: 15px;
+	border-bottom: 1px solid #CCCCCC;
 }
 
 .post-content img{
-	float: left;
-	width: 300px;
-	height: 150px;
+	width: 600px;
+	height: 400px;
 }
 
 .post-comment{
@@ -109,6 +108,12 @@ input[type="submit"]:active {
 	bottom: 0;
 	right: 0;
 	margin:10px;
+}
+.post-ind{
+	text-align: center;
+}
+.post-ind h4{
+	margin-top: 30px;
 }
 
 .clear{
