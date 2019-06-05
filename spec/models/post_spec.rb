@@ -24,5 +24,5 @@ RSpec.describe Post, type: :model do
   	post.valid?
   	expect(post.errors[:comment]).to include("を入力してください")
   end
-  
+
 end
