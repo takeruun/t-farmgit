@@ -11,9 +11,9 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: root
+  username: take
   password: Takeru321
-  socket: /tmp/mysql.sock
+  host: docker.for.mac.localhost
 
 development:
   <<: *default
