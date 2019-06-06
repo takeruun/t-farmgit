@@ -75,9 +75,10 @@ gem 'jquery-rails'
 #gem 'carrierwave'
 
 #ユーザー認証
-gem 'devise', '4.6.2'
+gem 'devise', '~> 4.6.2'
 #devise日本語化
-gem 'devise-i18n', '1.8.0'
-gem 'devise-i18n-views','0.3.7'
+gem 'devise-i18n', '~> 1.8.0'
+gem 'devise-i18n-views','~> 0.3.7'
 
-gem 'rails-i18n', '5.1.3'
+#rails日本語化
+gem 'rails-i18n', '~> 5.1.3'
