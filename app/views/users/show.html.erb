@@ -15,14 +15,14 @@
 				<div class="posts-index">
 					<div class="post-left">
 						<img alt=" " src= <%= "/user_images/#{post.user.image_name}" %>/>
-						<div class="post-user-name">
+						<p class="post-user-name">
 							<%= link_to post.user.name, "/users/#{post.user.id}" %>
-						</div>
+						</p>
 					</div>
 					<div class="post-right">
 						<img alt="" src= <%= "/post_images/#{post.image_name}" %>/>
 						<p class="comment"><%= post.comment %></p>
-						<div class="time"><%= post.created_at.strftime('%Y年%m月%d日 %H:%M') %></div>
+						<p class="time"><%= post.created_at.strftime('%Y年%m月%d日 %H:%M') %></p>
 					</div>			
 				</div>
 			<% end %>
