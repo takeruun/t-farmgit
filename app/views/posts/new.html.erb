@@ -1,4 +1,4 @@
-<div class="post-new">
+<div class="post-new-wrapper">
 	<div class="container">
 		<h2>新規投稿ページ</h2>
 		<%= form_for(@post, url:{controller:'posts', action:'create'}) do |f|%>
@@ -11,7 +11,11 @@
 				</div>
 				<div class="comment-form">
 					<p>商品の説明</p>
-					<%= f.text_area :comment, class:"input-comment", rows:"5",value:@post.comment %>
+					<%= f.text_area :comment, class:"input-comment", rows:"8",value:@post.comment %>
+				</div>
+				<div class="detail-form">
+					<p>商品詳細</p>
+					
 				</div>
 				<div class="submit-btn-form">
 					<%= f.submit '投稿' %>
