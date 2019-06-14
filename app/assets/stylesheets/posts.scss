@@ -2,11 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-// new
-.post-new-wrapper{
+.post-new-wrapper, .post-show-wrapper, .post-edit-wrapper{
 	margin-top: 150px;
 }
 
+// new
 .form{
 	box-shadow: 0 2px 6px #c1ced7;
 	padding: 25px;
@@ -15,11 +15,19 @@
 	background-color: white;
 }
 
-.form p{
-	font-size: 17px;
+.form h3{
+	font-size: 20px;
 }
 
-.image-form p{
+.title{
+	width: 80%;
+}
+
+.image{
+	font-size: 15px;
+}
+
+.image-form h3{
 	margin-top: 10px;
 }
 
@@ -28,14 +36,27 @@
 	height: 300px;
 }
 
-.comment-form p{
-	margin: 20px 0 10px 0;
+.comment-form h3, .detail-form h3{
+	margin-top: 20px;
 }
 
-.input-comment{
-	font-size:15px;
-	width: 600px;
+.form .comment{
+	font-size: 15px;
+	width: 80%;
 	height: 150px;
+}
+
+.detail-form-table th{
+	font-weight: 20;
+}
+
+.detail-form-table .input{
+	margin-left: 20px;
+	width: 100px;
+}
+
+.input{
+	font-size: 15px;
 }
 
 .submit-btn-form{
@@ -43,6 +64,7 @@
 }
 
 input[type="submit"]{
+	font-size: 15px;
 	margin-top:10px;
 	border-style: none;
 	padding: 0.5em 1em;
@@ -59,9 +81,6 @@ input[type="submit"]:active {
 }
 
 // show
-.post-show-wrapper{
-	padding-top: 150px;
-}
 
 .post-item{
 	background-color: white;
@@ -72,7 +91,7 @@ input[type="submit"]:active {
   	position: relative;
 }
 
-.post-item h2{
+.post-item h3{
 	margin-top: 20px;
 }
 
@@ -137,6 +156,8 @@ input[type="submit"]:active {
 .post-detail-table td{
 	padding-left: 20px;
 }
+
+//edit
 
 .clear{
 	clear:both;

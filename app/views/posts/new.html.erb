@@ -4,18 +4,28 @@
 		<%= form_for(@post, url:{controller:'posts', action:'create'}) do |f|%>
 		<div class="form">
 			<div class="form-body">
+				<div class="title-form">
+					<h3>商品タイトル</h3>
+					<%= f.text_field :comment, class:"input title" %>
+				</div>
 				<div class="image-form">
-					<p>写真を登録</p>
+					<h3>写真を登録</h3>
 					<p class="preview"></p>
-					<%= f.file_field :post_image, class:"input-image" %>
+					<%= f.file_field :post_image, class:"input image" %>
 				</div>
 				<div class="comment-form">
-					<p>商品の説明</p>
-					<%= f.text_area :comment, class:"input-comment", rows:"8",value:@post.comment %>
+					<h3>商品の説明</h3>
+					<%= f.text_area :comment, class:"input comment", rows:"8",value:@post.comment %>
 				</div>
 				<div class="detail-form">
-					<p>商品詳細</p>
-					
+					<h3>商品詳細</h3>
+					<table class="detail-form-table">
+						<tr><th>生産地</th><td><%= f.text_field :comment, class:"input from" %></td></tr>
+						<tr><th>収穫量</th><td><%= f.text_field  :comment, class:"input amount" %></td></tr>
+						<tr><th>状態</th><td><%= f.text_field :comment, class:"input status" %></td></tr>
+						<tr><th>価格</th><td><%= f.number_field  :comment, class:"input price" %>円（税込）</td></tr>
+						<tr><th>送料</th><td><%= f.number_field :comment, class:"input postage" %></td></tr>
+					</table>
 				</div>
 				<div class="submit-btn-form">
 					<%= f.submit '投稿' %>
