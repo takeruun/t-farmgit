@@ -6,7 +6,7 @@
 			<div class="form-body">
 				<div class="title-form">
 					<h3>商品タイトル</h3>
-					<%= f.text_field :comment, class:"input title" %>
+					<%= f.text_field :title, class:"input title" %>
 				</div>
 				<div class="image-form">
 					<h3>写真を登録</h3>
@@ -15,7 +15,7 @@
 				</div>
 				<div class="comment-form">
 					<h3>商品の説明</h3>
-					<%= f.text_area :comment, class:"input comment", rows:"8",value:@post.comment %>
+					<%= f.text_area :comment, class:"input comment", rows:"8" %>
 				</div>
 				<div class="detail-form">
 					<h3>商品詳細</h3>
