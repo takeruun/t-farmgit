@@ -3,7 +3,7 @@
 		<h2>新規投稿ページ</h2>
 		<%= form_for(@post, url:{controller:'posts', action:'create'}) do |f|%>
 		<div class="form">
-			<div class="form-body">
+			<div class="post-form-body">
 				<div class="title-form">
 					<h3>商品タイトル</h3>
 					<%= f.text_field :title, class:"input title" %>
