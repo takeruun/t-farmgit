@@ -34,10 +34,12 @@
         </div>
       </div>
     </header>
-      <% if flash[:notice] %>
-        <div id="flash" class="flash">
-          <%= flash[:notice] %>
-        </div>
+      <% [:notice, :error, :alert].each do |level| %>
+        <% unless flash[level].blank? %>
+          <div class="flash" id="flash">
+            <%= content_tag :p, flash[level] %>
+          </div>
+        <% end %>
       <% end %>
 
     <%= yield %> 
