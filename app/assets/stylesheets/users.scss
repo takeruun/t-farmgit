@@ -30,7 +30,6 @@
 }
 
 .user-show-wrapper{
-	background-color: #E7E5E8;
 	padding-top: 150px;
 }
 .user-show{
@@ -40,8 +39,18 @@
 
 }
 
-.user{
-	
+.user {
+	text-align: center;
+	h3{
+		margin-bottom: 20px;
+		font-size: 25px;
+	}
+
+	a{
+		text-decoration: underline;
+		color: #969696;
+		font-size: 18px;
+	}
 }
 
 .user img{

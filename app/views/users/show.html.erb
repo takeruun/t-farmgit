@@ -4,6 +4,7 @@
 			<div class="user">
 				<img alt=" " src= <%= "/user_images/#{@user.image_name}" %>/>
 				<h3><%= @user.name %></h3>
+				<%= link_to "編集",edit_user_registration_path %>
 			</div>	
 
 			<ul class="user-tabs">
@@ -15,9 +16,7 @@
 				<div class="posts-index">
 					<div class="post-left">
 						<img alt=" " src= <%= "/user_images/#{post.user.image_name}" %>/>
-						<p class="post-user-name">
-							<%= link_to post.user.name, "/users/#{post.user.id}" %>
-						</p>
+						<p class="post-user-name"><%= link_to post.user.name, "/users/#{post.user.id}" %></p>
 					</div>
 					<div class="post-right">
 						<img alt="" src= <%= "/post_images/#{post.image_name}" %>/>
