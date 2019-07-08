@@ -2,36 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.login-form{
-	margin-top: 150px;
-}
-
-.login-body{
-	box-shadow: 0 2px 6px #c1ced7;
-	text-align: center;
-	padding: 30px;
-}
-
-.login-form .action{
-	width: 100%;
-	margin-top:20px;
-	margin-bottom: 20px;
-	font-size: 15px;
-	padding:12px;
-	border:1px solid #d0d5d8;
-	border-radius: 3px;
-}
-
-.login-form input[type="submit"]{
-	background-color: #3ecdc6;
-	cursor: pointer;
-	width: 120px;
-	border-radius: 4px;
-}
-
+//show
 .user-show-wrapper{
 	padding-top: 150px;
 }
+
 .user-show{
 	width: 60%;
 	margin: auto;
@@ -51,12 +26,12 @@
 		color: #969696;
 		font-size: 18px;
 	}
-}
 
-.user img{
-	width: 90px;
-	height: 90px;
-	border-radius: 50%;
+	img{
+		width: 90px;
+		height: 90px;
+		border-radius: 50%;
+	}
 }
 
 .user-tabs{
@@ -64,66 +39,63 @@
 	background-color: white;
 	overflow: hidden;
 	box-shadow: 0 2px 6px #c1ced7;
-}
 
-.user-tabs a{
-	display: inline-block;
-	padding: 16px 30px;
-	color: #afb6bf;
-}
+	a{
+		display: inline-block;
+		padding: 16px 30px;
+		color: #afb6bf;
+	}
 
-.user-tabs li{
-	float: left;
-}
+	li{
+		float: left;
+		&.active{
+			border-bottom: 2px solid #3ecdc6;
+			a{
+				color: #57575f;
+			}
+		}
 
-.user-tabs li.active{
-	border-bottom: 2px solid #3ecdc6;
-}
-
-.user-tabs li.active a{
-	color: #57575f;
+	}
 }
 
 .posts-index{
 	padding: 20px 30px;
 	background-color: white;
 	box-shadow: 0 2px 6px #c1ced7;
-}
 
-.post-left img{
-	width: 50px;
-	height: 50px;
-	border-radius: 50%;
-}
+	.post-left{
+		float: left;
+		padding-left: 25px;
+		padding-right: 10px;
+		img{
+			width: 50px;
+			height: 50px;
+			border-radius: 50%;
+		}
 
-.post-user-name a{
-	font-weight: 500;
-}
+		.post-user-name{
+			a{
+				font-weight: 500;
+				&:hover{
+					color: #3ecdc6;
+				}
+			}
+		}
+	}
 
-.post-user-name a:hover{
-	color: #3ecdc6;
-}
+	.post-right{
+		display: inline-block;
+		img{
+			width: 450px;
+			height: 350px;
+		}
+		.comment{
+			font-size: 24px;
+		}
+		.time{
+			color: #8899a6;
+			text-align: right;
+		}
+	}
 
-.post-left{
-	float: left;
-	padding-left: 25px;
-	padding-right: 10px;
-}
-
-.post-right{
-	display: inline-block;
-}
-
-.post-right img{
-	width: 450px;
-	height: 350px;
-}
-
-.post-right .comment{
-	font-size: 24px;
-}
-
-.post-right .time{
-	color: #8899a6;
-	text-align: right;
 }
