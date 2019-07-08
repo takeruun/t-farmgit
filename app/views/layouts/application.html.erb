@@ -17,7 +17,7 @@
       <div class="container">
         <div class="header-logo">
           <%= link_to 'T-farm','/',class:"header-logo"%>
-          </div>
+        </div>
         <div class="header-menus">
           <ul>
             <% if user_signed_in? %>
@@ -42,7 +42,6 @@
         <% end %>
       <% end %>
 
-    <%= yield %> 
-    <script>document.write('<script src="http://' + (location.host || '${1:localhost}').split(':')[0] + ':${2:35729}/livereload.js?snipver=1"></' + 'script>')</script>
-  </body>
+    <%= yield %>   
+    </body>
 </html>
