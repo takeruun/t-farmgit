@@ -73,37 +73,57 @@ header{
 
 .header-menus{
 	float: right;
+	li{
+		float: left;
+	}
+	.header-menu{
+		color: white;
+		font-size: 16px;
+		padding-right:20px;
 	}
 
-.header-menus li{
-	float: left;
 }
 
-.header-menu{
-	color: white;
-	font-size: 16px;
-	padding-right:20px;
-}
-
+//top
 .recommend-show{
 	background-image: url("/vegi.jpg");
 	background-size: cover;
 	padding-top: 60px;
 	padding-bottom: 40px;
-}
 
-.recommend-title{
-	color: #D3E300;
-	font-size: 40px;
-}
-.recommend-item{
-	text-align: center;
-	position: relative;
-}
+	.recommend-title{
+		color: #D3E300;
+		font-size: 40px;
+	}
+	
+	.recommend-item{
+		text-align: center;
+		position: relative;
+		img{
+			width: 800px;
+			height: 350px;
+		}
 
-.recommend-item img{
-	width: 800px;
-	height: 350px;
+		.change-item{
+			position: absolute;
+			display: block;
+			width: 800px;
+			z-index: 1;
+			top: 175px;
+			left: 185px;
+
+			.prev-btn{
+				float: left;
+				color: red;
+				background-color:#626262;
+			}
+			.next-btn{
+				float: right;
+				color: red;
+				background-color:#626262;
+			}
+		}
+	}
 }
 
 .slide{
@@ -114,82 +134,51 @@ header{
 	display: block;
 }
 
-.change-item{
-	position: absolute;
-	display: block;
-	width: 800px;
-	z-index: 1;
-	top: 175px;
-	left: 185px;
-}
-
-.prev-btn{
-	float: left;
-	color: red;
-	background-color:#626262;
-	
-}
-.next-btn{
-	float: right;
-	color: red;
-	background-color:#626262;
-}
-
 .posts-show{
 	margin: 0 auto;
-}
-
-.posts{
-}
-
-.post{
-	position: relative;
-	float: left;
-	width: 30%;
-	padding-bottom: 10px;
-	margin: 20px 15px 20px 20px;
-	box-shadow: 0 2px 6px #c1ced7;
-	background-color: white;
-
-}
-
-.image-top img{
-	padding: 10px 0 0 20px;
-	width: 300px;
-	height: 200px;
-}
-
-.user-top{
-	position: relative;
-	height: 50px;
-	padding-left: 10px;
-}
-
-.user-top img{
-	width: 50px;
-	height: 50px;
-	border-radius: 50%;
-}
-
-.user-top-name{
-	position: absolute;
-	top: 20px;
-	margin-left: 10px;
-	font-size: 20px;
-}
-
-.comment-top{
-	margin-top: 15px;
-	margin-bottom: 10px;
-}
-
-.comment-top h4{
-	margin: 0 0 5px 20px;
-	padding-top: 10px;
-}
-
-.comment-top p{
-	margin-left: 30px;
+	.post{
+		position: relative;
+		float: left;
+		width: 30%;
+		padding-bottom: 10px;
+		margin: 20px 15px 20px 20px;
+		box-shadow: 0 2px 6px #c1ced7;
+		background-color: white;
+	}
+	.image-top{
+		img{
+			padding: 10px 0 0 20px;
+			width: 300px;
+			height: 200px;
+		}
+	}
+	.user-top{
+		position: relative;
+		height: 50px;
+		padding-left: 10px;
+		img{
+			width: 50px;
+			height: 50px;
+			border-radius: 50%;
+		}
+		a{
+			position: absolute;
+			top: 20px;
+			margin-left: 10px;
+			font-size: 20px;
+		}
+	}
+	.comment-top{
+		margin-top: 15px;
+		margin-bottom: 10px;
+		h4{
+			margin: 0 0 5px 20px;
+			padding-top: 10px;
+		}
+		p{
+			margin-left: 30px;
+		}
+	}
 }
 
 .form{
