@@ -24,20 +24,8 @@ h1,h2,h3,h4,h5,p{
 	margin: 0;
 }
 
-h2{
-	font-size: 36px;
-}
-
-h3{
-	font-size: 20px;
-}
-
 .main{
 	margin-top: 150px;
-}
-
-.top-wrapper{
-	padding-bottom: 70px;
 }
 
 .container{
@@ -130,64 +118,9 @@ header{
 	}
 }
 
-.slide{
-	display: none;
-}
-
-.active{
-	display: block;
-}
-
-.posts-show{
-	margin: 0 auto;
-	.post{
-		position: relative;
-		float: left;
-		width: 30%;
-		padding-bottom: 10px;
-		margin: 20px 15px 20px 20px;
-		box-shadow: 0 2px 6px #c1ced7;
-		background-color: white;
-	}
-	.image-top{
-		img{
-			padding: 10px 0 0 20px;
-			width: 300px;
-			height: 200px;
-		}
-	}
-	.user-top{
-		position: relative;
-		height: 50px;
-		padding-left: 10px;
-		img{
-			width: 50px;
-			height: 50px;
-			border-radius: 50%;
-		}
-		a{
-			position: absolute;
-			top: 20px;
-			margin-left: 10px;
-			font-size: 20px;
-		}
-	}
-	.comment-top{
-		margin-top: 15px;
-		margin-bottom: 10px;
-		h4{
-			margin: 0 0 5px 20px;
-			padding-top: 10px;
-		}
-		p{
-			margin-left: 30px;
-		}
-	}
-}
-
 .form{
 	box-shadow: 0 2px 6px #c1ced7;
-	padding: 25px;
+	padding: 15px;
 	width: 60%;
 	margin:0 auto;
 	background-color: white;
