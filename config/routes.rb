@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+    root 'home#top'
 
     devise_for :users, :controllers => {
     	:sessions => "users/sessions",
@@ -12,8 +13,5 @@ Rails.application.routes.draw do
 		resources :favorites, only: [:create, :destroy]
 	end
 
-
- 	get '/' => 'home#top'
-    
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
