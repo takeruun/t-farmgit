@@ -21,7 +21,7 @@ RSpec.describe User, type: :model do
   end
 
   it "パスワードがないと作成できない" do
-    user.password = nil
+    user.password = ""
     user.valid?
     expect(user.errors[:password]).to include("を入力してください")
   end
