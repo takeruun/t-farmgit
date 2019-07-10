@@ -31,11 +31,11 @@ $(function(){
 		}
 	}
 
-	//旬物(true)の分だけデータ取得
+	//rec:trueの分だけデータ取得
 	$(window).load(function(){
 		var recpost_id_now = $('.recpost').data('id');
 		$.ajax({
-			url: '/',
+			url: '/posts',
 			type: 'GET',
 			data: {recpost: {id: recpost_id_now, rec: true}},
 			context: recpost_id_now,

@@ -1,5 +1,14 @@
 class PostsController < ApplicationController
 
+  def index
+    @recpost = Post.find_by(rec: true)
+    respond_to do |format|
+      format.html
+      format.json { @new_recpost = Post.where('id >= ? and rec = ?', params[:recpost][:id], true)}
+    end
+    @posts = Post.order(created_at: :desc).limit(9)
+  end
+  
   def new
     @post = Post.new
   end

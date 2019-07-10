@@ -1,0 +1,46 @@
+<div class="post-index-wrapper">
+	<div class="recommend-show">
+		<div class="container">
+			<h2 class="recommend-title">おすすめ</h2>
+			<div class="recommend-item">
+				<div class="recpost" data-id= <%= @recpost.id %> >
+					<ul>
+					</ul>
+				</div>
+				<div class="change-item">
+					<div class="change-btn prev-btn"><span class="fa fa-arrow-left"></span></div>
+					<div class="change-btn next-btn"><span class="fa fa-arrow-right"></span></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="posts-show">
+		<div class="container">
+			<h2>投稿一覧</h2>
+			<div class="posts">
+			<% @posts.each do |post| %>
+				<div class="post">
+					<div class="image-top">
+						<%= link_to image_tag("/post_images/#{post.image_name}"),post_path(post.id) %>	
+					</div>
+					<div class="user-top">
+						<img alt="" src= <%= "/user_images/#{post.user.image_name}"%>/>
+						<%= link_to post.user.name, "/users/#{post.user.id}" %>
+					</div>
+					<div class="comment-top">
+						<h4>コメント</h4>
+						<p><%= post.comment %></p>
+					</div>
+					<% if user_signed_in? %>
+						<div class="link-favorite" id="favorite-<%= post.id %>">
+							<%= render partial: 'favorites/favorite', locals:{post: post} %>
+						</div>
+					<% end %>	
+				</div>
+				<% end %>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</div>
+</div>
