@@ -4,5 +4,6 @@ FactoryBot.define do
 		image_name {"2.jpg"}
 		comment {"exampleです"}
 		rec {true}
+		title {"タイトル"}
 	end
 end
