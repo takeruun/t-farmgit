@@ -8,24 +8,23 @@ class PostsController < ApplicationController
     end
     @posts = Post.order(created_at: :desc).limit(9)
   end
-  
+
   def new
     @post = Post.new
   end
 
   def create
-  	 @post = Post.new(
-      comment: params[:post][:comment],
-      user_id: current_user.id
-      )
+  	 @post = Post.new(post_params)
+     @post.rec = true
+     @post.user_id =  current_user.id
 
     if  params[:post][:post_image] && @post.save
         @post.image_name = "#{@post.id}.jpg"
         File.binwrite("public/post_images/#{@post.image_name}",params[:post][:post_image].read)
         @post.save
         redirect_to('/')
-    else
-        flash[:notice] = "写真を登録してください"
+    elsif 
+        flash[:notice] = @post.errors.full_messages
         render('/posts/new')
     end
   end
@@ -39,4 +38,19 @@ class PostsController < ApplicationController
    @post = Post.find_by(id: params[:id])
   end
 
+  def update
+    @post = Post.find(id: params[:id])
+    if @post.update(post_params)
+      flash[:notice] = "編集しました"
+      redirect_to("posts/#{@post.id}")
+    else
+      render('post/edit')
+    end
+
+  end
+
+  private
+  def post_params
+    params.require(:post).permit(:comment,:title,:amount,:from)
+  end
 end
