@@ -13,16 +13,16 @@ RSpec.describe Post, type: :model do
   	expect(post.errors[:user_id]).to include("を入力してください")
   end
 
-  it "画像無しだと投稿できない" do
-  	post.image_name = nil
-  	post.valid?
-  	expect(post.errors[:image_name]).to include("を入力してください")
-  end
-
   it "コメントがないと投稿できない" do
   	post.comment = nil
   	post.valid?
   	expect(post.errors[:comment]).to include("を入力してください")
+  end
+
+  it "タイトルがないと投稿できない" do
+    post.title = nil
+    post.valid?
+    expect(post.errors[:title]).to include("を入力してください")
   end
 
 end
