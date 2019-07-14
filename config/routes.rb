@@ -6,7 +6,9 @@ Rails.application.routes.draw do
     	:registrations => "users/registrations",
     	:passwords => "users/passwords"
     }
-	get 'users/:id' => 'users#show'
+	
+    resources :users, only: [:show]
+
     get 'users/:id/favorites' => 'users#favorites'
 
 	resources :posts do
