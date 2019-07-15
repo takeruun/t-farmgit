@@ -3,12 +3,11 @@ services:
   db:
    image: mysql:8.0.16
    environment:
-    MYSQL_USER: take
+    MYSQL_USER: root 
     MYSQL_PASSWORD: Takeru321
     MYSQL_ROOT_PASSWORD: Takeru321
-  # localDB接続可能
-  # volumes:
-  #  - ./db/mysql/volumes:/var/lib/mysql
+   volumes:
+    - mysql-data:/var/lib/mysql
    ports:
     - '3316:3306'
 
@@ -25,3 +24,7 @@ services:
      - "3000:3000"
     depends_on:
      - db
+
+volumes:
+  mysql-data:
+    driver: local

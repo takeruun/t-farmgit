@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_07_102923) do
+ActiveRecord::Schema.define(version: 2019_07_16_055416) do
 
   create_table "favorites", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
@@ -26,20 +26,20 @@ ActiveRecord::Schema.define(version: 2019_07_07_102923) do
     t.integer "user_id"
     t.string "image_name"
     t.string "comment"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.boolean "rec"
     t.string "from"
-    t.integer "amount"
+    t.string "amount"
     t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
-    t.string "email"
+    t.string "image_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "image_name"
+    t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
