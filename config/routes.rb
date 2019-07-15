@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 	
     resources :users, only: [:show]
 
-    get 'users/:id/favorites' => 'users#favorites'
+    get 'users/:id/favorites' => 'users#favorites', as: "user_favorites"
 
 	resources :posts do
 		resources :favorites, only: [:create, :destroy]
