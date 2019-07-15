@@ -6,5 +6,9 @@ class User < ApplicationRecord
 
   validates :name, {presence: true}
   validates :image_name, {presence: true}
+
+  has_many :posts, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :fav_posts, through: :favorite, source: :post
   
 end
