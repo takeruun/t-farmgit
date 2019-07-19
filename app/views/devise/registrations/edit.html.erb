@@ -1,6 +1,6 @@
 <div class="main user-edit-wrapper">
   <div class="container">
-    <h2>Edit <%= resource_name.to_s.humanize %></h2>
+    <h2>ユーザー(<%= current_user.name %>)情報編集</h2>  
     <div class="form">
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
@@ -18,7 +18,7 @@
           <%= f.label :password %> <i><%= t('.leave_blank_if_you_don_t_want_to_change_it') %></i><br />
           <%= f.password_field :password, autocomplete: "new-password" %>
           <% if @minimum_password_length %>
-            <br />
+          <br />
             <em><%= @minimum_password_length %>文字以上で入力してください</em>
           <% end %>
         </div>
