@@ -72,7 +72,9 @@ gem 'tzinfo-data'
 gem 'jquery-rails'
 
 #画像
-#gem 'carrierwave'
+gem 'carrierwave'
+#aws アップロード
+gem 'fog-aws'
 
 #ユーザー認証
 gem 'devise', '~> 4.6.2'
