@@ -6,6 +6,8 @@ class Post < ApplicationRecord
 	has_many :favorites, dependent: :destroy
 	has_many :users, through: :favorites
 
+	mount_uploader :image, ImageUploader
+
 	def user
 		return User.find_by(id: self.user_id)
 	end
