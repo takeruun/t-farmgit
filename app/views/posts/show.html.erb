@@ -3,10 +3,10 @@
 		<div class="post-item">
 			<div class="post-user-info">
 				<img alt="投稿者写真" src= <%= "/user_images/#{@user.image_name}" %> >
-				<%= link_to @user.name,'/'%>
+				<%= link_to @user.name,user_path%>
 			</div>
 			<div class="post-content">
-				<h3 class="post-title">商品タイトル</h3>
+				<h3 class="post-title"><%= @post.title %></h3>
 				<p class="fav-count"></p>
 				<img alt=" " src= <%= "/post_images/#{@post.image_name}" %>>
 				<p class="post-comment"><%= @post.comment %></p>
@@ -15,10 +15,13 @@
 			<div class="post-detail">
 				<h3>商品詳細</h3>
 				<table class="post-detail-table">
-					<tr><th>生産地</th><td>〜産</td></tr>
-					<tr><th>収穫量</th><td>40g</td></tr>
+					<tr><th>生産地</th><td><%= @post.from %></td></tr>
+					<tr><th>収穫量</th><td><%= @post.amount %></td></tr>
 				</table>
 			</div>
+			<% if user_signed_in? && current_user.id == @user.id %>
+					<%= link_to "編集",edit_post_path %>
+			<% end %>
 			<div class="clear"></div>
 		</div>	
 	</div>

@@ -1,37 +1,31 @@
 <div class="main post-edit-wrapper">
 	<div class="container">
 		<h2>新規投稿ページ</h2>
-		<%= form_for(@post, url:{controller:'posts', action:'edit'}) do |f|%>
+		<%= form_for(@post, url:{controller:'posts', action:'update'}) do |f|%>
 		<div class="form">
-			<div class="form-body">
+			<div class="post-form-body">
 				<div class="title-form">
 					<h3>商品タイトル</h3>
 					<%= f.text_field :title, class:"input title" %>
-					<%= @post.title %>
 				</div>
 				<div class="image-form">
 					<h3>写真を登録</h3>
 					<p class="preview"></p>
 					<%= f.file_field :post_image, class:"input image" %>
-					<img alt="" src= <%= "/post_images/#{post.image_name}"%>/>
 				</div>
 				<div class="comment-form">
 					<h3>商品の説明</h3>
 					<%= f.text_area :comment, class:"input comment", rows:"8" %>
-					<%= @post.comment %>
 				</div>
 				<div class="detail-form">
 					<h3>商品詳細</h3>
 					<table class="detail-form-table">
-						<tr><th>生産地</th><td><%= f.text_field :from, class:"input from" %><%= @post.from %></td></tr>
-						<tr><th>収穫量</th><td><%= f.text_field :amount, class:"input amount" %><%= @post.amount %></td></tr>
-						<tr><th>状態</th><td><%= f.text_field :status, class:"input status" %><%= @post.status %></td></tr>
-						<tr><th>価格</th><td><%= f.number_field :price, class:"input price" %><%= @post.price %>円（税込）</td></tr>
-						<tr><th>送料</th><td><%= f.number_field :postage, class:"input postage" %><%= @post.postage %></td></tr>
+						<tr><th>生産地</th><td><%= f.text_field :from, class:"input from" %></td></tr>
+						<tr><th>収穫量</th><td><%= f.text_field :amount, class:"input amount" %></td></tr>
 					</table>
 				</div>
 				<div class="submit-btn-form">
-					<%= f.submit '投稿' %>
+					<%= f.submit '更新' %>
 				</div>
 			</div>
 		</div>
