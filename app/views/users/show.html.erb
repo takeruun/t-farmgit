@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="user-show">
 			<div class="user">
-				<img alt=" " src= <%= "/user_images/#{@user.image_name}" %>/>
+				<%= image_tag @user.image.to_s %>
 				<h3><%= @user.name %></h3>
 				<% if user_signed_in? && current_user.id == @user.id %>
 					<%= link_to "編集",edit_user_registration_path %>
@@ -17,11 +17,11 @@
 			<% @user.posts.each do |post| %>
 				<div class="posts-index">
 					<div class="post-left">
-						<img alt=" " src= <%= "/user_images/#{post.user.image_name}" %>/>
+						<%= image_tag post.user.image.to_s %>
 						<p class="post-user-name"><%= link_to post.user.name, "/users/#{post.user.id}" %></p>
 					</div>
 					<div class="post-right">
-						<img alt="" src= <%= "/post_images/#{post.image_name}" %>/>
+						<%= image_tag post.image.to_s %>
 						<p class="comment"><%= post.comment %></p>
 						<p class="time"><%= post.created_at.strftime('%Y年%m月%d日 %H:%M') %></p>
 					</div>			

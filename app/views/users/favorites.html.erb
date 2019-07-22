@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="user-show">
 			<div class="user">
-				<img alt=" " src= <%= "/user_images/#{@user.image_name}" %>/>
+				<%= image_tag @user.image.to_s %>
 				<h3><%= @user.name %></h3>
 				<% if user_signed_in? && current_user.id == @user.id %>
 					<%= link_to "編集",edit_user_registration_path %>
@@ -18,13 +18,13 @@
 			<% post_user = User.find(favorite.post.user_id) %>
 				<div class="posts-index">
 					<div class="post-left">
-						<img alt=" " src= <%= "/user_images/#{post_user.image_name}" %>/>
+						<%= image_tag post_user.image.to_s %>
 						<div class="post-user-name">
 							<%= link_to post_user.name, "/users/#{post_user.id}" %>
 						</div>
 					</div>
 					<div class="post-right">
-						<img alt="" src= <%= "/post_images/#{favorite.post.image_name}" %>/>
+						<%= image_tag favorite.post.image.to_s %>
 						<p class="comment"><%= favorite.post.comment %></p>
 						<div class="time"><%= favorite.post.created_at.strftime('%Y年%m月%d日 %H:%M') %></div>	
 					</div>
