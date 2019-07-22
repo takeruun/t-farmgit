@@ -31,3 +31,5 @@
 
 #macOS
 .DS_Store
+
+/public/uploads
