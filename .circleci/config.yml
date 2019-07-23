@@ -84,5 +84,5 @@ workflows:
     jobs:
       - checkout_code
       - test:
-          rquires:
+          requires:
             - checkout_code
