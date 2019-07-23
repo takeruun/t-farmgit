@@ -28,52 +28,52 @@ jobs:
           MYSQL_PASSWORD: ''
     working_directory: ~/t-farm
 
-      steps:
-        - checkout
-        - restore_cache:
-          v2-repo-{{ .Environment.CRICLE_SHA1 }}
-        # Download and cache dependencies
-        - restore_cache:
-          keys:
-            - v2-dependencies-{{ checksum "Gemfile.lock" }}
-            # fallback to using the latest cache if no exact match is found
-            - v2-dependencies-
+    steps:
+      - checkout
+      - restore_cache:
+        v2-repo-{{ .Environment.CRICLE_SHA1 }}
+      # Download and cache dependencies
+      - restore_cache:
+        keys:
+          - v2-dependencies-{{ checksum "Gemfile.lock" }}
+          # fallback to using the latest cache if no exact match is found
+          - v2-dependencies-
 
-        - run:
-            name: bundle install dependencies
-            command: |
-              bundle install --jobs=4 --retry=3 --path vendor/bundle
+      - run:
+          name: bundle install dependencies
+          command: |
+            bundle install --jobs=4 --retry=3 --path vendor/bundle
 
-        - save_cache:
-            paths:
-              - ./vendor/bundle
-            key: v2-dependencies-{{ checksum "Gemfile.lock" }}
+      - save_cache:
+          paths:
+            - ./vendor/bundle
+          key: v2-dependencies-{{ checksum "Gemfile.lock" }}
 
-        # Database setup
-        - run: bundle exec rake db:create
-        - run: bundle exec rake db:schema:load
+      # Database setup
+      - run: bundle exec rake db:create
+      - run: bundle exec rake db:schema:load
 
-        # run tests!
-        - run:
-            name: Run rspec
-            command: |
-              mkdir /tmp/test-results
-              TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
-                circleci tests split --split-by=timings)"
+      # run tests!
+      - run:
+          name: Run rspec
+          command: |
+            mkdir /tmp/test-results
+            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
+              circleci tests split --split-by=timings)"
 
-              bundle exec rspec \
-                --format progress \
-                --format RspecJunitFormatter \
-                --out /tmp/test-results/rspec.xml \
-                --format progress \
-                $TEST_FILES
+            bundle exec rspec \
+              --format progress \
+              --format RspecJunitFormatter \
+              --out /tmp/test-results/rspec.xml \
+              --format progress \
+              $TEST_FILES
 
-        # collect reports
-        - store_test_results:
-            path: /tmp/test-results
-        - store_artifacts:
-            path: /tmp/test-results
-            destination: test-results
+      # collect reports
+      - store_test_results:
+          path: /tmp/test-results
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: test-results
 
 workflows:
   version: 2
