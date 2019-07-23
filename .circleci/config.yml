@@ -13,7 +13,8 @@ jobs:
       - checkout
       - save_cache:
         key: v2-repo-{{ .Envitonment.CRICLE_SHA1 }}
-        - ~/t-farm
+        paths:
+          - ~/t-farm
 
   test:
     docker:
