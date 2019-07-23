@@ -31,7 +31,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-        v2-repo-{{ .Environment.CRICLE_SHA1 }}
+        key: v2-repo-{{ .Environment.CRICLE_SHA1 }}
       # Download and cache dependencies
       - restore_cache:
         keys:
