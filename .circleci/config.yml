@@ -2,7 +2,7 @@
 #
 # Check https://circleci.com/docs/2.0/language-ruby/ for more details
 #
-version: 2
+version: 2.1
 jobs:
   checkout_code:
     docker:
@@ -15,16 +15,11 @@ jobs:
           key: v2-repo-{{ .Envitonment.CRICLE_SHA1 }}
           paths:
             - ~/t-farm
-
   test:
     docker:
       - image: circleci/ruby:2.6.1-node-browsers
         enviroment:
           RAILS_ENV: test
-          MYSQL_HOST: 127.0.0.1
-          MYSQL_USERNAME: 'root'
-          MYSQL_PASSWORD: ''
-          MYSQL_PORT: 3306
       - image: circleci/mysql:8.0.16
         enviroment:
           MYSQL_DATABASE: t-farm_test
@@ -84,7 +79,7 @@ jobs:
           destination: test-results
 
 workflows:
-  version: 2
+  version: 2.1
   test:
     jobs:
       - checkout_code
