@@ -20,6 +20,9 @@ jobs:
       - image: circleci/ruby:2.6.1-node-browsers
         environment:
           RAILS_ENV: test
+          MYSQL_USERNAME: 'root'
+          MYSQL_PASSWORD: ''
+          MYSQL_PORT: 3306
       - image: circleci/mysql:8.0.16
         environment:
           MYSQL_DATABASE: t-farm_test
