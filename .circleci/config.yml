@@ -26,7 +26,7 @@ jobs:
           MYSQL_DATABASE: t-farm_test
           MYSQL_ALLOW_EMPTY_PASSWORD: true
           MYSQL_PASSWORD: ''
-      working_directory: ~/t-farm
+    working_directory: ~/t-farm
 
       steps:
         - checkout
