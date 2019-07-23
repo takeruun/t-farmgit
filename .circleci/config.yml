@@ -11,7 +11,7 @@ jobs:
     working_directory: ~/t-farm
     steps:
       - checkout
-      -save_cache:
+      - save_cache:
         key: v2-repo-{{ .Envitonment.CRICLE_SHA1 }}
         - ~/t-farm
 
