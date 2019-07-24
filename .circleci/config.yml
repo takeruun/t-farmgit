@@ -25,6 +25,8 @@ jobs:
           MYSQL_PASSWORD: ''
           MYSQL_PORT: 3306
       - image: circleci/mysql:8.0.16
+      command: |
+          mysqld --default-authentication-plugin=mysql_native_password
         environment:
           MYSQL_DATABASE: t-farm_test
           MYSQL_ALLOW_EMPTY_PASSWORD: true
