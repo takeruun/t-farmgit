@@ -29,6 +29,7 @@ jobs:
           MYSQL_DATABASE: t-farm_test
           MYSQL_ALLOW_EMPTY_PASSWORD: true
           MYSQL_PASSWORD: ''
+          MYSQL_ROOT_HOST: '%'
     working_directory: ~/t-farm
 
     steps:
@@ -53,6 +54,8 @@ jobs:
           key: v2-dependencies-{{ checksum "Gemfile.lock" }}
 
       # Database setup
+      - run: rm ./config/database.yml
+      - run: mv ./config/database.yml.ci ./config/database.yml
       - run:
           name: Prepare db
           command: |
