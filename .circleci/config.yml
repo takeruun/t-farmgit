@@ -22,15 +22,14 @@ jobs:
           RAILS_ENV: test
           MYSQL_HOST: 127.0.0.1
           MYSQL_USERNAME: 'root'
-          MYSQL_PASSWORD: ''
+          MYSQL_PASSWORD: 'Takeru321'
           MYSQL_PORT: 3306
       - image: circleci/mysql:8.0.16
         command: |
           mysqld --default-authentication-plugin=mysql_native_password
         environment:
           MYSQL_DATABASE: t-farm_test
-          MYSQL_ALLOW_EMPTY_PASSWORD: true
-          MYSQL_PASSWORD: ''
+          MYSQL_PASSWORD: 'Takeru321'
           MYSQL_ROOT_HOST: '%'
     working_directory: ~/t-farm
 
