@@ -53,6 +53,8 @@ jobs:
           key: v2-dependencies-{{ checksum "Gemfile.lock" }}
 
       # Database setup
+      - run: rm ./config/database.yml
+      - run: mv ./config/database.yml.ci ./config/database.yml
       - run:
           name: Prepare db
           command: |
