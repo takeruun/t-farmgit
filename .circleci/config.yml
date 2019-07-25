@@ -25,11 +25,9 @@ jobs:
           MYSQL_PASSWORD: 'Takeru321'
           MYSQL_PORT: 3306
       - image: circleci/mysql:8.0.16
-        command: |
-          mysqld --default-authentication-plugin=mysql_native_password
         environment:
           MYSQL_DATABASE: t-farm_test
-          MYSQL_PASSWORD: 'Takeru321'
+          MYSQL_PASSWORD: Takeru321
           MYSQL_ROOT_HOST: '%'
     working_directory: ~/t-farm
 
@@ -55,10 +53,6 @@ jobs:
           key: v2-dependencies-{{ checksum "Gemfile.lock" }}
 
       # Database setup
-      - run:
-          name: Wait for DB
-          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 120s
-
       - run: rm ./config/database.yml
       - run: mv ./config/database.yml.ci ./config/database.yml
       - run:
