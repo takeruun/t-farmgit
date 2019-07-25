@@ -26,7 +26,7 @@ jobs:
         environment:
           MYSQL_DATABASE: t-farm_test
           MYSQL_ROOT_USER: root
-          MYSQL_PASSWORD: Takeru321
+          MYSQL_ALLOW_EMPTY_PASSWORD: true
     working_directory: ~/t-farm
 
     steps:
