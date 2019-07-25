@@ -1,29 +1,32 @@
 version: '3'
 services:
   db:
-   image: mysql:8.0.16
-   environment:
-    MYSQL_USER: root 
-    MYSQL_PASSWORD: Takeru321
-    MYSQL_ROOT_PASSWORD: Takeru321
-   volumes:
-    - mysql-data:/var/lib/mysql
-   ports:
-    - '3316:3306'
+    image: mysql:8.0.16
+    environment:
+      MYSQL_PASSWORD: 'Takeru321'
+    volumes:
+      - mysql-data:/var/lib/mysql
+    ports:
+      - '3316:3306'
 
   web:
     build: 
      context: .
      dockerfile: Dockerfile
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    environment:
+      RAILS_ENV: development
+      DATABASE_URL: mysql2://root:Takeru321@mysql:3306
     volumes:
-     - .:/t-farm
+      - .:/t-farm
     tty: true
     stdin_open: true
     ports:
-     - "3000:3000"
+      - "3000:3000"
     depends_on:
-     - db
+      - db
+    links:
+      - db:mysql
 
 volumes:
   mysql-data:
