@@ -25,7 +25,7 @@ jobs:
       - image: circleci/mysql:8.0.16
         environment:
           MYSQL_DATABASE: t-farm_test
-          MYSQL_ROOT_USER: root
+          MYSQL_USER: root
           MYSQL_ALLOW_EMPTY_PASSWORD: true
     working_directory: ~/t-farm
 
