@@ -3,6 +3,6 @@ test:
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: root
-  password: Takeru321
+  password: 38Uefne
   host: <%= ENV['MYSQL_HOST']%>  
   database: t-farm_test
