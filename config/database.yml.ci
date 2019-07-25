@@ -4,5 +4,5 @@ test:
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: root
   password: Takeru321
-  host: 127.0.0.1
+  host: <%= ENV['MYSQL_HOST']%>  
   database: t-farm_test
