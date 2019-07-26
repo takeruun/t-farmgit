@@ -22,7 +22,7 @@ RSpec.describe User, type: :system do
 		it '画像変更できる' do
 			visit edit_user_registration_path(user)
 			fill_in "メールアドレス", with: user.email
-			pending "fieldがないと出る"
+			pending "image fieldがないというエラーが出る"
 			attach_file image, with: File.join(Rails.root, 'public/user_images/a.jpg')
  			fill_in "現在のパスワード", with: user.password
 			click_button '更新'
