@@ -14,12 +14,6 @@ RSpec.describe User, type: :model do
   	expect(user.errors[:name]).to include("を入力してください")
   end
 
-  it "写真を登録しないと作成できない" do
-  	user.image_name = nil
-  	user.valid?
-  	expect(user.errors[:image_name]).to include("を入力してください")
-  end
-
   it "パスワードがないと作成できない" do
     user.password = ""
     user.valid?
@@ -33,6 +27,7 @@ RSpec.describe User, type: :model do
   end
 
   it "メアド重複すると作成できない" do
+    user1.email = "a@example.com"
   	user1.valid?
   	expect(user1.errors[:email]).to include("はすでに存在します")
   end

@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :system do
 	let(:user){create(:user)}
+	let!(:post){create(:post)}
 	
 	describe "編集機能" do
 		before do
