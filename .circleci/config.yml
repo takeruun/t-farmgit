@@ -12,7 +12,7 @@ jobs:
     steps:
       - checkout
       - save_cache:
-          key: v2-repo-{{ .Environment.CRICLE_SHA1 }}
+          key: v2-repo-{{ .Environment.CIRCLE_SHA1 }}
           paths:
             - ~/t-farm
   test:
@@ -34,7 +34,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: v2-repo-{{ .Environment.CRICLE_SHA1 }}
+          key: v2-repo-{{ .Environment.CIRCLE_SHA1 }}
       # Download and cache dependencies
       - restore_cache:
           keys:
@@ -75,6 +75,7 @@ jobs:
 
             bundle exec rspec \
               --format progress \
+              --format documentation \
               $TEST_FILES
 
       # collect reports
