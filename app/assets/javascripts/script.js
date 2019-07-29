@@ -3,10 +3,12 @@ $(function(){
 	setTimeout("$('#flash').fadeOut('slow')",1500);
 
 	var post_array = [];
+	var post_num   = [];
 	
 	//<li>作成
 	function createFavPost(post,id_now,i){
 		post_array.push(post);
+		post_num.push(i);
 
 		$('.favpost ul').append('<li value='+i+'><img></li>');
 		$('.favpost').find('li').attr({
