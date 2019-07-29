@@ -1,10 +1,10 @@
 class PostsController < ApplicationController
 
   def index
-    @recpost = Post.find_by(rec: true)
+    @favpost = Post.order(fav_count: :desc).where('fav_count > ?', 0).limit(4).last
     respond_to do |format|
       format.html
-      format.json { @new_recpost = Post.where('id >= ? and rec = ?', params[:recpost][:id], true)}
+      format.json { @new_favpost = Post.order(fav_count: :desc).where('fav_count > ?', 0).limit(4)}
     end
     @posts = Post.order(created_at: :desc).limit(9)
   end
@@ -15,18 +15,15 @@ class PostsController < ApplicationController
 
   def create
   	 @post = Post.new(post_params)
-     @post.rec = true
      @post.user_id =  current_user.id
 
-    if  params[:post][:post_image] && @post.save
-        @post.image_name = "#{@post.id}.jpg"
-        File.binwrite("public/post_images/#{@post.image_name}",params[:post][:post_image].read)
-        @post.save
+    if  @post.save
         redirect_to('/')
     elsif 
         flash[:notice] = @post.errors.full_messages
         render('/posts/new')
     end
+
   end
 
   def show
@@ -51,6 +48,6 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:comment,:title,:amount,:from)
+    params.require(:post).permit(:comment,:title,:image,:amount,:from)
   end
 end

@@ -1,3 +1,3 @@
-if @new_recpost.present?
-	json.array! @new_recpost
+if @new_favpost.present?
+	json.array! @new_favpost
 end

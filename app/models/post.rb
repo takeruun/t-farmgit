@@ -2,7 +2,8 @@ class Post < ApplicationRecord
 	validates :user_id,{presence: true}
 	validates :comment,{presence: true}
 	validates :title,{presence: true}
-
+	validates :image,{presence: true}
+	
 	has_many :favorites, dependent: :destroy
 	has_many :users, through: :favorites
 

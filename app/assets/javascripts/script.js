@@ -3,49 +3,41 @@ $(function(){
 	setTimeout("$('#flash').fadeOut('slow')",1500);
 
 	var post_array = [];
-	var post_num   = [];
 	
 	//<li>作成
-	function createRecPost(post,id_now,i){
+	function createFavPost(post,id_now,i){
 		post_array.push(post);
-		post_num.push(i);
 
-		$('.recpost ul').append('<li value='+i+'><img></li>');
-		$('.recpost').find('li').attr({
+		$('.favpost ul').append('<li value='+i+'><img></li>');
+		$('.favpost').find('li').attr({
 			class: 'slide'
 		});
-	}
 
-	//<li>にオススメ画像登録
-	function createSlidePost(){
-		for(var i=0;i<post_num.length;i++){
-
-			if ($('.recpost').find('li').val() == 0){
-				$('.recpost').find('li:eq(0)').addClass('active');
-			}
-			var image_name = post_array[i].image_name;
-			$('.recpost').find('img:eq('+i+')').attr({
-				alt: ' ',
-				src: '/post_images/'+image_name+''
-			});
+		if ($('.favpost').find('li').val() == 0){
+			$('.favpost').find('li:eq(0)').addClass('active');
 		}
+		
 	}
 
-	//rec:trueの分だけデータ取得
+	//データ取得
 	$(window).load(function(){
-		var recpost_id_now = $('.recpost').data('id');
+		var favpost_id_now = $('.favpost').data('id');
 		$.ajax({
 			url: '/posts',
 			type: 'GET',
-			data: {recpost: {id: recpost_id_now, rec: true}},
-			context: recpost_id_now,
+			data: {favpost: {id: favpost_id_now}},
+			context: favpost_id_now,
 			dataType: 'json'
 		})
 		.done(function(data){
 			$.each(data, function(i,data){
-				createRecPost(data,recpost_id_now,i);
+				createFavPost(data,favpost_id_now,i);
+				$('.favpost').find('img:eq('+i+')').attr({
+					alt: '注目投稿',
+					src: `${post_array[i].image.url}`
+				});
 			});
-			createSlidePost();
+
 		})
 		.fail(function(){
 			alert('error');
