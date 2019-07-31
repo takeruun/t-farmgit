@@ -8,25 +8,25 @@ RSpec.describe User, type: :model do
   	expect(user).to be_valid
   end
 
-  it "名前がないと作成できない" do
+  it "名前がないと有効でない" do
   	user.name = nil
   	user.valid?
   	expect(user.errors[:name]).to include("を入力してください")
   end
 
-  it "パスワードがないと作成できない" do
+  it "パスワードがないと有効でない" do
     user.password = ""
     user.valid?
     expect(user.errors[:password]).to include("を入力してください")
   end
 
-  it "パスワードが6文字以上じゃないと作成できない" do
+  it "パスワードが6文字以上じゃないと有効でない" do
     user.password = "Tt"
     user.valid?
     expect(user.errors[:password]).to include("は6文字以上で入力してください")
   end
 
-  it "メアド重複すると作成できない" do
+  it "メアド重複すると有効でない" do
     user1.email = "a@example.com"
   	user1.valid?
   	expect(user1.errors[:email]).to include("はすでに存在します")

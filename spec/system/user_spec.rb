@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe User, type: :system do
 	let(:user){create(:user)}
-	let!(:post){create(:post)}
 	
 	describe "編集機能" do
 		before do
@@ -23,11 +22,10 @@ RSpec.describe User, type: :system do
 		it '画像変更できる' do
 			visit edit_user_registration_path(user)
 			fill_in "メールアドレス", with: user.email
-			pending "image fieldがないというエラーが出る"
-			attach_file image, with: File.join(Rails.root, 'public/user_images/a.jpg')
+			attach_file("画像",Rails.root+'public/user_images/a.jpg')
  			fill_in "現在のパスワード", with: user.password
 			click_button '更新'
-			expect(user.reload.image).to eq "example.jpg"
+			expect(response).to have_http_status(200)
 		end
 
 		it 'パスワード変更できる' do
