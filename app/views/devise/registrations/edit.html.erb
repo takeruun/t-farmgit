@@ -31,7 +31,12 @@
         <div class="field">
           <%= f.label :image %><br />
           <%= f.file_field :image, autocomplete: "image"%>
-        </div>  
+        </div> 
+      
+        <div class="field">
+          <%= f.label :name %><br />
+          <%= f.text_field :name, autocomplete: "name" %>          
+        </div>
 
         <div class="field">
           <%= f.label :current_password %> <i><%= t('.we_need_your_current_password_to_confirm_your_changes') %></i><br />
