@@ -1,0 +1,9 @@
+ja:
+  activerecord:
+    attributes:
+      post:
+        title: "タイトル"
+        image: "写真"
+        comment: "説明orコメント"
+        from: "生産地"
+        amount: "収穫量" 
