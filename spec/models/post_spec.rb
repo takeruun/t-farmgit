@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-  let!(:post){create(:post)}
+  let(:user){create(:user)}
+  let!(:post){create(:post, user_id: user.id)}
 
   it "投稿できる" do
   	expect(post).to be_valid
