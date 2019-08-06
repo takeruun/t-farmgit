@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe Post, type: :sytem do
 	let(:user){create(:user)}
 	let(:other_user){create(:other_user)}
-	let(:post){create(:post, user_id: user.id)}
-	let(:other_post){create(:other_post, :user_id, other_user.id)}
+	let!(:post){create(:post, user_id: user.id)}
+	let!(:other_post){create(:other_post, user_id: other_user.id)}
 
 	describe "新規投稿" do
 		let(:post_title){'新規投稿'}
@@ -36,8 +36,7 @@ RSpec.describe Post, type: :sytem do
 
 				it '成功する' do
 					click_button "投稿"
-					visit posts_path
-					expect(page).to have_content("新規投稿だよ")
+					expect(current_path).to eq posts_path
 				end
 
 			end
@@ -96,7 +95,11 @@ RSpec.describe Post, type: :sytem do
 
 	describe "投稿一覧機能" do
 		shared_examples 'userが作成した投稿が表示されている' do
-			it { expect(page).to have_content("example")}
+			it { expect(page).to have_content ("example")}
+		end
+
+		shared_examples 'other_userが作成した投稿が表示されている' do
+			it { expect(page).to have_content("other_example")}
 		end
 
 		context 'userがログインしているとき' do
@@ -105,11 +108,11 @@ RSpec.describe Post, type: :sytem do
 				fill_in "メールアドレス", with: user.email
 				fill_in "パスワード", with: user.password
 				click_button 'ログイン'
-				visit post_path(post)
+				visit posts_path
 			end
 
 			it_behaves_like 'userが作成した投稿が表示されている'
-
+			it_behaves_like 'other_userが作成した投稿が表示されている'
 		end
 	end
 end
