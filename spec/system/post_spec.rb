@@ -36,7 +36,8 @@ RSpec.describe Post, type: :sytem do
 
 				it '成功する' do
 					click_button "投稿"
-					expect(page).to have_content("新規投稿")
+					visit posts_path
+					expect(page).to have_content("新規投稿だよ")
 				end
 
 			end
@@ -55,9 +56,41 @@ RSpec.describe Post, type: :sytem do
 					click_button "投稿"
 					expect(page).to have_content("タイトルを入力してください")
 				end
-
 			end
+
+			context '画像未入力のとき' do
+				before do
+					visit new_post_path
+					fill_in "post[title]", with: post_title
+					fill_in "post[comment]", with: post_comment
+					fill_in "post[from]", with: post_from
+					fill_in "post[amount]", with: post_amount
+				end
+
+				it '失敗して, メッセージが出る' do
+					click_button "投稿"
+					expect(page).to have_content("写真を入力してください")
+				end
+			end
+
+			context 'コメント未入力のとき' do
+				before do
+					visit new_post_path
+					fill_in "post[title]", with: post_title
+					attach_file("post[image]",Rails.root+'public/post_images/1.jpg')
+					fill_in "post[comment]", with: ''
+					fill_in "post[from]", with: post_from
+					fill_in "post[amount]", with: post_amount
+				end
+
+				it '失敗して, メッセージが出る' do
+					click_button "投稿"
+					expect(page).to have_content("説明orコメントを入力してください")
+				end
+			end
+
 		end
+
 
 	end
 
