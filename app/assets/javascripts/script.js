@@ -35,7 +35,7 @@ $(function(){
 			$.each(data, function(i,data){
 				createFavPost(data,favpost_id_now,i);
 				$('.favpost').find('img:eq('+i+')').attr({
-					alt: '注目投稿',
+					id: '注目投稿:id'+i,
 					src: `${post_array[i].image.url}`
 				});
 			});
