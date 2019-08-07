@@ -3,7 +3,7 @@
 		<div class="post-item">
 			<div class="post-user-info">
 				<img alt="投稿者写真" src= <%= @user.image.to_s %> >
-				<%= link_to @user.name,user_path%>
+				<%= link_to @user.name,user_path(@user),id:"user-id:#{@user.id}"%>
 			</div>
 			<div class="post-content">
 				<h3 class="post-title"><%= @post.title %></h3>
@@ -19,9 +19,12 @@
 					<tr><th>収穫量</th><td><%= @post.amount %></td></tr>
 				</table>
 			</div>
-			<% if user_signed_in? && current_user.id == @user.id %>
-					<%= link_to "編集",edit_post_path %>
-			<% end %>
+			<div class="post-menu">
+				<% if user_signed_in? && current_user.id == @user.id %>
+						<%= link_to "編集", edit_post_path %>
+						<%= link_to "削除", post_path, method: :delete %>
+				<% end %>
+			</div>
 			<div class="clear"></div>
 		</div>	
 	</div>
