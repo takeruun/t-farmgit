@@ -6,7 +6,7 @@ RSpec.describe Post, type: :sytem do
 	let!(:post){create(:post, user_id: user.id)}
 	let!(:other_post){create(:other_post, user_id: other_user.id)}
 
-	describe "新規投稿" do
+	describe "新規投稿機能" do
 		let(:post_title){'新規投稿'}
 		let(:post_comment){'新規投稿だよ'}
 		let(:post_from){'新規県'}
@@ -93,12 +93,12 @@ RSpec.describe Post, type: :sytem do
 
 	end
 
-	describe "投稿一覧機能" do
-		shared_examples 'userが作成した投稿が表示されている' do
+	describe "投稿一覧表示機能" do
+		shared_examples 'userが作成した投稿が表示される' do
 			it { expect(page).to have_content ("example")}
 		end
 
-		shared_examples 'other_userが作成した投稿が表示されている' do
+		shared_examples 'other_userが作成した投稿が表示される' do
 			it { expect(page).to have_content("other_example")}
 		end
 
@@ -111,8 +111,73 @@ RSpec.describe Post, type: :sytem do
 				visit posts_path
 			end
 
-			it_behaves_like 'userが作成した投稿が表示されている'
-			it_behaves_like 'other_userが作成した投稿が表示されている'
+			it_behaves_like 'userが作成した投稿が表示される'
+			it_behaves_like 'other_userが作成した投稿が表示される'
+		end
+
+		context 'other_userがログインしているとき' do
+			before do
+				visit new_user_session_path
+				fill_in "メールアドレス", with: other_user.email
+				fill_in "パスワード", with: other_user.password
+				click_button 'ログイン'
+				visit posts_path
+			end
+
+			it_behaves_like 'userが作成した投稿が表示される'
+			it_behaves_like 'other_userが作成した投稿が表示される'
+		end
+
+	end
+
+	describe "詳細表示機能" do
+		shared_examples 'userが作成した投稿の詳細が表示される' do
+			it { click_link "#{post.title}の写真id:#{post.id}"
+				 expect(page).to have_content ("example")}
+			it { expect(page).to have_content ("exampleです")}
+		end
+
+		shared_examples 'other_userが作成した投稿の詳細が表示される' do
+			it { click_link "#{other_post.title}の写真id:#{other_post.id}"
+				 expect(page).to have_content("other_example")}
+			it { expect(page).to have_content("other_exampleです")}
+		end
+
+		context 'userがログインしているとき' do
+			before do
+				visit new_user_session_path
+				fill_in "メールアドレス", with: user.email
+				fill_in "パスワード", with: user.password
+				click_button 'ログイン'
+				visit posts_path
+			end
+
+			it_behaves_like 'userが作成した投稿の詳細が表示される'
+			it_behaves_like 'other_userが作成した投稿の詳細が表示される'
+		end
+
+		context 'other_userがログインしているとき' do
+			before do
+				visit new_user_session_path
+				fill_in "メールアドレス", with: other_user.email
+				fill_in "パスワード", with: other_user.password
+				click_button 'ログイン'
+				visit posts_path
+			end
+
+			it_behaves_like 'other_userが作成した投稿の詳細が表示される'
+			it_behaves_like 'userが作成した投稿の詳細が表示される'
+		end
+
+		context 'ログインしてないとき' do
+			before do
+				visit posts_path
+			end
+
+			it_behaves_like 'userが作成した投稿の詳細が表示される'
+			it_behaves_like 'other_userが作成した投稿の詳細が表示される'
 		end
 	end
+
+	
 end
