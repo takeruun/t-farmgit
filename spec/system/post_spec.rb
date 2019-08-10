@@ -22,6 +22,7 @@ RSpec.describe Post, type: :sytem do
 
 			it '新規投稿画面に移行できる' do
 				click_link '新規投稿'
+				expect(current_path).to eq new_post_path
 			end
 
 			context '新規投稿全入力しているとき' do
@@ -87,10 +88,14 @@ RSpec.describe Post, type: :sytem do
 					expect(page).to have_content("説明orコメントを入力してください")
 				end
 			end
-
 		end
 
-
+		context 'ログインしてないとき' do
+			it '新規投稿画面に行かず, メッセージが出る' do
+				visit new_post_path
+				expect(page).to have_content("アカウント登録もしくはログインしてください。")
+			end
+		end
 	end
 
 	describe "投稿一覧表示機能" do
@@ -176,6 +181,80 @@ RSpec.describe Post, type: :sytem do
 
 			it_behaves_like 'userが作成した投稿の詳細が表示される'
 			it_behaves_like 'other_userが作成した投稿の詳細が表示される'
+		end
+	end
+
+	describe "編集機能" do
+		let(:post_title){'編集済み'}
+		let(:post_comment){'編集しました'}
+		let(:post_from){'編集県'}
+		let(:post_amount){'11'}
+
+		context 'userがログインしているとき' do
+			before do
+				visit new_user_session_path
+				fill_in "メールアドレス", with: user.email
+				fill_in "パスワード", with: user.password
+				click_button 'ログイン'
+				visit posts_path
+			end
+
+			it '編集画面に移行できる' do
+				click_link "#{post.title}の写真id:#{post.id}"
+				click_link '編集'
+				expect(current_path).to eq edit_post_path(post)
+			end
+
+			context '新規投稿全入力しているとき' do
+				before do
+					click_link "#{post.title}の写真id:#{post.id}"
+					click_link '編集'
+					fill_in "post[title]", with: post_title
+					attach_file("post[image]",Rails.root+'public/post_images/1.jpg')
+					fill_in "post[comment]", with: post_comment
+					fill_in "post[from]", with: post_from
+					fill_in "post[amount]", with: post_amount
+				end
+
+				it '成功する' do
+					click_button "更新"
+					expect(current_path).to eq post_path(post)
+				end
+
+			end
+
+			context 'タイトル未入力にしたとき' do
+				before do
+					click_link "#{post.title}の写真id:#{post.id}"
+					click_link '編集'
+					fill_in "post[title]", with: ''
+					attach_file("post[image]",Rails.root+'public/post_images/1.jpg')
+					fill_in "post[comment]", with: post_comment
+					fill_in "post[from]", with: post_from
+					fill_in "post[amount]", with: post_amount
+				end
+
+				it '失敗して, メッセージが出る' do
+					click_button "更新"
+					expect(page).to have_content("タイトルを入力してください")
+				end
+			end
+
+			context 'コメント未入力にしたとき' do
+				before do
+					visit edit_post_path(post)
+					fill_in "post[title]", with: post_title
+					attach_file("post[image]",Rails.root+'public/post_images/1.jpg')
+					fill_in "post[comment]", with: ''
+					fill_in "post[from]", with: post_from
+					fill_in "post[amount]", with: post_amount
+				end
+
+				it '失敗して, メッセージが出る' do
+					click_button "更新"
+					expect(page).to have_content("説明orコメントを入力してください")
+				end
+			end
 		end
 	end
 
