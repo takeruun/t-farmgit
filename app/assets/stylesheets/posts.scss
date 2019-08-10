@@ -205,8 +205,6 @@ input[type="submit"]:active {
 	}
 
 	.post-content{
-		padding-bottom: 15px;
-		border-bottom: 1px solid #CCCCCC;
 		img{
 			width: 600px;
 			height: 400px;
@@ -236,6 +234,18 @@ input[type="submit"]:active {
 			padding-left: 20px;
 		}
 	}
+
+	.post-menu{
+		a{
+			margin-left: 10px;
+			margin-bottom: 10px;
+			text-decoration: underline;
+			color: #969696;
+			font-size: 16px;
+			float: right;
+		}
+	}
+
 }
 //edit
 
