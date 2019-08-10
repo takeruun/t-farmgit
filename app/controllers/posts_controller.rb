@@ -42,7 +42,7 @@ before_action :ensure_correct_user, {only: [:edit, :update, :destroy]}
     @post = Post.find(params[:id])
     if @post.update(post_params)
       flash[:notice] = "編集しました"
-      redirect_to("posts/#{@post.id}")
+      redirect_to("/posts/#{@post.id}")
     else
       flash[:notice] = @post.errors.full_messages
       render("/posts/edit")
