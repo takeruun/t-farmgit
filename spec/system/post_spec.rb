@@ -132,7 +132,6 @@ RSpec.describe Post, type: :sytem do
 			it_behaves_like 'userが作成した投稿が表示される'
 			it_behaves_like 'other_userが作成した投稿が表示される'
 		end
-
 	end
 
 	describe "詳細表示機能" do
@@ -256,7 +255,76 @@ RSpec.describe Post, type: :sytem do
 				end
 			end
 		end
+
+		context 'other_userがログインしているとき' do
+			before do
+				visit new_user_session_path
+				fill_in "メールアドレス", with: other_user.email
+				fill_in "パスワード", with: other_user.password
+				click_button 'ログイン'
+			end
+			it '他人の投稿の編集ボタンは表示されない' do
+				visit post_path(post)
+				expect(page).to_not have_content("編集")
+			end
+			it '編集画面に移行できない' do
+				visit edit_post_path(post)
+				expect(page).to have_content("権限がありません")
+			end
+		end
+
+		context 'ログインしてないとき' do
+			it '編集ボタンは表示されない' do
+				visit post_path(post)
+				expect(page).to_not have_content("編集")
+			end
+			it '編集画面に移行できない' do
+				visit edit_post_path(post)
+				expect(page).to have_content("アカウント登録もしくはログインしてください。")
+			end
+		end	
 	end
 
-	
+	describe "削除機能" do
+		context 'userがログインしているとき' do
+			before do
+				visit new_user_session_path
+				fill_in "メールアドレス", with: user.email
+				fill_in "パスワード", with: user.password
+				click_button 'ログイン'
+				visit post_path(post)
+			end
+
+			it '削除ボタンが表示される' do
+				expect(page).to have_content("削除")
+			end
+
+			it '削除できる' do
+				click_link "削除"
+				expect(page).to have_content("削除しました")
+			end
+		end
+
+		context 'other_userがログインしているとき' do
+			before do
+				visit new_user_session_path
+				fill_in "メールアドレス", with: other_user.email
+				fill_in "パスワード", with: other_user.password
+				click_button 'ログイン'
+				visit post_path(post)
+			end
+
+			it '他人の投稿の削除ボタンは表示されない' do
+				expect(page).to_not have_content("削除")
+			end
+		end
+
+		context 'ログインしてないとき' do
+			it '削除ボタンは表示されない' do
+				visit post_path(post)
+				expect(page).to_not have_content("削除")
+			end
+		end
+	end
+
 end
