@@ -3,14 +3,16 @@
 		<div class="container">
 			<h2 class="recommend-title">注目投稿</h2>
 			<div class="recommend-item">
-				<div class="favpost" data-id= <%= @favpost.id %> >
-					<ul>
-					</ul>
-				</div>
-				<div class="change-item">
-					<div class="change-btn prev-btn"><span class="fa fa-arrow-left"></span></div>
-					<div class="change-btn next-btn"><span class="fa fa-arrow-right"></span></div>
-				</div>
+				<% if  @favpost %>
+					<div class="favpost" data-id= <%= @favpost.id %> >
+						<ul>
+						</ul>
+					</div>
+					<div class="change-item">
+						<div class="change-btn prev-btn" id="prev"><span class="fa fa-arrow-left"></span></div>
+						<div class="change-btn next-btn" id="next"><span class="fa fa-arrow-right"></span></div>
+					</div>
+				<% end %>
 			</div>
 		</div>
 	</div>
