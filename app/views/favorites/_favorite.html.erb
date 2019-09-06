@@ -1,13 +1,13 @@
 <% if post.favorited_by?(current_user) %>
 	<div id="fav-btn" class="favorite">	
-		<%= link_to post_favorite_path(Favorite.find_by(post_id: post.id),post_id: post.id), method: :delete, remote: true do %>
+		<%= link_to post_favorite_path(Favorite.find_by(post_id: post.id),post_id: post.id), method: :delete, id:"del-fav-#{post.id}" ,remote: true do %>
 			<i class="fa fa-heart unfav-log"></i>お気に入り削除
 			<% end %>
 		<div class="favorite-count"><%= post.favorites.count %>件</div>
 	</div>
 <% else %>
 	<div id="fav-btn" class="favorite">
-		<%= link_to post_favorites_path(post_id: post.id), method: :post, remote: true do %>
+		<%= link_to post_favorites_path(post_id: post.id), method: :post, id:"add-fav-#{post.id}" ,remote: true do %>
 			<i class="fa fa-heart fav-log"></i>お気に入り追加
 		<% end %>
 		<div class="favorite-count"><%= post.favorites.count %>件</div>
