@@ -327,4 +327,26 @@ RSpec.describe Post, type: :sytem do
 		end
 	end
 
+	describe "いいね機能" do
+		context 'userがログインしているとき' do
+			before do
+				visit new_user_session_path
+				fill_in "メールアドレス", with: user.email
+				fill_in "パスワード", with: user.password
+				click_button 'ログイン'
+				visit posts_path
+			end
+
+			it 'お気に入り追加ボタンがある' do
+				expect(page).to have_content("お気に入り追加")
+			end
+
+			it 'お気に入り数が増える' do
+				click_link "add-fav-#{post.id}"
+				expect(post.favorites.count).to eq 1
+			end
+
+		end
+	end
+
 end
