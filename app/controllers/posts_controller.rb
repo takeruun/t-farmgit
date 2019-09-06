@@ -18,6 +18,7 @@ before_action :ensure_correct_user, {only: [:edit, :update, :destroy]}
   def create
   	 @post = Post.new(post_params)
      @post.user_id =  current_user.id
+     @post.fav_count = 0
 
     if  @post.save
         redirect_to('/posts')
