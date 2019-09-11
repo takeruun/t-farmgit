@@ -24,7 +24,7 @@
 			<% @posts.each do |post| %>
 				<div class="post">
 					<div class="title-top">
-						<p><%= post.title %></p>
+						<h3><%= post.title %></h3>
 					</div>
 					<div class="image-top">
 						<%= link_to image_tag(post.image.to_s), post_path(post.id), id:"#{post.title}の写真id:#{post.id}" %>	
