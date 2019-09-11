@@ -328,6 +328,18 @@ RSpec.describe Post, type: :sytem do
 	end
 
 	describe "いいね機能" do
+
+		shared_examples 'お気に入り追加リンクがある' do
+			it { expect(page).to have_content("お気に入り追加")}
+		end
+		shared_examples 'お気に入りにできる' do
+			it { click_link "add-fav-#{post.id}"
+				expect(post.favorites.count).to eq 1}
+		end
+		shared_examples 'お気に入り解除できる' do
+			it { click_link "del-fav-#{post.id}"
+				expect(post.favorites.count).to eq 0}
+		end
 		context 'userがログインしているとき' do
 			before do
 				visit new_user_session_path
@@ -337,15 +349,32 @@ RSpec.describe Post, type: :sytem do
 				visit posts_path
 			end
 
-			it 'お気に入り追加ボタンがある' do
-				expect(page).to have_content("お気に入り追加")
+			it_behaves_like 'お気に入り追加リンクがある'
+			it_behaves_like 'お気に入りにできる'
+			it_behaves_like 'お気に入り解除できる'
+		end
+
+		context 'ohter_userがログインしているとき' do
+			before do
+				visit new_user_session_path
+				fill_in "メールアドレス", with: other_user.email
+				fill_in "パスワード", with: other_user.password
+				click_button "ログイン"
+				visit posts_path
 			end
 
-			it 'お気に入り数が増える' do
-				click_link "add-fav-#{post.id}"
-				expect(post.favorites.count).to eq 1
-			end
+			it_behaves_like 'お気に入り追加リンクがある'
+			it_behaves_like 'お気に入りにできる'
+			it_behaves_like 'お気に入り解除できる'
+		end
 
+		context 'ログインしてないとき' do
+			before do
+				visit posts_path
+			end
+			it 'お気に入りリンクは表示されない' do
+				expect(page).to_not have_content("お気に入り追加")
+			end
 		end
 	end
 
