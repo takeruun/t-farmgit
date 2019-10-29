@@ -77,7 +77,7 @@ gem 'carrierwave'
 gem 'fog-aws'
 
 #ユーザー認証
-gem 'devise', '~> 4.6.2'
+gem 'devise', '~> 4.7.1'
 #devise日本語化
 gem 'devise-i18n', '~> 1.8.0'
 gem 'devise-i18n-views','~> 0.3.7'
