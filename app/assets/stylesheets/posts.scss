@@ -66,6 +66,9 @@
 			box-shadow: 0 2px 6px #c1ced7;
 			background-color: white;
 		}
+		.title-top{
+			padding: 5px 0 0 20px;
+		}
 		.image-top{
 			img{
 				padding: 10px 0 0 20px;
@@ -205,8 +208,6 @@ input[type="submit"]:active {
 	}
 
 	.post-content{
-		padding-bottom: 15px;
-		border-bottom: 1px solid #CCCCCC;
 		img{
 			width: 600px;
 			height: 400px;
@@ -236,6 +237,18 @@ input[type="submit"]:active {
 			padding-left: 20px;
 		}
 	}
+
+	.post-menu{
+		a{
+			margin-left: 10px;
+			margin-bottom: 10px;
+			text-decoration: underline;
+			color: #969696;
+			font-size: 16px;
+			float: right;
+		}
+	}
+
 }
 //edit
 

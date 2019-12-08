@@ -29,9 +29,5 @@ class Users::RegistrationsController < Devise::RegistrationsController
 	def destroy
 		super
 	end
-
-	protected
-     def user_params
-       params.require(:user).permit(:image, :email, :password ,:password_confirmation, :name, keys: [:current_password] )
-     end
+	
 end

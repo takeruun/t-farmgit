@@ -3,14 +3,16 @@
 		<div class="container">
 			<h2 class="recommend-title">注目投稿</h2>
 			<div class="recommend-item">
-				<div class="favpost" data-id= <%= @favpost.id %> >
-					<ul>
-					</ul>
-				</div>
-				<div class="change-item">
-					<div class="change-btn prev-btn"><span class="fa fa-arrow-left"></span></div>
-					<div class="change-btn next-btn"><span class="fa fa-arrow-right"></span></div>
-				</div>
+				<% if  @favpost %>
+					<div class="favpost" data-id= <%= @favpost.id %> >
+						<ul>
+						</ul>
+					</div>
+					<div class="change-item">
+						<div class="change-btn prev-btn" id="prev"><span class="fa fa-arrow-left"></span></div>
+						<div class="change-btn next-btn" id="next"><span class="fa fa-arrow-right"></span></div>
+					</div>
+				<% end %>
 			</div>
 		</div>
 	</div>
@@ -21,11 +23,14 @@
 			<div class="posts">
 			<% @posts.each do |post| %>
 				<div class="post">
+					<div class="title-top">
+						<h3><%= post.title %></h3>
+					</div>
 					<div class="image-top">
-						<%= link_to image_tag(post.image.to_s), post_path(post.id) %>	
+						<%= link_to image_tag(post.image.to_s), post_path(post.id), id:"#{post.title}の写真id:#{post.id}" %>	
 					</div>
 					<div class="user-top">
-						<%= image_tag post.user.image.to_s %>
+						<%= image_tag post.user.image.to_s,id:"#{post.user.name}の写真id:#{post.user.id}" %>
 						<%= link_to post.user.name, "/users/#{post.user.id}" %>
 					</div>
 					<div class="comment-top">
