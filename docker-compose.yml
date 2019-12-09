@@ -18,6 +18,7 @@ services:
       DATABASE_URL: mysql2://root:Takeru321@mysql:3306
     volumes:
       - .:/t-farm
+      - bundle:/usr/local/bundle
     tty: true
     stdin_open: true
     ports:
@@ -30,3 +31,4 @@ services:
 volumes:
   mysql-data:
     driver: local
+  bundle:
