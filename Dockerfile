@@ -1,6 +1,6 @@
 FROM ruby:2.6.1
     RUN apt-get update && \
-        apt-get install -y mysql-client nodejs --no-install-recommends && \
+        apt-get install -y mysql-client nodejs --no-install-recommends vim && \
         rm -rf /var/lib/apt/lists/*
 
     RUN mkdir /t-farm
