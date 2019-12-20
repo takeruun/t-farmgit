@@ -3,10 +3,21 @@
 		<div class="container">
 			<h2 class="recommend-title">注目投稿</h2>
 			<div class="recommend-item">
-				<div class="favpost" data-id= <%= @favpost.id %> >
-					<ul>
-					</ul>
-				</div>
+				<% if @favpost %>
+					<div class="favpost" data-id= <%= @favpost.id %> >
+						<ul>
+						</ul>
+					</div>
+				<% else %>
+					<div class="favpost">  <!-- いいねが１つも無い場合 -->
+						<ul>
+							<li class="slide active">
+								<img src="/rainbow.jpg" alt="まだいいねされてません">
+							</li>
+						</ul>
+						
+					</div>
+				<% end %>
 				<div class="change-item">
 					<div class="change-btn prev-btn"><span class="fa fa-arrow-left"></span></div>
 					<div class="change-btn next-btn"><span class="fa fa-arrow-right"></span></div>
