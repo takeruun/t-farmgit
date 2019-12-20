@@ -24,7 +24,7 @@ RSpec.describe User, type: :system do
 			visit edit_user_registration_path(user)
 			fill_in "メールアドレス", with: user.email
 			pending "image fieldがないというエラーが出る"
-			attach_file image, with: File.join(Rails.root, 'public/user_images/a.jpg')
+			attach_file image, with: File.join(Rails.root, 'public/user_images/test.jpg')
  			fill_in "現在のパスワード", with: user.password
 			click_button '更新'
 			expect(user.reload.image).to eq "example.jpg"
