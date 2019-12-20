@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :name, {presence: true}
+  validates :image, {presence: true}
 
   has_many :posts, dependent: :destroy
   has_many :favorites, dependent: :destroy

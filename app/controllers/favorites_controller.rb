@@ -1,5 +1,5 @@
 class FavoritesController < ApplicationController
-	before_action :ser_post
+	before_action :set_post
 
 	def create
 		@favorite = current_user.favorites.create(post_id: @post.id)
@@ -11,7 +11,7 @@ class FavoritesController < ApplicationController
 	end
 
 	private
-	def ser_post
+	def set_post
 		@post = Post.find(params[:post_id])
 	end
 
