@@ -18,7 +18,7 @@
 			background-image: url("/vegi.jpg");
 			background-size: cover;
 			padding-top: 60px;
-			padding-bottom: 40px;
+			padding-bottom: 50px;
 
 			.recommend-title{
 				color: #D3E300;
@@ -56,6 +56,7 @@
 	}
 
 	.posts-show{
+		padding-top: 40px; 
 		margin: 0 auto;
 		.post{
 			position: relative;
@@ -121,15 +122,6 @@
 
 	.image{
 		font-size: 15px;
-	}
-
-	.image-form{
-		.preview{
-			img{
-				width: 400px;
-				height: 300px;
-			}
-		}
 	}
 
 	.comment-form{
