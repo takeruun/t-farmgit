@@ -15,12 +15,12 @@
 			<div class="post-detail">
 				<h3>商品詳細</h3>
 				<table class="post-detail-table">
-					<tr><th>生産地</th><td><%= @post.from %></td></tr>
-					<tr><th>収穫量</th><td><%= @post.amount %></td></tr>
+					<tr><th>生産地:</th><td><%= @post.from %></td></tr>
+					<tr><th>収穫量:</th><td><%= @post.amount %></td></tr>
 				</table>
 			</div>
 			<% if user_signed_in? && current_user.id == @user.id %>
-					<%= link_to "編集",edit_post_path %>
+					<%= link_to "編集",edit_post_path , class:"post-edit-link" %>
 			<% end %>
 			<div class="clear"></div>
 		</div>	
