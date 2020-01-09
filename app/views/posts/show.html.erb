@@ -7,10 +7,9 @@
 			</div>
 			<div class="post-content">
 				<h3 class="post-title"><%= @post.title %></h3>
-				<p class="fav-count"></p>
+				<div class="fav-count"></div>
 				<%= image_tag @post.image.to_s %>
 				<p class="post-comment"><%= @post.comment %></p>
-				<p class="post-time"><%= @post.created_at.strftime('%Y年%m月%d日 %H:%M') %></p>
 			</div>
 			<div class="post-detail">
 				<h3>商品詳細</h3>
@@ -19,10 +18,20 @@
 					<tr><th>収穫量:</th><td><%= @post.amount %></td></tr>
 				</table>
 			</div>
+			<div class="post-time"><%= @post.created_at.strftime('%Y年%m月%d日 %H:%M') %></div>
 			<% if user_signed_in? && current_user.id == @user.id %>
 					<%= link_to "編集",edit_post_path , class:"post-edit-link" %>
 			<% end %>
 			<div class="clear"></div>
-		</div>	
+		</div>
+		<div class="post-comments">
+			<h3>コメント</h3>
+			<div id="comments-area">
+				<%= render partial: 'comments/index', locals:{comments: @comments, post: @post} %>	
+			</div>
+			<% if user_signed_in? %>
+				<%= render partial: 'comments/form', locals:{comment: @comment, post: @post} %>
+			<% end %>
+		</div>
 	</div>
 </div>

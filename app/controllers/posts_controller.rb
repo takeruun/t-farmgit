@@ -14,8 +14,8 @@ class PostsController < ApplicationController
   end
 
   def create
-  	 @post = Post.new(post_params)
-     @post.user_id =  current_user.id
+    @post = Post.new(post_params)
+    @post.user_id =  current_user.id
 
     if  @post.save
         redirect_to('/posts')
@@ -27,16 +27,18 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find_by(id: params[:id])
+    @post = Post.find_by(params[:id])
     @user = @post.user
+    @comment = Comment.new
+    @comments = @post.comments
   end
   
   def edit
-   @post = Post.find_by(id: params[:id])
+    @post = Post.find_by(params[:id])
   end
 
   def update
-    @post = Post.find(id: params[:id])
+    @post = Post.find(params[:id])
     if @post.update(post_params)
       flash[:notice] = "編集しました"
       redirect_to("posts/#{@post.id}")
