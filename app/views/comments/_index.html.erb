@@ -1,0 +1,17 @@
+<% comments.each do |comment| %>
+	<% unless comment.id.nil? %>
+	<div class="comment-box">
+		<div class="comment-user-info">
+			<%= link_to "#{comment.user.name}", user_path(comment.user.id)%>
+			<img alt="投稿者写真" src= <%= comment.user.image.to_s %> >
+			<% if comment.post.user_id == comment.user_id %>
+				<div class="poster">投稿者</div>
+			<% end %>
+		</div>
+		<div class="comment"><%= safe_join(comment.content.split("\n"),tag(:br))%></div>
+		<% if comment.user == current_user %>
+			<%= link_to "コメントを削除する", post_comment_path(comment.post_id, comment.id), method: :delete, remote: true , class:"comment-delet-btn"%>
+		<% end %>
+	</div>
+	<% end %> 
+<% end %>

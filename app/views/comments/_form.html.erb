@@ -1,0 +1,10 @@
+<%= form_with(model: [post, comment]) do |form| %>
+	<div class="comment-form">
+		<%= form.text_area :content %>
+		<div class="actions">
+			<button type="submit" class="comment-btn">
+				<i class="fas fa-arrow-circle-up size"></i>
+			</button>
+		</div>
+	</div>
+<% end %>
