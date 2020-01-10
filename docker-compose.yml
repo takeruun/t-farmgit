@@ -10,11 +10,6 @@ services:
       - mysql-data:/var/lib/mysql
     ports:
       - '3316:3306'
-    networks:
-      test-network:
-        aliases:
-          - db.com
-          
 
   web:
     build: 
@@ -35,25 +30,14 @@ services:
       - chrome
     links:
       - db:mysql
-    networks:
-      test-network:
-        aliases:
-          - web.com
 
   chrome:
     image: selenium/standalone-chrome-debug:3.141.59-yttrium
     ports:
       - 4444:4444
       - 5900:5900
-    networks:
-      test-network:
-        aliases:
-          - chrome.com
-
+  
 volumes:
   mysql-data:
     driver: local
   bundle:
-
-networks:
-  test-network:

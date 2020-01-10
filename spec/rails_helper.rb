@@ -25,7 +25,7 @@ require 'capybara/rails'
 Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
 
 Capybara.configure do |config|
-  config.server_host = "web.com"
+  config.server_host = Socket.ip_address_list.detect{|addr| addr.ipv4_private?}.ip_address
   #config.server_port = 3000
   config.javascript_driver = :selenium_chrome_headless
 end
@@ -43,7 +43,7 @@ Capybara.register_driver :selenium_chrome_headless do |app|
         ]
       }
     ),
-    url: "http://chrome.com:4444/wd/hub",
+    url: "http://chrome:4444/wd/hub",
   )
 end
 
