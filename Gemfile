@@ -43,7 +43,6 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '~> 3.8.2' #単体テスト
   gem 'factory_bot_rails', '~> 5.0.2'
-  gem 'database_cleaner'
 end
 
 group :development do
