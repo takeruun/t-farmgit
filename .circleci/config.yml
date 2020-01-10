@@ -32,6 +32,9 @@ jobs:
     working_directory: ~/t-farm
 
     steps:
+      - run:
+          command: chromedriver
+          background: true
       - checkout
       - restore_cache:
           key: v2-repo-{{ .Environment.CIRCLE_SHA1 }}
