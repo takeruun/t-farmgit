@@ -33,7 +33,7 @@ end
 Capybara.register_driver :selenium_chrome_headless do |app|
   Capybara::Selenium::Driver.new(
     app,
-    browser: :remote,
+    browser: :chrome,
     desired_capabilities: Selenium::WebDriver::Remote::Capabilities.chrome(
       chromeOptions: {
         args: [
