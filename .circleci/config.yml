@@ -32,6 +32,13 @@ jobs:
     working_directory: ~/t-farm
 
     steps:
+       - run:
+          name: Download Selenium
+          command: curl -O http://selenium-release.storage.googleapis.com/3.5/selenium-server-standalone-3.5.3.jar
+      - run:
+          name: Start Selenium
+          command: java -jar selenium-server-standalone-3.5.3.jar -log test-reports/selenium.log
+          background: true
       - checkout
       - restore_cache:
           key: v2-repo-{{ .Environment.CIRCLE_SHA1 }}
@@ -79,6 +86,7 @@ jobs:
 
             bundle exec rspec \
               --format progress \
+              --out /tmp/test-results/rspec.xml \
               --format documentation \
               $TEST_FILES
 
