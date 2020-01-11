@@ -18,9 +18,6 @@ jobs:
   test:
     machine:
       image: circleci/classic:edge
-      environment:
-        RAILS_ENV: test
-        MYSQL_HOST: 127.0.0.1
     working_directory: ~/t-farm
 
     steps:
