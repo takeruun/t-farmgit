@@ -18,6 +18,9 @@ jobs:
   test:
     machine:
       image: circleci/classic:edge
+      environment:
+        RAILS_ENV: test
+        MYSQL_HOST: 127.0.0.1
     working_directory: ~/t-farm
 
     steps:
@@ -55,7 +58,7 @@ jobs:
       # Database setup
       - run:
           name: Wait for DB
-          command: sleep 1s
+          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 3m
       - run:
           name: Prepare db
           command: |
