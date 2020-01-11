@@ -59,7 +59,7 @@ jobs:
       - run:
           name: Prepare db
           command: |
-            docker-compose exec web rails db:create db:migrate RAILS_ENV=test --trace
+            docker-compose run web rails db:create db:migrate RAILS_ENV=test --trace
 
       # run tests!
       - run:
