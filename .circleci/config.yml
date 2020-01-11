@@ -37,10 +37,10 @@ jobs:
             chmod +x ~/docker-compose
             sudo mv ~/docker-compose /usr/local/bin/docker-compose
       - run:
-          name: docker-compose up
+          name: docker-compose build
           command: |
             set -x
-            docker-compose up --build -d
+            docker-compose build
       - run:
           name: docker-compose stop
           command: |
@@ -55,11 +55,11 @@ jobs:
       # Database setup
       - run:
           name: Wait for DB
-          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 3m
+          command: sleep 1
       - run:
           name: Prepare db
           command: |
-            docker-compose exec web rails db:create db:migrate --trace
+            docker-compose exec web rails db:create db:migrate RAILS_ENV=test --trace
 
       # run tests!
       - run:
@@ -69,7 +69,7 @@ jobs:
             TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
               circleci tests split --split-by=timings)"
 
-            docker-compose exec web rspec \
+            docker-compose run web rspec \
               --format progress \
               --out /tmp/test-results/rspec.xml \
               --format documentation \
