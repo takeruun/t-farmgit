@@ -7,7 +7,7 @@ jobs:
   checkout_code:
     machine:
       # specify the version you desire here
-      - image: circleci/classic:edge
+      image: circleci/classic:edge
     working_directory: ~/t-farm
     steps:
       - checkout
@@ -17,7 +17,7 @@ jobs:
             - ~/t-farm
   test:
     machine:
-      - image: circleci/classic:edge
+      image: circleci/classic:edge
     working_directory: ~/t-farm
 
     steps:
