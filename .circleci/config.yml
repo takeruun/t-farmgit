@@ -5,9 +5,9 @@
 version: 2.1
 jobs:
   checkout_code:
-    machine:
+    docker:
       # specify the version you desire here
-      image: circleci/classic:edge
+      - image: circleci/ruby:2.6.1-node-browsers
     working_directory: ~/t-farm
     steps:
       - checkout
@@ -16,8 +16,21 @@ jobs:
           paths:
             - ~/t-farm
   test:
-    machine:
-      image: circleci/classic:edge
+    docker:
+      - image: circleci/ruby:2.6.1-node-browsers
+        environment:
+          RAILS_ENV: test
+          MYSQL_HOST: 127.0.0.1
+          MYSQL_PORT: 3306
+          SELENIUM_DRIVER_URL: http://localhost:4444/wd/hub
+      - image: selenium/standalone-chrome:3.141.59-yttrium
+      - image: circleci/mysql:8.0.16
+        command: mysqld --default-authentication-plugin=mysql_native_password
+        environment:
+          MYSQL_HOST: 127.0.0.1
+          MYSQL_DATABASE: t-farm_test
+          MYSQL_USER: root
+          MYSQL_ROOT_PASSWORD: password
     working_directory: ~/t-farm
 
     steps:
@@ -31,36 +44,32 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v2-dependencies-
       - run:
-          name: Install Docker Compose
+          name: updater bundler
           command: |
-            curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
-            chmod +x ~/docker-compose
-            sudo mv ~/docker-compose /usr/local/bin/docker-compose
+            gem update --system
+            gem install bundler
       - run:
-          name: docker-compose build
+          name: bundle install dependencies
           command: |
-            set -x
-            docker-compose build
+            bundle check --path=vendor/bundle || bundle install --jobs 4 --retry 3 --path=vendor/bundle
       - run:
-          name: docker-compose stop
-          command: |
-            set -x
-            docker-compose stop
-      - run:
-          name: docker-compose up
-          command: |
-            set -x
-            docker-compose up -d
+          name: bundle update
+          command: bundle update
+      - save_cache:
+          paths:
+            - ./vendor/bundle
+          key: v2-dependencies-{{ checksum "Gemfile.lock" }}
 
       # Database setup
       - run:
           name: Wait for DB
-          command: sleep 1
+          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 3m
+      - run: rm ./config/database.yml
+      - run: mv ./config/database.yml.ci ./config/database.yml
       - run:
           name: Prepare db
           command: |
-            docker-compose run web rails db:create db:migrate RAILS_ENV=test --trace
-
+            bundle exec rails db:migrate --trace
       # run tests!
       - run:
           name: Run rspec
@@ -68,17 +77,11 @@ jobs:
             mkdir /tmp/test-results
             TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
               circleci tests split --split-by=timings)"
-
-            docker-compose run web rspec \
+            bundle exec rspec \
               --format progress \
               --out /tmp/test-results/rspec.xml \
               --format documentation \
               $TEST_FILES
-
-      - run:
-          name: docker-compose down
-          command: docker-compose down
-
       # collect reports
       - store_test_results:
           path: /tmp/test-results
