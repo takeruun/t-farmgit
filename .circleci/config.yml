@@ -22,6 +22,8 @@ jobs:
           RAILS_ENV: test
           MYSQL_HOST: 127.0.0.1
           MYSQL_PORT: 3306
+          SELENIUM_DRIVER_URL: http://localhost:4444/wd/hub
+      - image: selenium/standalone-chrome:3.141.59-yttrium
       - image: circleci/mysql:8.0.16
         command: mysqld --default-authentication-plugin=mysql_native_password
         environment:
@@ -32,13 +34,6 @@ jobs:
     working_directory: ~/t-farm
 
     steps:
-       - run:
-          name: Download Selenium
-          command: curl -O http://selenium-release.storage.googleapis.com/3.5/selenium-server-standalone-3.5.3.jar
-      - run:
-          name: Start Selenium
-          command: java -jar selenium-server-standalone-3.5.3.jar -log test-reports/selenium.log
-          background: true
       - checkout
       - restore_cache:
           key: v2-repo-{{ .Environment.CIRCLE_SHA1 }}

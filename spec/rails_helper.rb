@@ -31,20 +31,37 @@ Capybara.configure do |config|
 end
 
 Capybara.register_driver :selenium_chrome_headless do |app|
-  Capybara::Selenium::Driver.new(
-    app,
-    browser: :remote,
-    desired_capabilities: Selenium::WebDriver::Remote::Capabilities.chrome(
-      chromeOptions: {
-        args: [
-          "window-size=1024,512",
-          "--no-sandbox",
-          "--disable-dev-shm-usage"
-        ]
-      }
-    ),
-    url: "http://chrome:4444/wd/hub",
-  )
+  if ENV['SELENIUM_DRIVER_URL'].present?
+    Capybara::Selenium::Driver.new(
+       app,
+       browser: :chrome,
+       desired_capabilities: Selenium::WebDriver::Remote::Capabilities.chrome(
+         chromeOptions: {
+           args: [
+             "window-size=1024,512",
+             "--no-sandbox",
+             "--disable-dev-shm-usage"
+           ]
+         }
+       ),
+       url: ENV.fetch("SELENIUM_DRIVER_URL"){'http://localhost:4444/wd/hub'},
+     )
+  else
+    Capybara::Selenium::Driver.new(
+      app,
+      browser: :remote,
+      desired_capabilities: Selenium::WebDriver::Remote::Capabilities.chrome(
+        chromeOptions: {
+          args: [
+            "window-size=1024,512",
+            "--no-sandbox",
+            "--disable-dev-shm-usage"
+          ]
+        }
+      ),
+      url: "http://chrome:4444/wd/hub",
+    )
+  end
 end
 
 
