@@ -3,7 +3,7 @@
 #何秒経過すればワーカーを削除するのかを決める
   $timeout = 30
 
-  $app_dir = "/docker/t-farm/current"
+  $app_dir = "/var/dep/t-farm/current"
 #リクエストを受け取るポート番号を指定。後述
   $listen  = File.expand_path 'tmp/sockets/.unicorn.sock', $app_dir
 #PIDの管理ファイルディレクトリ

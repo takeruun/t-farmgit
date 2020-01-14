@@ -2,14 +2,14 @@
 lock "~> 3.11.2"
 
 set :application, "t-farm"
-set :repo_url, "git@github.com:takeruun/t-farm.git"
+set :repo_url, "git@github:takeruun/t-farm.git"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 set :branch, 'master'
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, "/var/www/t-farm"
+set :deploy_to, "/var/dep/t-farm"
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
