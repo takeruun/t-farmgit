@@ -42,7 +42,7 @@ set :keep_releases, 5
 # set :ssh_options, verify_host_key: :secure
 
 # rubyのバージョン
-set :rbenv_ruby, '2.1.3'
+set :rbenv_ruby, '2.6.1'
 
 #出力するログのレベル。
 set :log_level, :debug
