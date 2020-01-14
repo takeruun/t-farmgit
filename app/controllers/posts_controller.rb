@@ -3,10 +3,11 @@ class PostsController < ApplicationController
   before_action :ensure_correct_user, {only: [:edit, :update, :destroy]}
 
   def index
-    @favpost = Post.order(fav_count: :desc).where('fav_count > ?', 0).limit(4).last
-    respond_to do |format|
-      format.html
-      format.json { @new_favpost = Post.order(fav_count: :desc).where('fav_count > ?', 0).limit(4)}
+    if @favpost = Post.order(fav_count: :desc).where('fav_count > ?', 0).limit(4).last
+      respond_to do |format|
+        format.html
+        format.json { @new_favpost = Post.order(fav_count: :desc).where('fav_count > ?', 0).limit(4)}
+      end
     end
     @posts = Post.order(created_at: :desc).limit(9)
   end
