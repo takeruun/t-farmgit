@@ -21,6 +21,8 @@ services:
     volumes:
       - .:/t-farm
       - bundle:/usr/local/bundle
+      - "~/.ssh/t-farm_key_rsa:/root/.ssh/t-farm_key_rsa"
+
     tty: true
     stdin_open: true
     ports:

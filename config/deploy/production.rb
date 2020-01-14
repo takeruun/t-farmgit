@@ -9,7 +9,7 @@ server '18.177.45.208', user: 'take',
 	roles: %w{app db web},
 	ssh_options: {
        user: "take", # overrides user setting above
-       keys: %w(~/.ssh/t-farm_key_rsa),
+       keys: '~/.ssh/t-farm_key_rsa',
        forward_agent: true
     }
 
