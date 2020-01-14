@@ -29,6 +29,7 @@ test:
 
 production:
   <<: *default
-  database: t-farm_production
-  username: t-farm
-  password: <%= ENV['TEXT-MYSQL_DATABASE_PASSWORD'] %>
+  database: <%= Rails.application.credentials.aws[:rds_mysql_db] %>
+  username: <%= Rails.application.credentials.aws[:rds_mysql_user] %>
+  password: <%= Rails.application.credentials.aws[:rds_mysql_password]  %>
+  host: <%= Rails.application.credentials.aws[:rds_mysql_host] %>
