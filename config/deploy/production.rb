@@ -5,10 +5,15 @@
 
 # server "example.com", user: "deploy", roles: %w{app db web}, my_property: :my_value
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
-server '18.177.45.208', user: "take", roles: %w{app db web}
+server '18.177.45.208', user: 'take',
+	roles: %w{app db web},
+	ssh_options: {
+       user: "take", # overrides user setting above
+       keys: %w(~/.ssh/t-farm_key_rsa),
+       forward_agent: true
+    }
 
 
-set :ssh_options, keys: '~/.ssh/t-farm_key_rsa'
 # role-based syntax
 # ==================
 
