@@ -9,7 +9,7 @@ set :repo_url, "git@github:takeruun/t-farm.git"
 set :branch, 'master'
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, "/var/dep/t-farm"
+set :deploy_to, "/var/dep/rails/t-farm"
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
