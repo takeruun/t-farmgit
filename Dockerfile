@@ -26,4 +26,5 @@ FROM ruby:2.6.1
     EXPOSE 3000
 
     RUN if ["${RAILS_ENV}" = "production"]; then bundle exec rails assets:precompile; else export RAILS_ENV=development; fi
-    CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
+    #CMD ["bundle", "exec", "rails", "s", "puma", "-b", "0.0.0.0", "-p", "3000", "-e", "${RAILS_ENV}"]
+    CMD ["bundle", "exec", "rails" ,"s" ,"-b" ,"0.0.0.0", "-e", "${RAILS_ENV}"]

@@ -9,29 +9,41 @@ services:
     volumes:
       - mysql-data:/var/lib/mysql
     ports:
-      - '3316:3306'
+      - 3316:3306
 
   web:
     build: 
       context: .
       dockerfile: Dockerfile
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    command: bundle exec rails s -b 0.0.0.0
     environment:
+      RAILS_ENV: development
       DATABASE_URL: mysql2://root:password@mysql:3306
       RAILS_SERVE_STATIC_FILES: "true" # /public配下の静的ファイルを有効(productionの場合)
     volumes:
       - .:/t-farm
       - bundle:/usr/local/bundle
-
     tty: true
     stdin_open: true
-    ports:
-      - "3000:3000"
+    #ports:
+    #  - 3000:3000
     depends_on:
       - db
       - chrome
     links:
       - db:mysql
+  
+  server:
+    build:
+      context: containers/nginx
+    volumes: 
+      - public-data:/t-farm/public
+      - tmp-data:/t-farm/tmp
+      - ./log/nginx:/var/log/nginx
+    ports:
+      - 80:80
+    depends_on:
+      - web
 
   chrome:
     image: selenium/standalone-chrome-debug:3.141.59-yttrium
@@ -43,3 +55,5 @@ volumes:
   mysql-data:
     driver: local
   bundle:
+  public-data:
+  tmp-data:
