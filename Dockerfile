@@ -1,14 +1,12 @@
 FROM ruby:2.6.1
     RUN apt-get update && \
-        apt-get install -y mysql-client nodejs --no-install-recommends vim && \
+        apt-get install -y mysql-client nodejs --no-install-recommends vim curl && \
+        apt-get update && apt-get install -y yarn && \
         rm -rf /var/lib/apt/lists/*
 
     RUN mkdir /t-farm
     
     WORKDIR /t-farm
-    
-    ARG RAILS_ENV
-    ENV RAILS_ENV ${RAILS_ENV}
 
     ADD Gemfile /t-farm/Gemfile
     ADD Gemfile.lock /t-farm/Gemfile.lock
@@ -18,6 +16,14 @@ FROM ruby:2.6.1
 
     ADD . /t-farm
 
+    RUN mkdir -p tmp/sockets
+
+    # Expose volumes to frontend
+    VOLUME /t-farm/public
+    VOLUME /t-farm/tmp
+
+    ENV RAILS_ENV production
+
     # Add a script to be executed every time the container starts.
     COPY entrypoint.sh /usr/bin/
     RUN chmod +x /usr/bin/entrypoint.sh
@@ -25,6 +31,6 @@ FROM ruby:2.6.1
 
     EXPOSE 3000
 
-    RUN if ["${RAILS_ENV}" = "production"]; then bundle exec rails assets:precompile; else export RAILS_ENV=development; fi
+    RUN RAILS_ENV=production bundle exec rails assets:precompile
     #CMD ["bundle", "exec", "rails", "s", "puma", "-b", "0.0.0.0", "-p", "3000", "-e", "${RAILS_ENV}"]
-    CMD ["bundle", "exec", "rails" ,"s" ,"-b" ,"0.0.0.0", "-e", "${RAILS_ENV}"]
+    CMD ["bundle", "exec", "puma", "-C", "config/puma.rb", "-e", "production"]
