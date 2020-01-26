@@ -15,14 +15,15 @@ services:
     build: 
       context: .
       dockerfile: Dockerfile
-    command: bundle exec rails s -b 0.0.0.0
+    command: bundle exec puma -C config/puma.rb
     environment:
       RAILS_ENV: development
       DATABASE_URL: mysql2://root:password@mysql:3306
-      RAILS_SERVE_STATIC_FILES: "true" # /public配下の静的ファイルを有効(productionの場合)
     volumes:
       - .:/t-farm
       - bundle:/usr/local/bundle
+      - tmp-data:/t-farm/tmp
+      - public-data:/t-farm/public
     tty: true
     stdin_open: true
     #ports:
