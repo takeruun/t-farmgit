@@ -4,7 +4,8 @@ $(function(){
 
 	var post_array = [];
 	var post_num   = [];
-	
+	var url;
+
 	//<li>作成
 	function createFavPost(post,id_now,i){
 		post_array.push(post);
@@ -18,6 +19,7 @@ $(function(){
 		if ($('.favpost').find('li').val() == 0){
 			$('.favpost').find('li:eq(0)').addClass('active');
 		}
+		return post.image.url;
 		
 	}
 
@@ -33,10 +35,10 @@ $(function(){
 		})
 		.done(function(data){
 			$.each(data, function(i,data){
-				createFavPost(data,favpost_id_now,i);
+				url = createFavPost(data,favpost_id_now,i);
 				$('.favpost').find('img:eq('+i+')').attr({
 					alt: '注目投稿',
-					src: `${post_array[i].image.url}`
+					src: url
 				});
 			});
 
