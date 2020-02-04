@@ -12,6 +12,7 @@ CarrierWave.configure do |config|
     region: Rails.application.credentials.aws[:region],
     path_style: true
   }
+  config.fog_public = false
 
   if Rails.env.production?
     config.fog_directory = 't-farm-bucket'
@@ -20,5 +21,5 @@ CarrierWave.configure do |config|
   end
 
 end
- 
+
 CarrierWave::SanitizedFile.sanitize_regexp = /[^[:word:]\.\-\+]/
