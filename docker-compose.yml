@@ -22,7 +22,7 @@ services:
     volumes:
       - .:/t-farm
       - bundle:/usr/local/bundle
-      - tmp-data:/t-farm/tmp
+      - tmp-data:/t-farm/tmp #socket通信
       - public-data:/t-farm/public
     tty: true
     stdin_open: true
