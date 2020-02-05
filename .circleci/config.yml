@@ -113,13 +113,13 @@ jobs:
       
       - run:
           name: "Build dokcer image"
-          command: docker build -t $AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-1.amazonaws.com/t-farm_app:$CIRCLE_SHA1 .
+          command: docker build -t $AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-1.amazonaws.com/t-farm_app:$CIRCLE_SHA1 --build-arg RAILS_MASTER_KEY=$RAILS_MASTER_KEY .
 
       - run:
           mame: "Push docker image"
           command: docker push $AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-1.amazonaws.com/t-farm_app:$CIRCLE_SHA1
 
-      
+
 
 workflows:
   version: 2.1

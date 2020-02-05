@@ -22,7 +22,10 @@ FROM ruby:2.6.1
     VOLUME /t-farm/public
     VOLUME /t-farm/tmp
 
+    ARG RAILS_MASTER_KEY
+
     ENV RAILS_ENV production
+    ENV RAILS_MASTER_KEY $RAILS_MASTER_KEY
 
     # Add a script to be executed every time the container starts.
     COPY entrypoint.sh /usr/bin/
