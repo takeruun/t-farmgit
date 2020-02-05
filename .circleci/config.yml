@@ -127,7 +127,7 @@ jobs:
           name: "Update task"
           command: |
             aws ecs register-task-definition --family task --cli-input-json "$(aws ecs describe-task-definition --task-definition task | jq '.taskDefinition | { containerDefinitions: .containerDefinitions }')" \
-              --task-roal-arn arn:aws:iam::$AWS_ACCOUNT_ID:role/ecsTaskExecutionRole \
+              --task-role-arn arn:aws:iam::$AWS_ACCOUNT_ID:role/ecsTaskExecutionRole \
               --execution-role-arn arn:aws:iam::$AWS_ACCOUNT_ID:role/ecsTaskExecutionRole \
               --network-mode bridge \
               --cpu 250 --memory 450 \
