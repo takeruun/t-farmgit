@@ -22,9 +22,10 @@ FROM ruby:2.6.1
     VOLUME /t-farm/public
     VOLUME /t-farm/tmp
 
+    ARG RAILS_ENV
     ARG RAILS_MASTER_KEY
 
-    ENV RAILS_ENV production
+    ENV RAILS_ENV $RAILS_ENV
     ENV RAILS_MASTER_KEY $RAILS_MASTER_KEY
 
     # Add a script to be executed every time the container starts.
@@ -34,6 +35,6 @@ FROM ruby:2.6.1
 
     EXPOSE 3000
 
-    RUN RAILS_ENV=production bundle exec rails assets:precompile
-    #CMD ["bundle", "exec", "rails", "s", "puma", "-b", "0.0.0.0", "-p", "3000", "-e", "${RAILS_ENV}"]
-    CMD ["bundle", "exec", "puma", "-C", "config/puma.rb", "-e", "production"]
+    RUN if [ "${RAILS_ENV}" = "production" ]; then bundle exec rails assets:precompile assets:clean; else export RAILS_ENV=development; fi
+
+    CMD ["bundle", "exec", "puma", "-C", "config/puma.rb", "-e", "${RAILS_ENV}"]
