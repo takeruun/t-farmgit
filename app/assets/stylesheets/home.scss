@@ -93,55 +93,31 @@ header{
 
 }
 
-//top
-.recommend-show{
-	background-image: url("/vegi.jpg");
+.top-page{
+	background-image: url("/top.jpg");
 	background-size: cover;
-	padding-top: 60px;
-	padding-bottom: 40px;
+	width: 100%;
+	background-position: center;
+	height: 730px;
 
-	.recommend-title{
-		color: #D3E300;
-		font-size: 40px;
-	}
-	
-	.recommend-item{
+	.message{
+		padding-top: 150px;
 		text-align: center;
-		position: relative;
-		img{
-			width: 800px;
-			height: 350px;
-		}
-
-		.change-item{
-			position: absolute;
-			display: block;
-			width: 800px;
-			z-index: 1;
-			top: 175px;
-			left: 185px;
-
-			.prev-btn{
-				float: left;
-				color: red;
-				background-color:#626262;
-			}
-			.next-btn{
-				float: right;
-				color: red;
-				background-color:#626262;
-			}
+		h2{
+			font-size: 30px;
 		}
 	}
 }
 
-.preview{
-	img{
-		width: 350px;
-		height: 250px;
+.footer{
+	.footer-item{
+		text-align: center;
+		padding: 10px;
+		background-color: rgb(34,49,52);
+		color: white;
+		font-size: 14px;
 	}
 }
-
 //エラー時レイアウト崩れ防止
 .field_with_errors {
 	display: inline;

@@ -7,6 +7,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'rspec/rails'
 require 'capybara/rspec'
 require 'capybara/rails'
+require 'selenium/webdriver'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -33,19 +34,19 @@ end
 Capybara.register_driver :selenium_chrome_headless do |app|
   if ENV['SELENIUM_DRIVER_URL'].present?
     Capybara::Selenium::Driver.new(
-       app,
-       browser: :chrome,
-       desired_capabilities: Selenium::WebDriver::Remote::Capabilities.chrome(
-         chromeOptions: {
-           args: [
-             "window-size=1024,512",
-             "--no-sandbox",
-             "--disable-dev-shm-usage"
-           ]
-         }
-       ),
-       url: ENV.fetch("SELENIUM_DRIVER_URL"){'http://localhost:4444/wd/hub'},
-     )
+      app,
+      browser: :chrome,
+      desired_capabilities: Selenium::WebDriver::Remote::Capabilities.chrome(
+        chromeOptions: {
+          args: [
+            "window-size=1024,512",
+            "--no-sandbox",
+            "--disable-dev-shm-usage"
+            ]
+          }
+        ),
+      url: ENV.fetch("SELENIUM_DRIVER_URL"){'http://localhost:4444/wd/hub'},
+    )
   else
     Capybara::Selenium::Driver.new(
       app,
