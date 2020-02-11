@@ -23,6 +23,7 @@ jobs:
           MYSQL_HOST: 127.0.0.1
           MYSQL_PORT: 3306
           SELENIUM_DRIVER_URL: http://localhost:4444/wd/hub #circleの時だけ
+
       - image: selenium/standalone-chrome:3.141.59-yttrium
       - image: circleci/mysql:8.0.16
         command: mysqld --default-authentication-plugin=mysql_native_password
@@ -70,7 +71,6 @@ jobs:
           name: Prepare db
           command: |
             bundle exec rails db:migrate --trace
-
       # run tests!
       - run:
           name: Run rspec
@@ -78,13 +78,11 @@ jobs:
             mkdir /tmp/test-results
             TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
               circleci tests split --split-by=timings)"
-
             bundle exec rspec \
               --format progress \
               --out /tmp/test-results/rspec.xml \
               --format documentation \
               $TEST_FILES
-
       # collect reports
       - store_test_results:
           path: /tmp/test-results
