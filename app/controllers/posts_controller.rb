@@ -30,14 +30,14 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find_by(params[:id])
+    @post = Post.find(params[:id])
     @user = @post.user
     @comment = Comment.new
     @comments = @post.comments
   end
 
   def edit
-    @post = Post.find_by(params[:id])
+    @post = Post.find(params[:id])
   end
 
   def update
