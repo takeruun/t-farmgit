@@ -3,7 +3,6 @@ require 'carrierwave/storage/file'
 require 'carrierwave/storage/fog'
 
 CarrierWave.configure do |config|
-
   config.fog_provider = 'fog/aws'
   config.fog_credentials = {
     provider: 'AWS',
@@ -19,7 +18,6 @@ CarrierWave.configure do |config|
   elsif Rails.env.development?
     config.fog_directory = 't-farm-bucket-for-dev'
   end
-
 end
 
 CarrierWave::SanitizedFile.sanitize_regexp = /[^[:word:]\.\-\+]/

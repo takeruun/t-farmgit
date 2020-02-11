@@ -4,8 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :name, {presence: true}
-  validates :image, {presence: true}
+  validates :name, presence: true
+  validates :image, presence: true
 
   has_many :posts, dependent: :destroy
   has_many :favorites, dependent: :destroy
@@ -14,5 +14,4 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   mount_uploader :image, ImageUploader
-  
 end
