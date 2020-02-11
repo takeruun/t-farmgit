@@ -1,9 +1,11 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
-require File.expand_path('../../config/environment', __FILE__)
+require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
-abort("The Rails environment is running in production mode!") if Rails.env.production?
+if Rails.env.production?
+  abort('The Rails environment is running in production mode!')
+end
 require 'rspec/rails'
 require 'capybara/rspec'
 require 'capybara/rails'
@@ -23,11 +25,11 @@ require 'selenium/webdriver'
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
-Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
+Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
 
 Capybara.configure do |config|
-  config.server_host = Socket.ip_address_list.detect{|addr| addr.ipv4_private?}.ip_address
-  #config.server_port = 3000
+  config.server_host = Socket.ip_address_list.detect(&:ipv4_private?).ip_address
+  # config.server_port = 3000
   config.javascript_driver = :selenium_chrome_headless
 end
 
@@ -39,13 +41,13 @@ Capybara.register_driver :selenium_chrome_headless do |app|
       desired_capabilities: Selenium::WebDriver::Remote::Capabilities.chrome(
         chromeOptions: {
           args: [
-            "window-size=1024,512",
-            "--no-sandbox",
-            "--disable-dev-shm-usage"
-            ]
-          }
-        ),
-      url: ENV.fetch("SELENIUM_DRIVER_URL"){'http://localhost:4444/wd/hub'},
+            'window-size=1024,512',
+            '--no-sandbox',
+            '--disable-dev-shm-usage'
+          ]
+        }
+      ),
+      url: ENV.fetch('SELENIUM_DRIVER_URL') { 'http://localhost:4444/wd/hub' }
     )
   else
     Capybara::Selenium::Driver.new(
@@ -54,17 +56,16 @@ Capybara.register_driver :selenium_chrome_headless do |app|
       desired_capabilities: Selenium::WebDriver::Remote::Capabilities.chrome(
         chromeOptions: {
           args: [
-            "window-size=1024,512",
-            "--no-sandbox",
-            "--disable-dev-shm-usage"
+            'window-size=1024,512',
+            '--no-sandbox',
+            '--disable-dev-shm-usage'
           ]
         }
       ),
-      url: "http://chrome:4444/wd/hub",
+      url: 'http://chrome:4444/wd/hub'
     )
   end
 end
-
 
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.
@@ -116,5 +117,4 @@ RSpec.configure do |config|
       end
     end
   end
-  
 end

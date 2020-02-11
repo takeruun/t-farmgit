@@ -1,0 +1,36 @@
+inherit_from: .rubocop_todo.yml
+
+require:
+    - rubocop-rails
+
+AllCops:
+    TargetRubyVersion: 2.6.1
+    # 除外するディレクトリ（自動生成されたファイル）
+    Exclude:
+        - 'bin/**'
+        - 'db/**/*'
+        - 'config.ru'
+        - 'test/**'
+        - !ruby/regexp /old_and_unused\.rb$/        
+
+# 日本語でのコメントを許可
+AsciiComments:
+    Enabled: false
+
+# クラスのコメント必須を無視
+Documentation:
+    Enabled: false
+
+# モジュール名::クラス名の定義を許可
+ClassAndModuleChildren:
+    Enabled: false
+
+Layout/LineLength:
+    Enabled: false
+
+Metrics/BlockLength:
+    Enabled: false
+
+# 文字リテラルのイミュータブル宣言を無視（freezeになるのはRuby3以降）
+Style/FrozenStringLiteralComment:
+    Enabled: false
