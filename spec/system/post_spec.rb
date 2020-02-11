@@ -136,15 +136,15 @@ RSpec.describe Post, type: :sytem do
   describe '詳細表示機能' do
     shared_examples 'userが作成した投稿の詳細が表示される' do
       it {
-        click_link "#{post.title}の写真id:#{post.id}"
+        click_link "#{post.title}のリンクid:#{post.id}"
         expect(page).to have_content 'example'
       }
       it { expect(page).to have_content 'exampleです' }
     end
 
     shared_examples 'other_userが作成した投稿の詳細が表示される' do
-      it { click_link "#{other_post.title}の写真id:#{other_post.id}" }
-      it { expect(page).to have_content 'other_example' }
+      it { click_link "#{other_post.title}のリンクid:#{other_post.id}"
+           expect(page).to have_content 'other_example' }
       it { expect(page).to have_content 'other_exampleです' }
     end
 
@@ -200,14 +200,14 @@ RSpec.describe Post, type: :sytem do
       end
 
       it '編集画面に移行できる' do
-        click_link "#{post.title}の写真id:#{post.id}"
+        click_link "#{post.title}のリンクid:#{post.id}"
         click_link '編集'
         expect(current_path).to eq edit_post_path(post)
       end
 
       context '新規投稿全入力しているとき' do
         before do
-          click_link "#{post.title}の写真id:#{post.id}"
+          click_link "#{post.title}のリンクid:#{post.id}"
           click_link '編集'
           fill_in 'post[title]', with: post_title
           attach_file('post[image]', Rails.root + 'public/post_images/test.jpg')
@@ -224,7 +224,7 @@ RSpec.describe Post, type: :sytem do
 
       context 'タイトル未入力にしたとき' do
         before do
-          click_link "#{post.title}の写真id:#{post.id}"
+          click_link "#{post.title}のリンクid:#{post.id}"
           click_link '編集'
           fill_in 'post[title]', with: ''
           attach_file('post[image]', Rails.root + 'public/post_images/test.jpg')
