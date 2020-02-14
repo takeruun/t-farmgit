@@ -135,14 +135,18 @@ RSpec.describe Post, type: :sytem do
 
   describe '詳細表示機能' do
     shared_examples 'userが作成した投稿の詳細が表示される' do
-      it { click_link "#{post.title}のリンクid:#{post.id}"
-           expect(page).to have_content 'example' }
+      it {
+        click_link "#{post.title}のリンクid:#{post.id}"
+        expect(page).to have_content 'example'
+      }
       it { expect(page).to have_content 'exampleです' }
     end
 
     shared_examples 'other_userが作成した投稿の詳細が表示される' do
-      it { click_link "#{other_post.title}のリンクid:#{other_post.id}"
-           expect(page).to have_content 'other_example' }
+      it {
+        click_link "#{other_post.title}のリンクid:#{other_post.id}"
+        expect(page).to have_content 'other_example'
+      }
       it { expect(page).to have_content 'other_exampleです' }
     end
 
@@ -368,7 +372,7 @@ RSpec.describe Post, type: :sytem do
         visit post_path(post)
         fill_in 'comment[content]', with: 'example'
         click_button '送信'
-        expect(page).to have_content 'example' 
+        expect(page).to have_content 'example'
       end
 
       it 'other_userの投稿にコメントできる', js: true do
@@ -391,7 +395,7 @@ RSpec.describe Post, type: :sytem do
         visit post_path(post)
         fill_in 'comment[content]', with: 'comment example'
         click_button '送信'
-        expect(page).to have_content 'comment example' 
+        expect(page).to have_content 'comment example'
       end
 
       it 'othser_userの投稿にコメントできる', js: true do
@@ -404,11 +408,12 @@ RSpec.describe Post, type: :sytem do
 
     context 'ログインしていないとき' do
       it 'コメントできない' do
+        visit post_path(post)
         expect(page).to have_content 'ログインしてください'
       end
     end
   end
-  
+
   describe '認証機能' do
     context 'userがログインしているとき' do
       before do
@@ -418,7 +423,7 @@ RSpec.describe Post, type: :sytem do
         click_button 'ログイン'
       end
 
-      it 'other_userの投稿は編集できない'do
+      it 'other_userの投稿は編集できない' do
         visit "/posts/#{other_post.id}/edit"
         expect(page).to have_content '権限がありません'
       end
@@ -426,6 +431,7 @@ RSpec.describe Post, type: :sytem do
 
     context 'other_userがログインしているとき' do
       before do
+        visit new_user_session_path
         fill_in 'メールアドレス', with: other_user.email
         fill_in 'パスワード', with: other_user.password
         click_button 'ログイン'
