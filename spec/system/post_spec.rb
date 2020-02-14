@@ -143,8 +143,10 @@ RSpec.describe Post, type: :sytem do
     end
 
     shared_examples 'other_userが作成した投稿の詳細が表示される' do
-      it { click_link "#{other_post.title}のリンクid:#{other_post.id}"
-           expect(page).to have_content 'other_example' }
+      it {
+        click_link "#{other_post.title}のリンクid:#{other_post.id}"
+        expect(page).to have_content 'other_example'
+      }
       it { expect(page).to have_content 'other_exampleです' }
     end
 
@@ -345,6 +347,99 @@ RSpec.describe Post, type: :sytem do
         click_link "add-fav-#{post.id}"
         sleep 2
         expect(post.favorites.count).to eq post.fav_count + 1
+      end
+
+      it 'お気に入り数が減る', js: true do
+        click_link "add-fav-#{post.id}"
+        sleep 2
+        click_link "del-fav-#{post.id}"
+        sleep 2
+        expect(post.favorites.count).to eq 0
+      end
+    end
+  end
+
+  describe 'コメント書き込み機能' do
+    context 'userがログインしているとき' do
+      before do
+        visit new_user_session_path
+        fill_in 'メールアドレス', with: user.email
+        fill_in 'パスワード', with: user.password
+        click_button 'ログイン'
+      end
+
+      it 'userの投稿にコメントできる', js: true do
+        visit post_path(post)
+        fill_in 'comment[content]', with: 'example'
+        click_button '送信'
+        expect(page).to have_content 'example'
+      end
+
+      it 'other_userの投稿にコメントできる', js: true do
+        visit post_path(other_post)
+        fill_in 'comment[content]', with: 'ohter_example'
+        click_button '送信'
+        expect(page).to have_content 'other_example'
+      end
+    end
+
+    context 'other_userがログインしているとき' do
+      before do
+        visit new_user_session_path
+        fill_in 'メールアドレス', with: other_user.email
+        fill_in 'パスワード', with: other_user.password
+        click_button 'ログイン'
+      end
+
+      it 'userの投稿にコメントできる', js: true do
+        visit post_path(post)
+        fill_in 'comment[content]', with: 'comment example'
+        click_button '送信'
+        expect(page).to have_content 'comment example'
+      end
+
+      it 'othser_userの投稿にコメントできる', js: true do
+        visit post_path(other_post)
+        fill_in 'comment[content]', with: 'comment other_example'
+        click_button '送信'
+        expect(page).to have_content 'comment other_example'
+      end
+    end
+
+    context 'ログインしていないとき' do
+      it 'コメントできない' do
+        visit post_path(post)
+        expect(page).to have_content 'ログインしてください'
+      end
+    end
+  end
+
+  describe '認証機能' do
+    context 'userがログインしているとき' do
+      before do
+        visit new_user_session_path
+        fill_in 'メールアドレス', with: user.email
+        fill_in 'パスワード', with: user.password
+        click_button 'ログイン'
+      end
+
+      it 'other_userの投稿は編集できない' do
+        visit "/posts/#{other_post.id}/edit"
+        expect(page).to have_content '権限がありません'
+      end
+    end
+
+    context 'other_userがログインしているとき' do
+      before do
+        visit new_user_session_path
+        fill_in 'メールアドレス', with: other_user.email
+        fill_in 'パスワード', with: other_user.password
+        click_button 'ログイン'
+      end
+
+      it 'userの投稿は編集できない' do
+        visit "/posts/#{post.id}/edit"
+        expect(page).to have_content '権限がありません'
       end
     end
   end

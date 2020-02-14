@@ -32,6 +32,8 @@
 			</div>
 			<% if user_signed_in? %>
 				<%= render partial: 'comments/form', locals:{comment: @comment, post: @post} %>
+			<% else %>
+				<p>※ログインしてください</p>	
 			<% end %>
 		</div>
 	</div>
