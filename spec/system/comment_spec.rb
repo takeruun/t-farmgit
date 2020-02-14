@@ -5,8 +5,8 @@ RSpec.describe Comment, type: :syetem do
   let(:other_user) { create(:other_user) }
   let(:post) { create(:post, user_id: user.id) }
   let(:other_post) { create(:other_post, user_id: other_user.id) }
-  let(:commet) { create(:comment, user_id: user.id, post_id: post.id) }
-  let(:other_comment) { create(:other_comment, user_id: other_user.id, post_id: other_post.id) }
+  let!(:commet) { create(:comment, user_id: user.id, post_id: post.id) }
+  let!(:other_comment) { create(:other_comment, user_id: other_user.id, post_id: other_post.id) }
 
   describe 'コメント削除機能' do
     context 'userがログインしているとき' do
