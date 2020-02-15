@@ -33,11 +33,11 @@
 			<% @posts.each do |post| %>
 				<div class="post">
 					<div class="image-top">
-						<%= image_tag post.image.to_s%>
+						<%= image_tag post.image.thumb.to_s%>
 						<div class="mask1"></div>
 						<div class="mask2"></div>
 						<div class="comment-top">
-							<p><%= post.comment %></p>
+							<p><%= post.a_word %></p>
 							<%= link_to "ここをクリック", post_path(post), id:"#{post.title}のリンクid:#{post.id}"%>
 						</div>
 					</div>
