@@ -16,13 +16,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def update
-    @user = User.find_by(id: current_user.id)
     super
-    if params[:user][:image]
-      @user.image = params[:user][:image]
-      @user.save
-      flash[:notice] = '画像編集しました'
-    end
   end
 
   def destroy
