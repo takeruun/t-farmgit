@@ -16,6 +16,8 @@ FROM ruby:2.6.1
 
     ADD . /t-farm
 
+    RUN mkdir -p tmp/sockets
+
     VOLUME /t-farm/public
     VOLUME /t-farm/tmp
 
