@@ -9,7 +9,6 @@ RSpec.describe Post, type: :sytem do
   describe '新規投稿機能' do
     let(:post_title) { '新規投稿' }
     let(:post_a_word) { '新規投稿だよ' }
-    let(:post_from) { '新規県' }
     let(:post_amount) { '1' }
 
     context 'userがログインしているとき' do
@@ -31,7 +30,7 @@ RSpec.describe Post, type: :sytem do
           fill_in 'post[title]', with: post_title
           attach_file('post[image]', Rails.root + 'public/post_images/test.jpg')
           fill_in 'post[a_word]', with: post_a_word
-          fill_in 'post[from]', with: post_from
+          select '東京都', from: 'post_from'
           fill_in 'post[amount]', with: post_amount
         end
 
@@ -47,7 +46,7 @@ RSpec.describe Post, type: :sytem do
           fill_in 'post[title]', with: ''
           attach_file('post[image]', Rails.root + 'public/post_images/test.jpg')
           fill_in 'post[a_word]', with: post_a_word
-          fill_in 'post[from]', with: post_from
+          select '東京都', from: 'post_from'
           fill_in 'post[amount]', with: post_amount
         end
 
@@ -62,7 +61,7 @@ RSpec.describe Post, type: :sytem do
           visit new_post_path
           fill_in 'post[title]', with: post_title
           fill_in 'post[a_word]', with: post_a_word
-          fill_in 'post[from]', with: post_from
+          select '東京都', from: 'post_from'
           fill_in 'post[amount]', with: post_amount
         end
 
@@ -78,7 +77,7 @@ RSpec.describe Post, type: :sytem do
           fill_in 'post[title]', with: post_title
           attach_file('post[image]', Rails.root + 'public/post_images/test.jpg')
           fill_in 'post[a_word]', with: ''
-          fill_in 'post[from]', with: post_from
+          select '東京都', from: 'post_from'
           fill_in 'post[amount]', with: post_amount
         end
 
@@ -189,7 +188,6 @@ RSpec.describe Post, type: :sytem do
   describe '編集機能' do
     let(:post_title) { '編集済み' }
     let(:post_a_word) { '編集しました' }
-    let(:post_from) { '編集県' }
     let(:post_amount) { '11' }
 
     context 'userがログインしているとき' do
@@ -214,7 +212,7 @@ RSpec.describe Post, type: :sytem do
           fill_in 'post[title]', with: post_title
           attach_file('post[image]', Rails.root + 'public/post_images/test.jpg')
           fill_in 'post[a_word]', with: post_a_word
-          fill_in 'post[from]', with: post_from
+          select '福岡', from: 'post_from'
           fill_in 'post[amount]', with: post_amount
         end
 
@@ -231,7 +229,7 @@ RSpec.describe Post, type: :sytem do
           fill_in 'post[title]', with: ''
           attach_file('post[image]', Rails.root + 'public/post_images/test.jpg')
           fill_in 'post[a_word]', with: post_a_word
-          fill_in 'post[from]', with: post_from
+          select '福岡県', from: 'post_from'
           fill_in 'post[amount]', with: post_amount
         end
 
@@ -247,7 +245,7 @@ RSpec.describe Post, type: :sytem do
           fill_in 'post[title]', with: post_title
           attach_file('post[image]', Rails.root + 'public/post_images/test.jpg')
           fill_in 'post[a_word]', with: ''
-          fill_in 'post[from]', with: post_from
+          select '福岡県', from: 'post_from'
           fill_in 'post[amount]', with: post_amount
         end
 
