@@ -349,7 +349,7 @@ RSpec.describe Post, type: :sytem do
 
       it 'お気に入り数が減る', js: true do
         click_link "add-fav-#{post.id}"
-        sleep 2
+        sleep 4
         click_link "del-fav-#{post.id}"
         sleep 2
         expect(post.favorites.count).to eq 0
