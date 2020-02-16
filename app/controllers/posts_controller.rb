@@ -10,7 +10,7 @@ class PostsController < ApplicationController
         format.json { @new_favpost = Post.order(fav_count: :desc).where('fav_count > ?', 0).limit(4) }
       end
     end
-    @posts = Post.order(created_at: :desc).limit(9)
+    @posts = Post.order(created_at: :desc).page(params[:page]).per(6) #最新のものから
   end
 
   def new
@@ -61,7 +61,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:comment, :title, :image, :amount, :from)
+    params.require(:post).permit(:a_word, :title, :image, :amount, :from)
   end
 
   def ensure_correct_user

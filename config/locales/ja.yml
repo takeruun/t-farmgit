@@ -4,6 +4,14 @@ ja:
       post:
         title: "タイトル"
         image: "写真"
-        comment: "説明orコメント"
+        a_word: "一言"
         from: "生産地"
         amount: "収穫量"
+
+  views:
+    pagination:
+      first: <i class="fas fa-angle-double-left"></i>
+      last: <i class="fas fa-angle-double-right"></i>
+      previous: <i class="fas fa-angle-left"></i>
+      next: <i class="fas fa-angle-right"></i>
+      truncate: '...'

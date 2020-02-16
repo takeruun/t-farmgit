@@ -15,9 +15,9 @@ RSpec.describe Post, type: :model do
   end
 
   it 'コメントがないと投稿できない' do
-    post.comment = nil
+    post.a_word = nil
     post.valid?
-    expect(post.errors[:comment]).to include('を入力してください')
+    expect(post.errors[:a_word]).to include('を入力してください')
   end
 
   it 'タイトルがないと投稿できない' do

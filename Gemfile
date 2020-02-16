@@ -86,3 +86,5 @@ gem 'devise-i18n-views', '~> 0.3.7'
 
 # rails日本語化
 gem 'rails-i18n'
+
+gem 'kaminari', '~> 0.17.0'

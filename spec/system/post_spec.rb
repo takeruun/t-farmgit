@@ -8,8 +8,7 @@ RSpec.describe Post, type: :sytem do
 
   describe '新規投稿機能' do
     let(:post_title) { '新規投稿' }
-    let(:post_comment) { '新規投稿だよ' }
-    let(:post_from) { '新規県' }
+    let(:post_a_word) { '新規投稿だよ' }
     let(:post_amount) { '1' }
 
     context 'userがログインしているとき' do
@@ -30,8 +29,8 @@ RSpec.describe Post, type: :sytem do
           visit new_post_path
           fill_in 'post[title]', with: post_title
           attach_file('post[image]', Rails.root + 'public/post_images/test.jpg')
-          fill_in 'post[comment]', with: post_comment
-          fill_in 'post[from]', with: post_from
+          fill_in 'post[a_word]', with: post_a_word
+          select '東京都', from: 'post_from'
           fill_in 'post[amount]', with: post_amount
         end
 
@@ -46,8 +45,8 @@ RSpec.describe Post, type: :sytem do
           visit new_post_path
           fill_in 'post[title]', with: ''
           attach_file('post[image]', Rails.root + 'public/post_images/test.jpg')
-          fill_in 'post[comment]', with: post_comment
-          fill_in 'post[from]', with: post_from
+          fill_in 'post[a_word]', with: post_a_word
+          select '東京都', from: 'post_from'
           fill_in 'post[amount]', with: post_amount
         end
 
@@ -61,8 +60,8 @@ RSpec.describe Post, type: :sytem do
         before do
           visit new_post_path
           fill_in 'post[title]', with: post_title
-          fill_in 'post[comment]', with: post_comment
-          fill_in 'post[from]', with: post_from
+          fill_in 'post[a_word]', with: post_a_word
+          select '東京都', from: 'post_from'
           fill_in 'post[amount]', with: post_amount
         end
 
@@ -77,14 +76,14 @@ RSpec.describe Post, type: :sytem do
           visit new_post_path
           fill_in 'post[title]', with: post_title
           attach_file('post[image]', Rails.root + 'public/post_images/test.jpg')
-          fill_in 'post[comment]', with: ''
-          fill_in 'post[from]', with: post_from
+          fill_in 'post[a_word]', with: ''
+          select '東京都', from: 'post_from'
           fill_in 'post[amount]', with: post_amount
         end
 
         it '失敗して, メッセージが出る' do
           click_button '投稿'
-          expect(page).to have_content('説明orコメントを入力してください')
+          expect(page).to have_content('一言を入力してください')
         end
       end
     end
@@ -188,8 +187,7 @@ RSpec.describe Post, type: :sytem do
 
   describe '編集機能' do
     let(:post_title) { '編集済み' }
-    let(:post_comment) { '編集しました' }
-    let(:post_from) { '編集県' }
+    let(:post_a_word) { '編集しました' }
     let(:post_amount) { '11' }
 
     context 'userがログインしているとき' do
@@ -213,8 +211,8 @@ RSpec.describe Post, type: :sytem do
           click_link '編集'
           fill_in 'post[title]', with: post_title
           attach_file('post[image]', Rails.root + 'public/post_images/test.jpg')
-          fill_in 'post[comment]', with: post_comment
-          fill_in 'post[from]', with: post_from
+          fill_in 'post[a_word]', with: post_a_word
+          select '福岡', from: 'post_from'
           fill_in 'post[amount]', with: post_amount
         end
 
@@ -230,8 +228,8 @@ RSpec.describe Post, type: :sytem do
           click_link '編集'
           fill_in 'post[title]', with: ''
           attach_file('post[image]', Rails.root + 'public/post_images/test.jpg')
-          fill_in 'post[comment]', with: post_comment
-          fill_in 'post[from]', with: post_from
+          fill_in 'post[a_word]', with: post_a_word
+          select '福岡県', from: 'post_from'
           fill_in 'post[amount]', with: post_amount
         end
 
@@ -246,14 +244,14 @@ RSpec.describe Post, type: :sytem do
           visit edit_post_path(post)
           fill_in 'post[title]', with: post_title
           attach_file('post[image]', Rails.root + 'public/post_images/test.jpg')
-          fill_in 'post[comment]', with: ''
-          fill_in 'post[from]', with: post_from
+          fill_in 'post[a_word]', with: ''
+          select '福岡県', from: 'post_from'
           fill_in 'post[amount]', with: post_amount
         end
 
         it '失敗して, メッセージが出る' do
           click_button '更新'
-          expect(page).to have_content('説明orコメントを入力してください')
+          expect(page).to have_content('一言を入力してください')
         end
       end
     end

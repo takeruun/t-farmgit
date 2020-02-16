@@ -15,7 +15,7 @@
 .post-index-wrapper{
 	margin-top: 0px;
 		.recommend-show{
-			background-image: url("/vegi.jpg");
+			background-image: url("/vege.jpg");
 			background-size: cover;
 			padding-top: 60px;
 			padding-bottom: 50px;
@@ -68,6 +68,7 @@
 
 			.image-top{
 				height: 250px;
+				width: 100%;
 				padding-right: 0;
 				img{
 					width: 100%;
@@ -144,6 +145,22 @@
 			}
 		}
 	}
+
+	.pagination{
+		text-align: center;
+		.page{
+			display: inline-block;
+			color: black;
+			background: white;
+			padding: 10px;
+			border: solid 3px #7EFBEA;
+			border-radius: 15px;
+		}
+		.current{
+			background: #7EFBEA;
+			color: white;
+		}
+	}
 }
 
 // new
@@ -159,6 +176,8 @@
 		input{
 			width: 60%;
 			font-size: 20px;
+			border: none;
+			border-bottom: solid 1px black;
 		}
 	}
 
@@ -168,20 +187,27 @@
 
 	.comment-form{
 		textarea{
+			padding: 5px 5px 10px 5px;
 			font-size: 20px;
-			width: 80%;
-			height: 150px;
+			width: 60%;
+			height: 100px;
 		}
 	}
 
 	.detail-form{
 		.detail-form-table{
 			th{
+				padding-right: 20px;
 				font-weight: 20;
 			}
 			input{
-				margin-left: 20px;
-				width: 100px;
+				border: none;
+				border-bottom: solid 1px black;
+				font-size: 15px;
+			}
+			.from{
+				width: 100%;
+				
 			}
 		}
 	}
