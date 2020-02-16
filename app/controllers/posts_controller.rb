@@ -10,7 +10,7 @@ class PostsController < ApplicationController
         format.json { @new_favpost = Post.order(fav_count: :desc).where('fav_count > ?', 0).limit(4) }
       end
     end
-    @posts = Post.order(created_at: :desc).limit(9)
+    @posts = Post.order(created_at: :desc).page(params[:page]).per(6) #最新のものから
   end
 
   def new

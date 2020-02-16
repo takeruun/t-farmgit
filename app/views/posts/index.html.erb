@@ -1,7 +1,7 @@
 <div class="main post-index-wrapper">
 	<div class="recommend-show">
 		<div class="container">
-			<h2 class="recommend-title">注目投稿</h2>
+			<h2 class="recommend-title">いいねが多い投稿</h2>
 			<div class="recommend-item">
 				<% if @favpost %>
 					<div class="favpost" data-id= <%= @favpost.id %> >
@@ -54,6 +54,7 @@
 				<% end %>
 				<div class="clear"></div>
 			</div>
+			<%= paginate @posts%>
 		</div>
 	</div>
 </div>
