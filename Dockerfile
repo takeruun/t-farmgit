@@ -16,6 +16,9 @@ FROM ruby:2.6.1
 
     ADD . /t-farm
 
+    VOLUME /t-farm/public
+    VOLUME /t-farm/tmp
+
     ARG RAILS_ENV
     ARG RAILS_MASTER_KEY
 
