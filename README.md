@@ -4,7 +4,7 @@
 
 <img width="1404" alt="スクリーンショット 2020-02-16 22 09 38" src="https://user-images.githubusercontent.com/48900966/74605196-2bd29d00-5109-11ea-9ca8-db53f7982970.png">
 
-市場に出せない農作物も売買できるサイトにできるよう意識して作成しました。
+市場に出せない農作物も売買できるサイトに進化できるよう意識して作成しました。
 
 # リンク
 https://www.t-farm.tk/posts
@@ -25,17 +25,18 @@ https://www.t-farm.tk/posts
   - ECR
   - ALB
   - RDS
+  - S3
   - ACM
-  - SES(認証待ち)
-
+  - SES
+  -CloudWatch
 
 # 機能一覧
 - ユーザ登録(devise)
   - 画像アップロード
-    - carrierwave, S3
+    - carrierwave
 - 投稿機能
   - 画像アップロード
-    - carrierwave, S3
+    - carrierwave
 - いいね機能(Ajax)
 - コメント機能(Ajax)
 - いいねが多い投稿表示機能
@@ -52,6 +53,10 @@ RSpecテスト通過 → ECR push → aws ecsコマンドでタスクの更新�
 # GitHub
 初めの方はまだ使い慣れてなく、masterブランチで作業してしまっていました。
 <br>後半あたりから、機能別で作業するよう意識しました。
+
+# 改善点
+- レスポンシズ未対応
+- 画像の読み込みが遅い
 
 # さらに、、
 去年の夏あたり機械学習にハマり、農作物の写真を機械学習も用いてカテゴリ(果実類等)分できたら面白いと思い勉強しておりました(^^;
