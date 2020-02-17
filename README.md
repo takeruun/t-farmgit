@@ -27,6 +27,7 @@ https://www.t-farm.tk/posts
   - RDS
   - S3
   - ACM
+  - Route 53(ドメインはawsではないです)
   - SES
   -CloudWatch
 
@@ -46,6 +47,9 @@ https://www.t-farm.tk/posts
 - 単体テスト
 - 統合テスト
   - selenium
+  
+# 見ていただきたい部分
+バックエンド部分を特に見ていただきたいです。<br>
 
 # CircleCI/CD
 RSpecテスト通過 → ECR push → aws ecsコマンドでタスクの更新とサービスの更新をしています。
