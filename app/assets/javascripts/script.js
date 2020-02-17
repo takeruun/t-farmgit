@@ -1,17 +1,18 @@
 $(function(){
 
-	setTimeout("$('#flash').fadeOut('slow')",1500);
+	setTimeout("$('#flash').fadeOut('slow')",2000);
 
 	var post_array = [];
 	var post_num   = [];
 	var url;
+	var now_url = location.href;
 
 	//<li>作成
 	function createFavPost(post,id_now,i){
 		post_array.push(post);
 		post_num.push(i);
 
-		$('.favpost ul').append('<li value='+i+'><img></li>');
+		$('.favpost ul').append('<li value='+i+'><a><img></a></li>');
 		$('.favpost').find('li').attr({
 			class: 'slide'
 		});
@@ -24,30 +25,34 @@ $(function(){
 	}
 
 	//データ取得
-	$(window).load(function(){
-		var favpost_id_now = $('.favpost').data('id');
-		$.ajax({
-			url: '/posts',
-			type: 'GET',
-			data: {favpost: {id: favpost_id_now}},
-			context: favpost_id_now,
-			dataType: 'json'
-		})
-		.done(function(data){
-			$.each(data, function(i,data){
-				url = createFavPost(data,favpost_id_now,i);
-				$('.favpost').find('img:eq('+i+')').attr({
-					alt: '注目投稿',
-					src: url
+	if(now_url == "https://www.t-farm.tk/posts" || now_url == "http://localhost/posts"){
+		$(window).load(function(){
+			var favpost_id_now = $('.favpost').data('id');
+			$.ajax({
+				url: '/posts',
+				type: 'GET',
+				data: {favpost: {id: favpost_id_now}},
+				context: favpost_id_now,
+				dataType: 'json'
+			})
+			.done(function(data){
+				$.each(data, function(i,data){
+					url = createFavPost(data,favpost_id_now,i);
+					$('.favpost').find('img:eq('+i+')').attr({
+						alt: '注目投稿',
+						src: url
+					});
+					$('.favpost').find('a:eq('+i+')').attr({
+						href: 'posts/'+data.id+''
+					});
 				});
-			});
 
-		})
-		.fail(function(){
-			alert('error');
-		})
-	});
-
+			})
+			.fail(function(){
+				alert('error');
+			})
+		});
+	}
 	$('.change-btn').click(function(){
 		var $changePost = $('.active');
 		var slideIndex  = $('.slide').index($('.active'));

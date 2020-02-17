@@ -1,19 +1,25 @@
-<% if post.favorited_by?(current_user) %>
-	<div id="fav-btn" class="favorite">	
-		<%= link_to post_favorite_path(Favorite.find_by(post_id: post.id),post_id: post.id), method: :delete, id:"del-fav-#{post.id}", remote: true do %>
-			<i class="fa fa-heart unfav-log"></i>お気に入り削除
-			<% end %>
-		<div class="favorite-count"><%= Favorite.where(post_id: post.id).count %>件</div>
-		<% post.fav_count = Favorite.where(post_id: post.id).count %>
-		<% post.save %>
+<% unless user_signed_in? %>
+	<div class="favorite">
+		<div class="favorite-count">お気に入り数<%= Favorite.where(post_id: post.id).count %></div>
 	</div>
 <% else %>
-	<div id="fav-btn" class="favorite">
-		<%= link_to post_favorites_path(post_id: post.id), method: :post, id:"add-fav-#{post.id}", remote: true do %>
-			<i class="fa fa-heart fav-log"></i>お気に入り追加
-		<% end %>
-		<div class="favorite-count"><%= Favorite.where(post_id: post.id).count %>件</div>
-		<% post.fav_count = Favorite.where(post_id: post.id).count %>
-		<% post.save %>
-	</div>
+	<% if post.favorited_by?(current_user) %>
+		<div id="fav-btn" class="favorite">	
+			<%= link_to post_favorite_path(Favorite.find_by(post_id: post.id),post_id: post.id), method: :delete, id:"del-fav-#{post.id}", remote: true do %>
+				<i class="fa fa-heart unfav-log"></i>お気に入り削除
+				<% end %>
+			<div class="favorite-count">お気に入り数 <%= Favorite.where(post_id: post.id).count %></div>
+			<% post.fav_count = Favorite.where(post_id: post.id).count %>
+			<% post.save %>
+		</div>
+	<% else %>
+		<div id="fav-btn" class="favorite">
+			<%= link_to post_favorites_path(post_id: post.id), method: :post, id:"add-fav-#{post.id}", remote: true do %>
+				<i class="fa fa-heart fav-log"></i>お気に入り追加
+			<% end %>
+			<div class="favorite-count">お気に入り数 <%= Favorite.where(post_id: post.id).count %></div>
+			<% post.fav_count = Favorite.where(post_id: post.id).count %>
+			<% post.save %>
+		</div>
+	<% end %>
 <% end %>

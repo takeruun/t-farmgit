@@ -45,11 +45,9 @@
 						<%= image_tag post.user.image.to_s, id:"#{post.user.name}の写真id:#{post.user.id}" %>
 						<%= link_to post.user.name, "/users/#{post.user.id}" %>
 					</div>
-					<% if user_signed_in? %>
-						<div class="link-favorite" id="favorite-<%= post.id %>">
-							<%= render partial: 'favorites/favorite', locals:{post: post} %>
-						</div>
-					<% end %>	
+					<div class="link-favorite" id="favorite-<%= post.id %>">
+						<%= render partial: 'favorites/favorite', locals:{post: post} %>
+					</div>
 				</div>
 				<% end %>
 				<div class="clear"></div>
