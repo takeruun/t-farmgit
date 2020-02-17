@@ -11,6 +11,10 @@ https://www.t-farm.tk/posts
 
 ログインページの簡単ログインボタンから テストユーザ としてログイン可能です
 
+# クラウドアーキテクト
+<img width="988" alt="スクリーンショット 2020-02-17 22 00 24" src="https://user-images.githubusercontent.com/48900966/74656181-fa250900-51d0-11ea-80af-6e9ee0c14e2e.png">
+
+
 # 使用技術
 - Ruby 2.6.1
 - Ruby on Rails 5.4.2
