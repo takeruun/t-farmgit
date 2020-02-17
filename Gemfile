@@ -89,5 +89,5 @@ gem 'rails-i18n'
 
 gem 'kaminari', '~> 0.17.0'
 
-#Amazon SES
+# Amazon SES
 gem 'aws-ses'
