@@ -56,6 +56,9 @@ https://www.t-farm.tk/posts
 # CircleCI/CD
 RSpecテスト通過 → ECR push → aws ecsコマンドでタスクの更新とサービスの更新をしています。
 
+今回のworkflowsです。
+<img width="1354" alt="スクリーンショット 2020-02-17 19 20 11" src="https://user-images.githubusercontent.com/48900966/74645116-ae676500-51ba-11ea-83e9-5f0368e5dfae.png">
+
 # GitHub
 初めの方はまだ使い慣れてなく、masterブランチで作業してしまっていました。
 <br>後半あたりから、機能別で作業するよう意識しました。
