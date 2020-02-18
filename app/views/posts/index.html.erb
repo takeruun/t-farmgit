@@ -1,7 +1,7 @@
 <div class="main post-index-wrapper">
 	<div class="recommend-show">
 		<div class="container">
-			<h2 class="recommend-title">いいねが多い投稿</h2>
+			<h2 class="recommend-title" id="recommend-title">いいねが多い投稿</h2>
 			<div class="recommend-item">
 				<% if @favpost %>
 					<div class="favpost" data-id= <%= @favpost.id %> >
@@ -38,7 +38,7 @@
 						<div class="mask2"></div>
 						<div class="comment-top">
 							<p><%= post.a_word %></p>
-							<%= link_to "ここをクリック", post_path(post), id:"#{post.title}のリンクid:#{post.id}"%>
+							<%= link_to "→詳細ページリンク←", post_path(post), id:"#{post.title}のリンクid:#{post.id}"%>
 						</div>
 					</div>
 					<div class="user-top">
