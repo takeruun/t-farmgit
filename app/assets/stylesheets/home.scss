@@ -107,8 +107,8 @@ header{
 	background-image: url("/top.jpg");
 	background-size: cover;
 	width: 100%;
+	height: calc(100vh - 37px);
 	background-position: center;
-	height: 730px;
 
 	.message{
 		padding-top: 150px;
