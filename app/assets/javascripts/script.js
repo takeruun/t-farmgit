@@ -25,7 +25,7 @@ $(function(){
 	}
 
 	//データ取得
-	if(now_url == "https://www.t-farm.tk/posts" || now_url == "http://localhost/posts"){
+	if(document.getElementById('recommend-title').textContent == "いいねが多い投稿"){
 		$(window).load(function(){
 			var favpost_id_now = $('.favpost').data('id');
 			$.ajax({
@@ -53,6 +53,7 @@ $(function(){
 			})
 		});
 	}
+	
 	$('.change-btn').click(function(){
 		var $changePost = $('.active');
 		var slideIndex  = $('.slide').index($('.active'));
