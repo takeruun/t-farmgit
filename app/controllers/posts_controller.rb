@@ -10,7 +10,14 @@ class PostsController < ApplicationController
         format.json { @new_favpost = Post.order(fav_count: :desc).where('fav_count > ?', 0).limit(4) }
       end
     end
-    @posts = Post.order(created_at: :desc).page(params[:page]).per(6) # 最新のものから
+    @posts = Post.order(created_at: :desc).page(params[:page]).per(6).search(params[:search]) # 最新のものから
+    if params[:search] == ''
+      redirect_to('/posts')
+      flash[:notice] = '都道府県名を入れてくだい'
+    elsif Post.search(params[:search]).empty?
+      redirect_to('/posts')
+      flash[:notice] = "#{params[:search]}では見つかりませんでした"
+    end
   end
 
   def new
@@ -61,7 +68,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:a_word, :title, :image, :amount, :from)
+    params.require(:post).permit(:a_word, :title, :image, :from)
   end
 
   def ensure_correct_user

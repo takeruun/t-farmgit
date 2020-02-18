@@ -1,7 +1,7 @@
 <div class="main post-index-wrapper">
 	<div class="recommend-show">
 		<div class="container">
-			<h2 class="recommend-title">いいねが多い投稿</h2>
+			<h2 class="recommend-title" id="recommend-title">いいねが多い投稿</h2>
 			<div class="recommend-item">
 				<% if @favpost %>
 					<div class="favpost" data-id= <%= @favpost.id %> >
@@ -29,30 +29,13 @@
 	<div class="posts-show">
 		<div class="container">
 			<h2>投稿一覧</h2>
-			<div class="posts">
-			<% @posts.each do |post| %>
-				<div class="post">
-					<div class="image-top">
-						<%= image_tag post.image.thumb.to_s%>
-						<div class="mask1"></div>
-						<div class="mask2"></div>
-						<div class="comment-top">
-							<p><%= post.a_word %></p>
-							<%= link_to "ここをクリック", post_path(post), id:"#{post.title}のリンクid:#{post.id}"%>
-						</div>
-					</div>
-					<div class="user-top">
-						<%= image_tag post.user.image.to_s, id:"#{post.user.name}の写真id:#{post.user.id}" %>
-						<%= link_to post.user.name, "/users/#{post.user.id}" %>
-					</div>
-					<div class="link-favorite" id="favorite-<%= post.id %>">
-						<%= render partial: 'favorites/favorite', locals:{post: post} %>
-					</div>
-				</div>
-				<% end %>
-				<div class="clear"></div>
-			</div>
-			<%= paginate @posts%>
+			<%= form_tag posts_path, :method => 'get' do%>
+				<%= text_field_tag :search, nil, class:"search", placeholder:"都道府県から検索"%>
+  				<button type="submit" name="commit" class="search-btn">
+  					<i class="fas fa-search fa-2x"></i>
+  				</button>
+			<% end %>
+			<%= render partial: 'posts/post', locals:{posts: @posts}  %>
 		</div>
 	</div>
 </div>

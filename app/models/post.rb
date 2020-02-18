@@ -1,6 +1,6 @@
 class Post < ApplicationRecord
   validates :user_id, presence: true
-  validates :a_word, presence: true
+  validates :a_word, presence: true, length: {maximum: 20}
   validates :title, presence: true
   validates :image, presence: true
 
@@ -17,5 +17,11 @@ class Post < ApplicationRecord
 
   def favorited_by?(user)
     favorites.find_by(user_id: user.id)
+  end
+
+  def self.search(search)
+    return all unless search
+
+    where(from: search)
   end
 end
