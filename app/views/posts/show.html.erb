@@ -9,7 +9,7 @@
 				<h3 class="post-title"><%= @post.title %></h3>
 				<div class="fav-count"></div>
 				<%= image_tag @post.image.to_s %>
-				<p class="post-comment"><%= @post.a_word %></p>
+				<p class="post-a_word"><%= safe_join(@post.a_word.split("\n"),tag(:br)) %></p>
 			</div>
 			<div class="post-detail">
 				<h3>詳細</h3>
@@ -20,7 +20,7 @@
 			<div class="post-time"><%= @post.created_at.strftime('%Y年%m月%d日 %H:%M') %></div>
 			<% if user_signed_in? && current_user.id == @user.id %>
 					<%= link_to "編集",edit_post_path , class:"post-edit-link" %>
-					<%= link_to "削除", post_path, method: :delete %>
+					<%= link_to "削除", post_path, method: :delete ,class:"post-delete-link"%>
 			<% end %>
 			<div class="clear"></div>
 		</div>
