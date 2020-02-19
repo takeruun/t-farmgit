@@ -12,6 +12,8 @@ https://www.t-farm.tk/
 
 ログインページの簡単ログインボタンから テストユーザ としてログイン可能です
 
+デモデータ投稿中です。。
+
 # クラウドアーキテクト
 <img width="988" alt="スクリーンショット 2020-02-17 22 00 24" src="https://user-images.githubusercontent.com/48900966/74656181-fa250900-51d0-11ea-80af-6e9ee0c14e2e.png">
 
