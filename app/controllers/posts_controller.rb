@@ -17,6 +17,9 @@ class PostsController < ApplicationController
     elsif Post.search(params[:search]).empty?
       redirect_to('/posts')
       flash[:notice] = "#{params[:search]}では見つかりませんでした"
+    elsif params[:search]
+      @search = params[:search]
+      flash[:notice] = "#{params[:search]}で検索します"
     end
   end
 
