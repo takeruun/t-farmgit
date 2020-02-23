@@ -25,7 +25,7 @@ $(function(){
 	}
 
 	//データ取得
-	if(document.getElementById('recommend-title').textContent == "いいねが多い投稿"){
+	if(now_url == 'http://localhost/posts' || now_url == 'https://www.t-farm.tk/posts' || now_url.indexOf('http://localhost/posts?') !== -1 || now_url.indexOf('https://www.t-farm.tk/posts?') !== -1){
 		$(window).load(function(){
 			var favpost_id_now = $('.favpost').data('id');
 			$.ajax({
