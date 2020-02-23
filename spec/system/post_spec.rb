@@ -346,6 +346,41 @@ RSpec.describe Post, type: :sytem do
         expect(post.favorites.count).to eq 0
       end
     end
+
+    context 'other_userがログインしているとき' do
+      before do
+        visit new_user_session_path
+        fill_in 'メールアドレス', with: other_user.email
+        fill_in 'パスワード', with: other_user.password
+        click_button 'ログイン'
+        visit posts_path
+      end
+
+      it 'お気に入り追加ボタンがある' do
+        expect(page).to have_content('お気に入り追加')
+      end
+
+      it 'お気に入り数が増える', js: true do
+        click_link "add-fav-#{post.id}"
+        sleep 2
+        expect(post.favorites.count).to eq post.fav_count + 1
+      end
+
+      it 'お気に入り数が減る', js: true do
+        click_link "add-fav-#{post.id}"
+        sleep 4
+        click_link "del-fav-#{post.id}"
+        sleep 2
+        expect(post.favorites.count).to eq 0
+      end
+    end
+
+    context 'ログインしていないとき' do
+      it 'お気に入りできない' do
+        visit posts_path
+        expect(page).to_not have_content 'お気に入り追加'
+      end
+    end
   end
 
   describe 'コメント書き込み機能' do
@@ -429,6 +464,80 @@ RSpec.describe Post, type: :sytem do
       it 'userの投稿は編集できない' do
         visit "/posts/#{post.id}/edit"
         expect(page).to have_content '権限がありません'
+      end
+    end
+  end
+
+  describe '記事検索' do
+    context 'post検索するとき' do
+      before do
+        visit posts_path
+        fill_in 'search', with: '福岡県'
+        click_button 'commit'
+      end
+
+      it '検索している' do
+        expect(page).to have_content 'で検索します'
+      end
+
+      it '検索した単語が残っている' do
+        expect(page).to have_field 'search', with: '福岡県'
+      end
+
+      it '検索した投稿が表示される' do
+        expect(page).to have_content 'exampleです'
+      end
+
+      it '他は表示されない' do
+        expect(page).to_not have_content 'other_exampleです'
+      end
+    end
+
+    context 'other_postを検索するとき' do
+      before do
+        visit posts_path
+        fill_in 'search', with: '東京都'
+        click_button 'commit'
+      end
+
+      it '検索している' do
+        expect(page).to have_content 'で検索します'
+      end
+
+      it '検索単語が残っている' do
+        expect(page).to have_field 'search', with: '東京都'
+      end
+
+      it '検索した投稿が表示される' do
+        expect(page).to have_content 'other_exampleです'
+      end
+
+      it '他は表示されない', js: true do
+        expect(page).to_not have_content 'exampleです'
+      end
+    end
+
+    context '検索単語が都道府県でないとき' do
+      before do
+        visit posts_path
+        fill_in 'search', with: 'example'
+        click_button 'commit'
+      end
+
+      it '検索できない' do
+        expect(page).to have_content 'では見つかりませんでした'
+      end
+    end
+
+    context '検索単語が空白とき' do
+      before do
+        visit posts_path
+        fill_in 'search', with: ''
+        click_button 'commit'
+      end
+
+      it '検索できない' do
+        expect(page).to have_content '都道府県名を入れてくだい'
       end
     end
   end

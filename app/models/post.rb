@@ -1,6 +1,6 @@
 class Post < ApplicationRecord
   validates :user_id, presence: true
-  validates :a_word, presence: true, length: {maximum: 20}
+  validates :a_word, presence: true, length: { maximum: 20 }
   validates :title, presence: true
   validates :image, presence: true
 
