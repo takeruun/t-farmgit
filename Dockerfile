@@ -36,4 +36,4 @@ FROM ruby:2.6.1
 
     RUN if [ "${RAILS_ENV}" = "production" ]; then bundle exec rails assets:precompile assets:clean; else export RAILS_ENV=development; fi
 
-    CMD ["bundle", "exec", "puma", "-C", "config/puma.rb", "-e", "${RAILS_ENV}"]
+    CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
