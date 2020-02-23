@@ -17,7 +17,7 @@ CarrierWave.configure do |config|
     if Rails.env.production?
       config.fog_directory = 't-farm'
     elsif Rails.env.development?
-      config.fog_directory = 't-farm-bucket-for-dev'
+      config.fog_directory = 't-farm-dev'
     end
 
   else
