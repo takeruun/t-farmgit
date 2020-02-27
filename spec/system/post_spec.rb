@@ -333,14 +333,16 @@ RSpec.describe Post, type: :sytem do
       end
 
       it 'お気に入り数が増える', js: true do
+        sleep 2
         click_link "add-fav-#{post.id}"
         sleep 2
         expect(post.favorites.count).to eq post.fav_count + 1
       end
 
       it 'お気に入り数が減る', js: true do
+        sleep 2
         click_link "add-fav-#{post.id}"
-        sleep 4
+        sleep 2
         click_link "del-fav-#{post.id}"
         sleep 2
         expect(post.favorites.count).to eq 0
