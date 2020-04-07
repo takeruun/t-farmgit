@@ -20,7 +20,7 @@ $(function(){
 		if ($('.favpost').find('li').val() == 0){
 			$('.favpost').find('li:eq(0)').addClass('active');
 		}
-		return post.image.url;
+		return post.image.thumb.url;
 		
 	}
 
