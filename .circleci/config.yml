@@ -130,6 +130,7 @@ jobs:
               --execution-role-arn arn:aws:iam::$AWS_ACCOUNT_ID:role/ecsTaskExecutionRole \
               --network-mode bridge \
               --cpu 250 --memory 800 \
+              --volumes name=sockets,dockerVolumeConfiguration={scope=task} \
               --requires-compatibilities EC2
       
       - run:
