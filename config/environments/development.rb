@@ -62,5 +62,5 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   # deviseインストール際指定された
-  config.action_mailer.default_url_options = { host: 't-farm.tk' }
+  config.action_mailer.default_url_options = { host: 't-farm.ml' }
 end
