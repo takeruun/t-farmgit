@@ -12,10 +12,10 @@ services:
       - 3316:3306
 
   web:
-    build: 
+    build:
       context: .
       dockerfile: Dockerfile
-    command: bundle exec puma -C config/puma.rb
+    command: ash -c "bundle exec puma -C config/puma.rb"
     environment:
       RAILS_ENV: development
       DATABASE_URL: mysql2://root:password@mysql:3306
@@ -33,11 +33,11 @@ services:
       - chrome
     links:
       - db:mysql
-  
+
   server:
     build:
       context: containers/nginx
-    volumes: 
+    volumes:
       - public-data:/t-farm/public
       - tmp-data:/t-farm/tmp
       - ./log/nginx:/var/log/nginx
@@ -51,7 +51,7 @@ services:
     ports:
       - 4444:4444
       - 5900:5900
-  
+
 volumes:
   mysql-data:
     driver: local

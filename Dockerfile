@@ -1,39 +1,42 @@
-FROM ruby:2.6.1
-    RUN apt-get update && \
-        apt-get install -y mysql-client nodejs --no-install-recommends vim curl && \
-        apt-get update && apt-get install -y yarn && \
-        rm -rf /var/lib/apt/lists/*
+FROM ruby:2.6.5-alpine3.10
 
-    RUN mkdir /t-farm
-    
-    WORKDIR /t-farm
+RUN apk add --update-cache --no-cache tzdata libxml2-dev curl-dev \
+    make gcc libc-dev g++ linux-headers \
+    mysql-dev mysql-client nodejs git
 
-    ADD Gemfile /t-farm/Gemfile
-    ADD Gemfile.lock /t-farm/Gemfile.lock
+RUN mkdir /t-farm
 
-    RUN gem install bundler
-    RUN bundle install
+WORKDIR /t-farm
 
-    ADD . /t-farm
+ADD Gemfile /t-farm/Gemfile
+ADD Gemfile.lock /t-farm/Gemfile.lock
 
-    RUN mkdir -p tmp/sockets
+RUN gem install bundler && \
+    bundle install && \
+    apk update
 
-    VOLUME /t-farm/public
-    VOLUME /t-farm/tmp
+ADD . /t-farm
 
-    ARG RAILS_ENV
-    ARG RAILS_MASTER_KEY
+RUN rm -rf /usr/local/bundle/cache/* /workdir/vendor/bundle/cache/*
 
-    ENV RAILS_ENV $RAILS_ENV
-    ENV RAILS_MASTER_KEY $RAILS_MASTER_KEY
+RUN mkdir -p tmp/sockets
 
-    # Add a script to be executed every time the container starts.
-    COPY entrypoint.sh /usr/bin/
-    RUN chmod +x /usr/bin/entrypoint.sh
-    ENTRYPOINT ["entrypoint.sh"]
+VOLUME /t-farm/public
+VOLUME /t-farm/tmp
 
-    EXPOSE 3000
+ARG RAILS_ENV
+ARG RAILS_MASTER_KEY
 
-    RUN if [ "${RAILS_ENV}" = "production" ]; then bundle exec rails assets:precompile assets:clean; else export RAILS_ENV=development; fi
+ENV RAILS_ENV $RAILS_ENV
+ENV RAILS_MASTER_KEY $RAILS_MASTER_KEY
 
-    CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
+# Add a script to be executed every time the container starts.
+COPY entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.sh
+ENTRYPOINT ["entrypoint.sh"]
+
+EXPOSE 3000
+
+RUN if [ "${RAILS_ENV}" = "production" ]; then bundle exec rails assets:precompile assets:clean; else export RAILS_ENV=development; fi
+
+CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
